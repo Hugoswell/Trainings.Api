@@ -1,0 +1,8 @@
+.font-light {
+  font-family: monserrat-light;
+}
+
+svg:hover {
+  fill: #ff5733;
+  color: #ff5733;
+}
