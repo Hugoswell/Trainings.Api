@@ -1,7 +1,6 @@
 import React from "react";
 import NavbarLeft from "./NavbarLeft";
 import NavbarRight from "./NavbarRight";
-import "./Navbar.css";
 
 function Navbar() {
   return (

@@ -1,11 +1,10 @@
 import React from "react";
+import NavLink from "./NavLink";
 
 function NavbarRight() {
   return (
     <>
-      <li className="text-gray-500 monserrat-semibold">
-        <a href="#">Me connecter</a>
-      </li>
+      <NavLink content="Me connecter" link="#" />
     </>
   );
 }

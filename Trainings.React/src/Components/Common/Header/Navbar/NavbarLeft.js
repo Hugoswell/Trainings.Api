@@ -1,20 +1,13 @@
 import React from "react";
+import NavLink from "./NavLink";
 
 function NavbarLeft() {
   return (
     <>
-      <li className="mx-6 text-gray-500 monserrat-semibold">
-        <a href="#">Accueil</a>
-      </li>
-      <li className="text-gray-500 monserrat-semibold">
-        <a href="#">Vision</a>
-      </li>
-      <li className="text-gray-500 monserrat-semibold">
-        <a href="#">Générer</a>
-      </li>
-      <li className="text-gray-500 monserrat-semibold">
-        <a href="#">Profil</a>
-      </li>
+      <NavLink content="Accueil" link="#" />
+      <NavLink content="Vision" link="#" />
+      <NavLink content="Générer" link="#" />
+      <NavLink content="Profil" link="#" />
     </>
   );
 }
