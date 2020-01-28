@@ -1,11 +1,14 @@
-import React from "react";
-import BackgroundImg from "../../../img/musculation-HF.jpg";
+import React, { useContext } from "react";
+import RegisterContainerContext from "../../RegisterContainer/RegisterContainerContext";
 
 function BackgroundImage() {
+  const { imageName } = useContext(RegisterContainerContext);
+  const backgroundImagePath = require(`../../../img/${imageName}.jpg`);
+
   return (
     <>
       <img
-        src={BackgroundImg}
+        src={backgroundImagePath}
         alt="Background image"
         className="opacity-65 img-height"
       />
