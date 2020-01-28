@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import RegisterContainerContext from "../../RegisterContainer/RegisterContainerContext";
+import BackgroundImageAndFormContext from "../BackgroundImageAndForm/BackgroundImageAndFormContext";
 
 function Headline() {
-  const { headline } = useContext(RegisterContainerContext);
+  const { headline } = useContext(BackgroundImageAndFormContext);
 
   return (
     <div className="w-4/5 sm:w-2/5">

@@ -1,5 +1,5 @@
 import React from "react";
-import RegisterContainerContext from "../RegisterContainer/RegisterContainerContext";
+import BackgroundImageAndFormContext from "../Common/BackgroundImageAndForm/BackgroundImageAndFormContext";
 import BackgroundImageAndForm from "../Common/BackgroundImageAndForm/BackgroundImageAndForm";
 
 function LoginContainer() {
@@ -11,9 +11,9 @@ function LoginContainer() {
 
   return (
     <>
-      <RegisterContainerContext.Provider value={contextValue}>
+      <BackgroundImageAndFormContext.Provider value={contextValue}>
         <BackgroundImageAndForm />
-      </RegisterContainerContext.Provider>
+      </BackgroundImageAndFormContext.Provider>
     </>
   );
 }

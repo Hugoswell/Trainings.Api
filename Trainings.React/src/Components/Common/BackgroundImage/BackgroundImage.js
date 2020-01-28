@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import RegisterContainerContext from "../../RegisterContainer/RegisterContainerContext";
+import BackgroundImageAndFormContext from "../BackgroundImageAndForm/BackgroundImageAndFormContext";
 
 function BackgroundImage() {
-  const { imageName } = useContext(RegisterContainerContext);
+  const { imageName } = useContext(BackgroundImageAndFormContext);
   const backgroundImagePath = require(`../../../img/${imageName}.jpg`);
 
   return (

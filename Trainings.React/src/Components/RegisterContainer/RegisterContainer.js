@@ -1,7 +1,7 @@
 import React from "react";
 import RegisterFormMobile from "./RegisterForm/RegisterFormMobile/RegisterFormMobile";
 import BackgroundImageAndForm from "../Common/BackgroundImageAndForm/BackgroundImageAndForm";
-import RegisterContainerContext from "./RegisterContainerContext";
+import BackgroundImageAndFormContext from "../Common/BackgroundImageAndForm/BackgroundImageAndFormContext";
 
 function RegisterContainer() {
   const contextValue = {
@@ -11,9 +11,9 @@ function RegisterContainer() {
 
   return (
     <>
-      <RegisterContainerContext.Provider value={contextValue}>
+      <BackgroundImageAndFormContext.Provider value={contextValue}>
         <BackgroundImageAndForm />
-      </RegisterContainerContext.Provider>
+      </BackgroundImageAndFormContext.Provider>
       <RegisterFormMobile />
     </>
   );
