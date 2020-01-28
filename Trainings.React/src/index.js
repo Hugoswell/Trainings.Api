@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Register from "./Pages/Register";
+import Login from "./Pages/Login";
 
-ReactDOM.render(<Register />, document.getElementById("root"));
+ReactDOM.render(<Login />, document.getElementById("root"));
