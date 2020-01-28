@@ -14,7 +14,7 @@ function FormControl(props) {
         id={props.inputId}
         type={props.inputType}
         placeholder={props.placeholderValue}
-        className="mt-1 form-input pl-4"
+        className="mt-1 form-input pl-4 rounded"
       />
     </div>
   );

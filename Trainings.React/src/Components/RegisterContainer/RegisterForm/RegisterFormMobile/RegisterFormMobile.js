@@ -41,7 +41,7 @@ function RegisterFormMobile() {
           id="password"
           type="password"
           placeholder="Mot de passe"
-          className="w-full mt-1 pl-4 form-input"
+          className="w-full mt-1 pl-4 form-input rounded"
         />
         <label
           htmlFor="password"
