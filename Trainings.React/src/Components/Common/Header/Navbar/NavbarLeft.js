@@ -4,10 +4,10 @@ import NavLink from "./NavLink";
 function NavbarLeft() {
   return (
     <>
-      <NavLink content="Accueil" link="#" />
-      <NavLink content="Vision" link="#" />
-      <NavLink content="Générer" link="#" />
-      <NavLink content="Profil" link="#" />
+      <NavLink content="Accueil" link="#" classes="cursor-not-allowed" />
+      <NavLink content="Vision" link="#" classes="cursor-not-allowed" />
+      <NavLink content="Générer" link="#" classes="cursor-not-allowed" />
+      <NavLink content="Profil" link="#" classes="cursor-not-allowed" />
     </>
   );
 }
