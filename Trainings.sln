@@ -23,9 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Business.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Dao.Tests", "Trainings.Dao.Tests\Trainings.Dao.Tests.csproj", "{45D326D0-C840-4E9F-9A98-13ED0CE691A0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{C11D5E0B-D8CD-46C6-80B2-3BD61867CF86}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{55AED14F-2F90-4FCC-AEEB-0769CFDAF349}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Downloads\01-Init-DB.sql = ..\..\Downloads\01-Init-DB.sql
+		Trainings.Sql\01-Init-DB.sql = Trainings.Sql\01-Init-DB.sql
 	EndProjectSection
 EndProject
 Global
