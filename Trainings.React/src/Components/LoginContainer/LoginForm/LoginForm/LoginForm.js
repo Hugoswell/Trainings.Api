@@ -30,7 +30,7 @@ function LoginForm() {
         </div>
       </div>
 
-      <Cta />
+      <Cta content="Me connecter" />
     </div>
   );
 }

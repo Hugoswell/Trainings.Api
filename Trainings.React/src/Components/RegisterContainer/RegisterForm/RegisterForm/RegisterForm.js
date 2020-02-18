@@ -52,7 +52,7 @@ function RegisterForm() {
         </div>
       </div>
 
-      <Cta />
+      <Cta content="M'inscrire" />
     </div>
   );
 }
