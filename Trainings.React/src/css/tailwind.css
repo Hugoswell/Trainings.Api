@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  src: url("../fonts/Montserrat/Montserrat-Bold.ttf");
+  font-family: monserrat-bold;
+}
+.monserrat-bold {
+  font-family: monserrat-bold;
+}
+
+@font-face {
+  src: url("../fonts/Montserrat/Montserrat-SemiBold.ttf");
+  font-family: monserrat-semibold;
+}
+.monserrat-semibold {
+  font-family: monserrat-semibold;
+}
+
+@font-face {
+  src: url("../fonts/Montserrat/Montserrat-Medium.ttf");
+  font-family: monserrat-medium;
+}
+.monserrat-medium {
+  font-family: monserrat-medium;
+}
+
+@font-face {
+  src: url("../fonts/Montserrat/Montserrat-SemiBoldItalic.ttf");
+  font-family: monserrat-semibold-italic;
+}
+.monserrat-semibold-italic {
+  font-family: monserrat-semibold-italic;
+}
+
+@font-face {
+  src: url("../fonts/Montserrat/Montserrat-LightItalic.ttf");
+  font-family: monserrat-light-italic;
+}
+.monserrat-light-italic {
+  font-family: monserrat-light-italic;
+}
+
+@font-face {
+  src: url("../fonts/Montserrat/Montserrat-Light.ttf");
+  font-family: monserrat-light;
+}
+.monserrat-light {
+  font-family: monserrat-light;
+}
+
+body {
+  font-family: monserrat-medium;
+}
+
+.h-14 {
+  height: 3.5rem;
+}
+
+.opacity-65 {
+  opacity: 0.65;
+}

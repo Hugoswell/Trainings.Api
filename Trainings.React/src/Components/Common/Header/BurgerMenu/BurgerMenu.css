@@ -1,0 +1,11 @@
+.burger-menu {
+  top: 50%;
+  right: 6%;
+  transform: translateY(-50%);
+}
+
+.burger-menu span {
+  background-color: #a3a3a3;
+  height: 0.3rem;
+  margin-bottom: 0.35rem;
+}
