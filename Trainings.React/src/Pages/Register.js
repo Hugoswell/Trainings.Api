@@ -3,11 +3,19 @@ import Header from "../Components/Common/Header/Header.js";
 import RegisterContainer from "../Components/RegisterContainer/RegisterContainer.js";
 import Footer from "../Components/Common/Footer/Footer.js";
 import "../css/index.css";
+import HeaderContext from "../Components/Common/Header/HeaderContext";
 
 function Register() {
+  const contextValue = {
+    NavbarRightContent: "Me connecter",
+    NavbarRightLink: "/login"
+  };
+
   return (
     <>
-      <Header />
+      <HeaderContext.Provider value={contextValue}>
+        <Header />
+      </HeaderContext.Provider>
       <RegisterContainer />
       <Footer />
     </>
