@@ -1,31 +1,10 @@
 import React from "react";
-import "./RegisterForm.css";
 import Cta from "../../../Common/Cta/Cta.js";
 import FormControl from "../../../Common/FormControl/FormControl.js";
 
-function RegisterForm() {
+function LoginForm() {
   return (
     <div className="hidden sm:block w-2/5 bg-white rounded opacity-85 p-12 box-shadow">
-      <div className="flex justify-between">
-        <div className="w-45">
-          <FormControl
-            inputId="firstname"
-            labelValue="Prénom"
-            inputType="text"
-            placeholderValue="Prénom"
-          />
-        </div>
-        <div className="w-45">
-          <FormControl
-            inputId="lastname"
-            labelValue="Nom"
-            inputType="text"
-            placeholderValue="Nom"
-            className="w-1/2"
-          />
-        </div>
-      </div>
-
       <div className="mt-5">
         <FormControl
           inputId="email"
@@ -34,7 +13,6 @@ function RegisterForm() {
           placeholderValue="Email"
         />
       </div>
-
       <div className="mt-5">
         <FormControl
           inputId="password"
@@ -47,14 +25,14 @@ function RegisterForm() {
             htmlFor="password"
             className="w-10/12 text-lg text-orange-600 monserrat-light-italic"
           >
-            Rendez le aussi long et fou que vous souhaitez
+            J'ai oublié mon mot de passe
           </label>
         </div>
       </div>
 
-      <Cta content="M'inscrire" />
+      <Cta content="Me connecter" />
     </div>
   );
 }
 
-export default RegisterForm;
+export default LoginForm;
