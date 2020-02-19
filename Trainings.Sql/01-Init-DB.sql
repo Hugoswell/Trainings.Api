@@ -25,7 +25,7 @@ GO
 CREATE TABLE [UserPreference] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [UserId] int NOT NULL,
-  [TrainingTypeId] smallint,
+  [TrainingTypeId] smallint NOT NULL,
   [TrainingDuration] tinyint,
   [BodyWeightWorkout] bit
 )

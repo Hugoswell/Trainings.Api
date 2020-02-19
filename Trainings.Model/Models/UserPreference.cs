@@ -15,7 +15,7 @@ namespace Trainings.Data.Models
         [Key]
         public int Id { get; set; }
         public int UserId { get; set; }
-        public short? TrainingTypeId { get; set; }
+        public short TrainingTypeId { get; set; }
         public byte? TrainingDuration { get; set; }
         public bool? BodyWeightWorkout { get; set; }
 
