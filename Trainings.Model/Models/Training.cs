@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Trainings.Model.Models
+namespace Trainings.Data.Models
 {
     public partial class Training
     {
@@ -14,21 +14,16 @@ namespace Trainings.Model.Models
 
         [Key]
         public int Id { get; set; }
-
         public int UserPreferenceId { get; set; }
-
         [Column(TypeName = "datetime")]
         public DateTime CreationDate { get; set; }
-
         public byte NbOfExercice { get; set; }
-
         public byte Duration { get; set; }
 
         [ForeignKey(nameof(UserPreferenceId))]
-        [InverseProperty("TrainingUserPreference")]
+        [InverseProperty("Training")]
         public virtual UserPreference UserPreference { get; set; }
-
-        [InverseProperty("TrainingExercice")]
+        [InverseProperty("Training")]
         public virtual ICollection<Exercice> Exercices { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Trainings.Model.Models
+namespace Trainings.Data.Models
 {
     public partial class Exercice
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Trainings.Model.Models
+namespace Trainings.Data.Models
 {
     public partial class UserPreference
     {
@@ -14,27 +14,23 @@ namespace Trainings.Model.Models
 
         [Key]
         public int Id { get; set; }
-
         public int UserId { get; set; }
-
         public short? TrainingTypeId { get; set; }
-
         public byte? TrainingDuration { get; set; }
-
         public bool? BodyWeightWorkout { get; set; }
 
         [ForeignKey(nameof(TrainingTypeId))]
-        [InverseProperty("UserPreferenceLov")]
-        public virtual Lov Lov { get; set; }
+        [InverseProperty(nameof(Lov.UserPreferences))]
+        public virtual Lov TrainingType { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        [InverseProperty("UserPreferenceUser")]
+        [InverseProperty("UserPreference")]
         public virtual User User { get; set; }
 
-        [InverseProperty("UserPreferenceTraining")]
+        [InverseProperty("UserPreference")]
         public virtual ICollection<Training> Trainings { get; set; }
 
-        [InverseProperty("UserPreferenceTrainingFrequency")]
+        [InverseProperty("UserPreference")]
         public virtual ICollection<TrainingFrequency> TrainingFrequencies { get; set; }
     }
 }

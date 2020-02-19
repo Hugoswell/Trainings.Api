@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Trainings.Model.Models
+namespace Trainings.Data.Models
 {
     public partial class Lov
     {
@@ -28,10 +28,11 @@ namespace Trainings.Model.Models
         [StringLength(500)]
         public string Description { get; set; }
 
-        [InverseProperty("LovExercices")]
+
+        [InverseProperty("ExerciceNavigation")]
         public virtual ICollection<Exercice> Exercices { get; set; }
 
-        [InverseProperty("LovUserPreference")]
+        [InverseProperty("TrainingType")]
         public virtual ICollection<UserPreference> UserPreferences { get; set; }
     }
 }
