@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Business", "Train
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Dao", "Trainings.Dao\Trainings.Dao.csproj", "{34504A89-C412-4307-8D97-6656AFDE5684}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Model", "Trainings.Model\Trainings.Model.csproj", "{C266A5C6-3F26-42FD-BFA3-A4775CF09026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Data", "Trainings.Model\Trainings.Data.csproj", "{C266A5C6-3F26-42FD-BFA3-A4775CF09026}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{DFFD8DFB-4BC4-440E-8CA2-43736F4BBCB9}"
 EndProject
