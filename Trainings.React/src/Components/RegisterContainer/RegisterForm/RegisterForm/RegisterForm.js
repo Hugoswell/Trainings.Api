@@ -5,12 +5,11 @@ import FormControl from "../../../Common/FormControl/FormControl.js";
 
 function RegisterForm() {
   return (
-    <div className="hidden sm:block w-2/5 bg-white rounded opacity-85 p-12 box-shadow">
+    <div className="hidden sm:block w-2/5 bg-white rounded p-12 box-shadow">
       <div className="flex justify-between">
         <div className="w-45">
           <FormControl
             inputId="firstname"
-            labelValue="Prénom"
             inputType="text"
             placeholderValue="Prénom"
           />
@@ -18,7 +17,6 @@ function RegisterForm() {
         <div className="w-45">
           <FormControl
             inputId="lastname"
-            labelValue="Nom"
             inputType="text"
             placeholderValue="Nom"
             className="w-1/2"
@@ -29,16 +27,14 @@ function RegisterForm() {
       <div className="mt-5">
         <FormControl
           inputId="email"
-          labelValue="Email"
           inputType="email"
-          placeholderValue="Email"
+          placeholderValue="E-mail"
         />
       </div>
 
       <div className="mt-5">
         <FormControl
           inputId="password"
-          labelValue="Mot de passe"
           inputType="password"
           placeholderValue="Mot de passe"
         />
