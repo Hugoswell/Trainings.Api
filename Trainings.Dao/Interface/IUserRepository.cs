@@ -2,8 +2,8 @@
 
 namespace Trainings.Repository.Interface
 {
-    public interface IRegisterRepository
+    public interface IUserRepository
     {
-        void RegisterUser(User user);
+        void SignUp(User user);
     }
 }

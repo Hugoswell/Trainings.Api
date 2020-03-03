@@ -3,13 +3,13 @@ using Trainings.Repository.Interface;
 
 namespace Trainings.Repository
 {
-    public class RegisterRepository : BaseRepository, IRegisterRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
-        public RegisterRepository(TrainingsEntities trainingsEntities) : base(trainingsEntities)
+        public UserRepository(TrainingsEntities trainingsEntities) : base(trainingsEntities)
         {
         }
 
-        public void RegisterUser(User user)
+        public void SignUp(User user)
         {
             _trainingsEntities.User.Add(user);
             _trainingsEntities.SaveChanges();

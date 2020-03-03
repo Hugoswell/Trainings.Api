@@ -4,5 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Trainings.Business\Trainings.Business.csproj" />
+    <ProjectReference Include="..\Trainings.ViewModel\Trainings.ViewModel.csproj" />
+  </ItemGroup>
+
 
 </Project>

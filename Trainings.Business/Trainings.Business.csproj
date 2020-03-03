@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Trainings.Dao\Trainings.Repository.csproj" />
+    <ProjectReference Include="..\Trainings.ViewModel\Trainings.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>
