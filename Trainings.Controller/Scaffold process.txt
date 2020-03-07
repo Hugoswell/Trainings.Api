@@ -1,0 +1,3 @@
+﻿Scaffold string : Scaffold-DbContext "Server=localhost;Database=Trainings;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -Force -DataAnnotations -Project Trainings.Data -Context TrainingsEntities -o Models
+Need to be executed from the Trainings.Controller project package console.
+Then you need to change the TrainingsEntities.cs position to the Context folder

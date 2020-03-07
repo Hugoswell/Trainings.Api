@@ -8,8 +8,8 @@ namespace Trainings.Data.Models
     {
         public User()
         {
-            PersonalInformations = new HashSet<PersonalInformation>();
-            UserPreferences = new HashSet<UserPreference>();
+            PersonalInformation = new HashSet<PersonalInformation>();
+            UserPreference = new HashSet<UserPreference>();
         }
 
         [Key]
@@ -32,8 +32,8 @@ namespace Trainings.Data.Models
         public string RoleName { get; set; }
 
         [InverseProperty("User")]
-        public virtual ICollection<PersonalInformation> PersonalInformations { get; set; }
+        public virtual ICollection<PersonalInformation> PersonalInformation { get; set; }
         [InverseProperty("User")]
-        public virtual ICollection<UserPreference> UserPreferences { get; set; }
+        public virtual ICollection<UserPreference> UserPreference { get; set; }
     }
 }

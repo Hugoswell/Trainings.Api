@@ -9,7 +9,7 @@ namespace Trainings.Data.Models
     {
         public Training()
         {
-            Exercices = new HashSet<Exercice>();
+            Exercice = new HashSet<Exercice>();
         }
 
         [Key]
@@ -24,6 +24,6 @@ namespace Trainings.Data.Models
         [InverseProperty("Training")]
         public virtual UserPreference UserPreference { get; set; }
         [InverseProperty("Training")]
-        public virtual ICollection<Exercice> Exercices { get; set; }
+        public virtual ICollection<Exercice> Exercice { get; set; }
     }
 }

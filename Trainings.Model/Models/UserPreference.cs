@@ -8,8 +8,8 @@ namespace Trainings.Data.Models
     {
         public UserPreference()
         {
-            Trainings = new HashSet<Training>();
-            TrainingFrequencies = new HashSet<TrainingFrequency>();
+            Training = new HashSet<Training>();
+            TrainingFrequency = new HashSet<TrainingFrequency>();
         }
 
         [Key]
@@ -20,17 +20,14 @@ namespace Trainings.Data.Models
         public bool? BodyWeightWorkout { get; set; }
 
         [ForeignKey(nameof(TrainingTypeId))]
-        [InverseProperty(nameof(Lov.UserPreferences))]
+        [InverseProperty(nameof(Lov.UserPreference))]
         public virtual Lov TrainingType { get; set; }
-
         [ForeignKey(nameof(UserId))]
         [InverseProperty("UserPreference")]
         public virtual User User { get; set; }
-
         [InverseProperty("UserPreference")]
-        public virtual ICollection<Training> Trainings { get; set; }
-
+        public virtual ICollection<Training> Training { get; set; }
         [InverseProperty("UserPreference")]
-        public virtual ICollection<TrainingFrequency> TrainingFrequencies { get; set; }
+        public virtual ICollection<TrainingFrequency> TrainingFrequency { get; set; }
     }
 }
