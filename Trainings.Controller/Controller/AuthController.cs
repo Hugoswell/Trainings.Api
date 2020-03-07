@@ -1,16 +1,16 @@
-﻿namespace Trainings.Controller.Controllers
-{
-    using Trainings.Business.Interface;
-    using Trainings.Controller.Assembler;
-    using Trainings.ViewModel;
+﻿using Trainings.Business.Interface;
+using Trainings.Controller.Assembler;
+using Trainings.ViewModel;
 
-    public class UserController
+namespace Trainings.Controller.Controller
+{
+    public class AuthController
     {
         #region Constructor & Properties
 
-        private readonly IUserBusiness _userBusiness;
+        private readonly IAuthBusiness _userBusiness;
 
-        public UserController(IUserBusiness userBusiness)
+        public AuthController(IAuthBusiness userBusiness)
         {
             _userBusiness = userBusiness;
         }

@@ -7,13 +7,13 @@ using Trainings.ViewModel;
 
 namespace Trainings.Business
 {
-    public class UserBusiness : IUserBusiness
+    class AuthBusiness : IAuthBusiness
     {
         #region Constructor & Properties
 
-        private readonly IUserRepository _userRepository;
+        private readonly IAuthRepository _userRepository;
 
-        public UserBusiness(IUserRepository userRepository)
+        public AuthBusiness(IAuthRepository userRepository)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }

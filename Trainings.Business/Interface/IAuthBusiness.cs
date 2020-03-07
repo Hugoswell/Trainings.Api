@@ -2,7 +2,7 @@
 
 namespace Trainings.Business.Interface
 {
-    public interface IUserBusiness
+    public interface IAuthBusiness
     {
         void SignUp(SignUpViewModel signUpViewModel);
     }
