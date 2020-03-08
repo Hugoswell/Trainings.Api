@@ -2,13 +2,11 @@ namespace Trainings.Controller
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Trainings.Business;
     using Trainings.Business.Interface;
-    using Trainings.Data.Context;
     using Trainings.Repository;
     using Trainings.Repository.Interface;
 

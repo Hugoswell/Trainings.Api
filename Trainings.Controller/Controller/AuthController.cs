@@ -27,11 +27,10 @@
             _authBusiness.SignUp(signUpViewModel);
         }
         
-
-        [HttpGet("token")]
-        public ActionResult GetToken()
+        [HttpPost("token")]
+        public IActionResult GetToken(string name)
         {
-            return Ok("Hello from API");
+            return Ok($"Hello {name} !");
         }
     }
 }
