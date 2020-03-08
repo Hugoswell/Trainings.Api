@@ -1,21 +1,21 @@
-﻿using System;
-using Trainings.Business.Assembler;
-using Trainings.Business.Interface;
-using Trainings.Data.Models;
-using Trainings.Repository.Interface;
-using Trainings.ViewModel;
-
-namespace Trainings.Business
+﻿namespace Trainings.Business
 {
-    class AuthBusiness : IAuthBusiness
+    using System;
+    using Trainings.Business.Assembler;
+    using Trainings.Business.Interface;
+    using Trainings.Data.Models;
+    using Trainings.Repository.Interface;
+    using Trainings.ViewModel;
+
+    public class AuthBusiness : IAuthBusiness
     {
         #region Constructor & Properties
 
-        private readonly IAuthRepository _userRepository;
+        private readonly IAuthRepository _authRepository;
 
-        public AuthBusiness(IAuthRepository userRepository)
+        public AuthBusiness(IAuthRepository authRepository)
         {
-            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _authRepository = authRepository ?? throw new ArgumentNullException(nameof(authRepository));
         }
 
         #endregion
@@ -25,7 +25,7 @@ namespace Trainings.Business
         public void SignUp(SignUpViewModel signUpViewModel)
         {
             User user = signUpViewModel.SignUpViewModelToUser();
-            _userRepository.SignUp(user);
+            _authRepository.SignUp(user);
         }
 
         #endregion

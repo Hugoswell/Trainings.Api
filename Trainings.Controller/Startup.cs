@@ -1,24 +1,36 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 namespace Trainings.Controller
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Trainings.Business;
+    using Trainings.Business.Interface;
+    using Trainings.Data.Context;
+    using Trainings.Repository;
+    using Trainings.Repository.Interface;
+
     public class Startup
-    {
+    {        
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var ConnectionString = "Server=localhost;Database=Trainings;Trusted_Connection=True;";
+            services.AddContext(ConnectionString);
+
+
             services.AddControllers();
+            services.AddScoped<IAuthBusiness, AuthBusiness>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

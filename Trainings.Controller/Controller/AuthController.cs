@@ -1,18 +1,22 @@
-﻿using Trainings.Business.Interface;
-using Trainings.Controller.Assembler;
-using Trainings.ViewModel;
-
-namespace Trainings.Controller.Controller
+﻿namespace Trainings.Controller.Controller
 {
-    public class AuthController
+    using Microsoft.AspNetCore.Mvc;
+    using Trainings.Business.Interface;
+    using Trainings.Controller.Assembler;
+    using Trainings.ViewModel;
+
+    [ApiController]
+    [Route("[controller]")]
+    public class AuthController : ControllerBase
     {
+        
         #region Constructor & Properties
 
-        private readonly IAuthBusiness _userBusiness;
+        private readonly IAuthBusiness _authBusiness;
 
-        public AuthController(IAuthBusiness userBusiness)
+        public AuthController(IAuthBusiness authBusiness)
         {
-            _userBusiness = userBusiness;
+            _authBusiness = authBusiness;
         }
 
         #endregion
@@ -20,7 +24,14 @@ namespace Trainings.Controller.Controller
         public void SignUp(string firstName, string lastName, string email, string password)
         {
             SignUpViewModel signUpViewModel = UserAssembler.ToSignUpViewModel(firstName, lastName, email, password);
-            _userBusiness.SignUp(signUpViewModel);
+            _authBusiness.SignUp(signUpViewModel);
+        }
+        
+
+        [HttpGet("token")]
+        public ActionResult GetToken()
+        {
+            return Ok("Hello from API");
         }
     }
 }

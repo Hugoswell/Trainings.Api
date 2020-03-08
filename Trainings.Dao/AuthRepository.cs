@@ -1,9 +1,10 @@
 ﻿using Trainings.Data.Context;
 using Trainings.Data.Models;
+using Trainings.Repository.Interface;
 
 namespace Trainings.Repository
 {
-    class AuthRepository : BaseRepository
+    public class AuthRepository : BaseRepository, IAuthRepository
     {
         public AuthRepository(TrainingsEntities trainingsEntities) : base(trainingsEntities)
         {
