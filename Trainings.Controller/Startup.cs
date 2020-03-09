@@ -7,24 +7,25 @@ namespace Trainings.Controller
     using Microsoft.Extensions.Hosting;
     using Trainings.Business;
     using Trainings.Business.Interface;
+    using Trainings.Controller.Constants;
     using Trainings.Repository;
     using Trainings.Repository.Interface;
 
     public class Startup
     {        
-        public IConfiguration Configuration { get; }
+        public IConfiguration _configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var ConnectionString = "Server=localhost;Database=Trainings;Trusted_Connection=True;";
-            services.AddContext(ConnectionString);
+            services.AddAuthentication(_configuration);
 
+            services.AddContext(_configuration[AppSettings.TrainingsDatabase]);
 
             services.AddControllers();
             services.AddScoped<IAuthBusiness, AuthBusiness>();
@@ -42,6 +43,8 @@ namespace Trainings.Controller
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
