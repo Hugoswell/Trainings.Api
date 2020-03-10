@@ -14,8 +14,8 @@ namespace Trainings.Business.Assembler
                 LastName = signUpViewModel.LastName,
                 Email = signUpViewModel.Email,
                 Password = Hasher.HashPassword(signUpViewModel.Password, Hasher.CreateSalt()),
-                RoleId = 1,
-                RoleName = "free"                
+                RoleId = 0,
+                RoleName = "free"
             };
         }
     }

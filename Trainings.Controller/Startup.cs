@@ -9,7 +9,7 @@ namespace Trainings.Controller
     using Trainings.Business.Interface;
     using Trainings.Controller.Constants;
     using Trainings.Repository;
-    using Trainings.Repository.Interface;
+    using Trainings.Repository.Interfaces;
 
     public class Startup
     {        

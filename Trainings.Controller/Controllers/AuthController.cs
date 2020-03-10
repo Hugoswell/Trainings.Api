@@ -1,4 +1,4 @@
-﻿namespace Trainings.Controller.Controller
+﻿namespace Trainings.Controller.Controllers
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -11,6 +11,8 @@
     using Trainings.Business.Interface;
     using Trainings.Controller.Assembler;
     using Trainings.Controller.Constants;
+    using Trainings.Controller.Helpers;
+    using Trainings.Data.Models;
     using Trainings.ViewModel;
 
     [ApiController]
@@ -32,15 +34,27 @@
         #endregion
 
         [AllowAnonymous]
-        [HttpPost]
-        public void SignUp(string firstName, string lastName, string email, string password)
+        [HttpPost("signup")]
+        public IActionResult SignUp(string firstName, string lastName, string email, string password)
         {
-            SignUpViewModel signUpViewModel = UserAssembler.ToSignUpViewModel(firstName, lastName, email, password);
-            _authBusiness.SignUp(signUpViewModel);
-        }
+            IEnumerable<string> parameters = new List<string> { firstName, lastName, email, password };
+            if (!parameters.NoneStringIsNullOrWhitespace())
+            {
+                return BadRequest(new { message = "At least one of the parameters is incorrect" });
+            }
 
-        [HttpPost("token")]
-        public IActionResult GenerateToken()
+            SignUpViewModel signUpViewModel = UserAssembler.ToSignUpViewModel(firstName, lastName, email, password);
+            User user = _authBusiness.SignUp(signUpViewModel);
+
+            if (user.IsNull())
+            {
+                return NotFound(); //find better response object
+            }
+            //token
+            return Ok(user);
+        }
+        
+        private string GenerateToken()
         {
             //security key
             string secretKey = _configuration[AppSettings.SecretKey];
@@ -53,21 +67,14 @@
             //create token
             var token = new JwtSecurityToken
                 (
-                    //issuer: "hugo",
-                    audience: "readers",
+                    issuer: "Trainings",
+                    audience: "freeAccounts",
                     expires: DateTime.Now.AddHours(1),
                     signingCredentials: signingCredentials
                 );
 
             //return token
-            return Ok(new JwtSecurityTokenHandler().WriteToken(token));
-        }
-
-        [Authorize]
-        [HttpGet("values")]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

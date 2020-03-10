@@ -1,9 +1,10 @@
-﻿using Trainings.ViewModel;
+﻿using Trainings.Data.Models;
+using Trainings.ViewModel;
 
 namespace Trainings.Business.Interface
 {
     public interface IAuthBusiness
     {
-        void SignUp(SignUpViewModel signUpViewModel);
+        User SignUp(SignUpViewModel signUpViewModel);
     }
 }
