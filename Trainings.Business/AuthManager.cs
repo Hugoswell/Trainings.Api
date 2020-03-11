@@ -3,17 +3,17 @@
     using System;
     using Trainings.Business.Assembler;
     using Trainings.Business.Interface;
+    using Trainings.Business.Models;
     using Trainings.Data.Models;
     using Trainings.Repository.Interfaces;
-    using Trainings.ViewModel;
 
-    public class AuthBusiness : IAuthBusiness
+    public class AuthManager : IAuthBusiness
     {
         #region Constructor & Properties
 
         private readonly IAuthRepository _authRepository;
 
-        public AuthBusiness(IAuthRepository authRepository)
+        public AuthManager(IAuthRepository authRepository)
         {
             _authRepository = authRepository ?? throw new ArgumentNullException(nameof(authRepository));
         }
@@ -22,10 +22,10 @@
 
         #region SignUp
 
-        public User SignUp(SignUpViewModel signUpViewModel)
+        public UserManagerModel SignUp(UserManagerModel userManagerModel)
         {           
-            User user = _authRepository.SignUp(signUpViewModel.SignUpViewModelToUser());
-            return user;
+            User user = _authRepository.SignUp(userManagerModel.ToUser());
+            return user.ToUserManagerModel();
         }
 
         #endregion

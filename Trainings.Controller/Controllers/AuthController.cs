@@ -2,17 +2,12 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.IdentityModel.Tokens;
-    using System;
     using System.Collections.Generic;
-    using System.IdentityModel.Tokens.Jwt;
-    using System.Text;
     using Trainings.Business.Interface;
+    using Trainings.Business.Models;
     using Trainings.Controller.Assembler;
-    using Trainings.Controller.Constants;
     using Trainings.Controller.Helpers;
-    using Trainings.Data.Models;
+    using Trainings.Controller.Interfaces;
     using Trainings.ViewModel;
 
     [ApiController]
@@ -23,12 +18,12 @@
         #region Constructor & Properties
 
         private readonly IAuthBusiness _authBusiness;
-        private readonly IConfiguration _configuration;
+        private readonly IJwtTokenHelper _jwtTokenHelper;
 
-        public AuthController(IAuthBusiness authBusiness, IConfiguration configuration)
+        public AuthController(IAuthBusiness authBusiness, IJwtTokenHelper jwtTokenHelper)
         {
-            _configuration = configuration;
             _authBusiness = authBusiness;
+            _jwtTokenHelper = jwtTokenHelper;
         }
 
         #endregion
@@ -43,38 +38,19 @@
                 return BadRequest(new { message = "At least one of the parameters is incorrect" });
             }
 
-            SignUpViewModel signUpViewModel = UserAssembler.ToSignUpViewModel(firstName, lastName, email, password);
-            User user = _authBusiness.SignUp(signUpViewModel);
+            SignUpViewModel signUpViewModel = UserControllerAssembler.ToSignUpViewModel(firstName, lastName, email, password);            
+            UserManagerModel userManagerModel = _authBusiness.SignUp(signUpViewModel.ToUserManagerModel());
+            UserViewModel userViewModel = userManagerModel.ToUserViewModel();
 
-            if (user.IsNull())
+            if (userViewModel.IsNull())
             {
                 return NotFound(); //find better response object
             }
-            //token
-            return Ok(user);
-        }
-        
-        private string GenerateToken()
-        {
-            //security key
-            string secretKey = _configuration[AppSettings.SecretKey];
-            //symetric security key
-            SymmetricSecurityKey symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 
-            //credentials
-            SigningCredentials signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+            string token = _jwtTokenHelper.GenerateJwtToken();
+            userViewModel.JwtToken = token;
 
-            //create token
-            var token = new JwtSecurityToken
-                (
-                    issuer: "Trainings",
-                    audience: "freeAccounts",
-                    expires: DateTime.Now.AddHours(1),
-                    signingCredentials: signingCredentials
-                );
-
-            //return token
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+            return Ok(userViewModel);
+        }                
     }
 }
