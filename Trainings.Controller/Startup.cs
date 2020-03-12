@@ -5,13 +5,7 @@ namespace Trainings.Controller
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Trainings.Business;
-    using Trainings.Business.Interface;
     using Trainings.Controller.Constants;
-    using Trainings.Controller.Helpers;
-    using Trainings.Controller.Interfaces;
-    using Trainings.Repository;
-    using Trainings.Repository.Interfaces;
 
     public class Startup
     {        
@@ -28,11 +22,12 @@ namespace Trainings.Controller
             services.AddAuthentication(_configuration);
 
             services.AddContext(_configuration[AppSettings.TrainingsDatabase]);
+            
+            services.InjectControllers();
+            services.InjectManagers();
+            services.InjectRepositories();
 
             services.AddControllers();
-            services.AddScoped<IAuthBusiness, AuthManager>();
-            services.AddScoped<IAuthRepository, AuthRepository>(); 
-            services.AddScoped<IJwtTokenHelper, JwtTokenHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

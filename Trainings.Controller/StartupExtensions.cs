@@ -4,8 +4,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Trainings.Business;
+using Trainings.Business.Interface;
 using Trainings.Controller.Constants;
+using Trainings.Controller.Helpers;
+using Trainings.Controller.Interfaces;
 using Trainings.Data.Context;
+using Trainings.Repository;
+using Trainings.Repository.Interfaces;
 
 namespace Trainings.Controller
 {
@@ -14,6 +20,24 @@ namespace Trainings.Controller
         internal static IServiceCollection AddContext(this IServiceCollection services, string connectionString)
         {
             services.AddDbContext<TrainingsEntities>(options => options.UseSqlServer(connectionString));
+            return services;
+        }
+
+        internal static IServiceCollection InjectControllers(this IServiceCollection services)
+        {
+            services.AddScoped<IJwtTokenHelper, JwtTokenHelper>();
+            return services;
+        }
+
+        internal static IServiceCollection InjectManagers(this IServiceCollection services)
+        {
+            services.AddScoped<IAuthBusiness, AuthManager>();
+            return services;
+        }
+
+        internal static IServiceCollection InjectRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IAuthRepository, AuthRepository>();
             return services;
         }
 
