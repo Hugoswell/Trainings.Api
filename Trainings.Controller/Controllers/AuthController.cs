@@ -4,11 +4,11 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using Trainings.Business.Interface;
-    using Trainings.Business.Models;
+    using Trainings.Common.Helpers;
     using Trainings.Controller.Assembler;
-    using Trainings.Controller.Helpers;
     using Trainings.Controller.Interfaces;
-    using Trainings.ViewModel;
+    using Trainings.Controller.ViewModels;
+    using Trainings.Model.Models;
 
     [ApiController]
     [Route("[controller]")]
@@ -37,9 +37,8 @@
             {
                 return BadRequest(new { message = "At least one of the parameters is incorrect" });
             }
-
-            SignUpViewModel signUpViewModel = UserControllerAssembler.ToSignUpViewModel(firstName, lastName, email, password);            
-            UserManagerModel userManagerModel = _authBusiness.SignUp(signUpViewModel.ToUserManagerModel());
+            
+            UserModel userManagerModel = _authBusiness.SignUp(UserControllerAssembler.ToUserManagerModel(firstName, lastName, email, password));
             UserViewModel userViewModel = userManagerModel.ToUserViewModel();
 
             if (userViewModel.IsNull())

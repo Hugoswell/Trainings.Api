@@ -1,0 +1,2 @@
+﻿Scaffold string : Scaffold-DbContext "Server=localhost;Database=Trainings;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -Force -DataAnnotations -Context TrainingsEntities -ContextDir "Context" -OutputDir "Tables"
+Need to be executed from the Trainings.Data project package console.

@@ -1,6 +1,6 @@
-﻿namespace Trainings.Business.Models
+﻿namespace Trainings.Model.Models
 {
-    public class UserManagerModel
+    public class UserModel
     {
         public int Id { get; set; }
 

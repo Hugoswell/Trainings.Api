@@ -2,7 +2,9 @@
 {
     using System;
     using Trainings.Data.Context;
-    using Trainings.Data.Models;
+    using Trainings.Data.Tables;
+    using Trainings.Model.Models;
+    using Trainings.Repository.Assemblers;
     using Trainings.Repository.Interfaces;
 
     public class AuthRepository : BaseRepository, IAuthRepository
@@ -11,13 +13,15 @@
         {
         }
 
-        public User SignUp(User user)
+        public UserModel SignUp(UserModel userModel)
         {
             try
             {
+                User user = userModel.ToUser();
                 _trainingsEntities.User.Add(user);
                 _trainingsEntities.SaveChanges();
-                return user;
+                userModel.Id = user.Id;
+                return userModel;
             }
             catch (Exception)
             {

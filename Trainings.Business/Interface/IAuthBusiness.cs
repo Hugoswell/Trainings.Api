@@ -1,9 +1,9 @@
-﻿using Trainings.Business.Models;
+﻿using Trainings.Model.Models;
 
 namespace Trainings.Business.Interface
 {
     public interface IAuthBusiness
     {
-        public UserManagerModel SignUp(UserManagerModel userManagerModel);
+        public UserModel SignUp(UserModel userManagerModel);
     }
 }

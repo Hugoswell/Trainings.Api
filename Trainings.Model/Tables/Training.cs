@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Trainings.Data.Models
+namespace Trainings.Data.Tables
 {
     public partial class Training
     {

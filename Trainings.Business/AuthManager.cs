@@ -1,10 +1,9 @@
 ﻿namespace Trainings.Business
 {
     using System;
-    using Trainings.Business.Assembler;
+    using Trainings.Business.Helper;
     using Trainings.Business.Interface;
-    using Trainings.Business.Models;
-    using Trainings.Data.Models;
+    using Trainings.Model.Models;
     using Trainings.Repository.Interfaces;
 
     public class AuthManager : IAuthBusiness
@@ -22,10 +21,13 @@
 
         #region SignUp
 
-        public UserManagerModel SignUp(UserManagerModel userManagerModel)
-        {           
-            User user = _authRepository.SignUp(userManagerModel.ToUser());
-            return user.ToUserManagerModel();
+        public UserModel SignUp(UserModel userManagerModel)
+        {
+            userManagerModel.Password = Hasher.HashPassword(userManagerModel.Password, Hasher.CreateSalt());
+            userManagerModel.RoleId = 0;
+            userManagerModel.RoleName = "free";
+            UserModel userManagerModelResult = _authRepository.SignUp(userManagerModel);
+            return userManagerModelResult;
         }
 
         #endregion

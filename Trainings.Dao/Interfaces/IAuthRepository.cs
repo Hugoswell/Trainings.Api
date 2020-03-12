@@ -1,9 +1,9 @@
 ﻿namespace Trainings.Repository.Interfaces
 {
-    using Trainings.Data.Models;
+    using Trainings.Model.Models;
 
     public interface IAuthRepository
     {
-        User SignUp(User user);
+        public UserModel SignUp(UserModel user);
     }
 }

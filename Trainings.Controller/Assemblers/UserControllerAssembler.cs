@@ -1,14 +1,14 @@
-﻿using Trainings.Business.Models;
-using Trainings.Common.Helpers;
-using Trainings.ViewModel;
+﻿using Trainings.Common.Helpers;
+using Trainings.Controller.ViewModels;
+using Trainings.Model.Models;
 
 namespace Trainings.Controller.Assembler
 {
     internal static class UserControllerAssembler
     {
-        internal static SignUpViewModel ToSignUpViewModel(string firstName, string lastName, string email, string password)
+        internal static UserModel ToUserManagerModel(string firstName, string lastName, string email, string password)
         {
-            return new SignUpViewModel
+            return new UserModel
             {
                 FirstName = firstName,
                 LastName = lastName,
@@ -17,18 +17,7 @@ namespace Trainings.Controller.Assembler
             };
         }
 
-        internal static UserManagerModel ToUserManagerModel(this SignUpViewModel signUpViewModel)
-        {
-            return new UserManagerModel
-            {
-                FirstName = signUpViewModel.FirstName,
-                LastName = signUpViewModel.LastName,
-                Email = signUpViewModel.Email,
-                Password = signUpViewModel.Password,
-            };
-        }
-
-        internal static UserViewModel ToUserViewModel(this UserManagerModel userManagerModel)
+        internal static UserViewModel ToUserViewModel(this UserModel userManagerModel)
         {
             if (userManagerModel.IsNull())
             {

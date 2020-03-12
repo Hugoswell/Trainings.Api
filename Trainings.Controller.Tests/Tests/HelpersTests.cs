@@ -1,7 +1,7 @@
 namespace Trainings.Controller.Tests.Tests
 {
     using System.Collections.Generic;
-    using Trainings.Controller.Helpers;
+    using Trainings.Common.Helpers;
     using Trainings.Controller.Tests.Helpers;
     using Xunit;
 

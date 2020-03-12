@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Trainings.Data.Models;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Trainings.Data.Tables;
 
 namespace Trainings.Data.Context
 {
@@ -22,14 +24,6 @@ namespace Trainings.Data.Context
         public virtual DbSet<TrainingFrequency> TrainingFrequency { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserPreference> UserPreference { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=Trainings;Trusted_Connection=True;");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

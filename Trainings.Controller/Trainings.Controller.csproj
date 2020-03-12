@@ -7,12 +7,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
@@ -20,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Trainings.Business\Trainings.Business.csproj" />
-    <ProjectReference Include="..\Trainings.ViewModel\Trainings.ViewModel.csproj" />
   </ItemGroup>
 
 
