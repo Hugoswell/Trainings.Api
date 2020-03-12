@@ -50,6 +50,13 @@
             userViewModel.JwtToken = token;
 
             return Ok(userViewModel);
-        }                
+        }
+
+        [Authorize(Roles = "premium")]
+        [HttpGet("value")]
+        public ActionResult<string> Get()
+        {
+            return Ok("value");
+        }
     }
 }

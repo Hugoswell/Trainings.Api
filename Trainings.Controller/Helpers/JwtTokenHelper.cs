@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using Trainings.Controller.Constants;
 using Trainings.Controller.Interfaces;
@@ -27,13 +29,20 @@ namespace Trainings.Controller.Helpers
             //credentials
             SigningCredentials signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
+            //add claims
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Role, "premium")
+            };
+
             //create token
             var token = new JwtSecurityToken
                 (
                     issuer: "Trainings",
                     audience: "freeAccounts",
                     expires: DateTime.Now.AddHours(1),
-                    signingCredentials: signingCredentials
+                    signingCredentials: signingCredentials,
+                    claims: claims
                 );
 
             //return token
