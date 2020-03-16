@@ -36,7 +36,7 @@
             IEnumerable<string> parameters = new List<string> { firstName, lastName, email, password };
             if (!parameters.NoneStringIsNullOrWhitespace())
             {
-                return BadRequest(new { message = "At least one of the parameters is incorrect" });
+                return BadRequest(new { message = AuthSettings.BadRequestOneParameterIncorrect });
             }
             
             UserModel userManagerModel = _authBusiness.SignUp(UserControllerAssembler.ToUserModel(firstName, lastName, email, password));
@@ -44,7 +44,7 @@
 
             if (userViewModel.IsNull())
             {
-                return NotFound(); //find better response object
+                return BadRequest(new { message = AuthSettings.BadRequestEmailAlreadyUsed });
             }
 
             string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 1);
