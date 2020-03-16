@@ -52,5 +52,12 @@
 
             return Ok(userViewModel);
         }
+
+        [HttpGet("test")]
+        [Authorize]
+        public IActionResult Get()
+        {
+            return Ok("test");
+        }
     }
 }

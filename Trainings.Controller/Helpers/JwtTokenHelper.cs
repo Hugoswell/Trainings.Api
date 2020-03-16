@@ -39,7 +39,7 @@ namespace Trainings.Controller.Helpers
             var token = new JwtSecurityToken
                 (
                     issuer: "Trainings",
-                    audience: role + "Audience",
+                    audience: "Audience",
                     expires: DateTime.Now.AddMinutes(expiresMinutes),
                     signingCredentials: signingCredentials,
                     claims: claims

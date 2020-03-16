@@ -59,8 +59,9 @@ namespace Trainings.Controller
                         
                         //Data to validate
                         ValidIssuer = "Trainings",
-                        ValidAudience = "freeAccounts",
-                        IssuerSigningKey = symmetricSecurityKey                        
+                        ValidAudience = "Audience",
+                        IssuerSigningKey = symmetricSecurityKey,
+                        //Lifetime validator
                     };
                 });
 
