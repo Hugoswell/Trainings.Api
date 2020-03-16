@@ -2,6 +2,6 @@
 {
     public interface IJwtTokenHelper
     {
-        public string GenerateJwtToken();
+        public string GenerateJwtToken(string role, int expiresMinutes);
     }
 }

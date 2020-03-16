@@ -6,6 +6,7 @@
     using Trainings.Business.Interface;
     using Trainings.Common.Helpers;
     using Trainings.Controller.Assembler;
+    using Trainings.Controller.Constants;
     using Trainings.Controller.Interfaces;
     using Trainings.Controller.ViewModels;
     using Trainings.Model.Models;
@@ -38,7 +39,7 @@
                 return BadRequest(new { message = "At least one of the parameters is incorrect" });
             }
             
-            UserModel userManagerModel = _authBusiness.SignUp(UserControllerAssembler.ToUserManagerModel(firstName, lastName, email, password));
+            UserModel userManagerModel = _authBusiness.SignUp(UserControllerAssembler.ToUserModel(firstName, lastName, email, password));
             UserViewModel userViewModel = userManagerModel.ToUserViewModel();
 
             if (userViewModel.IsNull())
@@ -46,17 +47,10 @@
                 return NotFound(); //find better response object
             }
 
-            string token = _jwtTokenHelper.GenerateJwtToken();
+            string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 1);
             userViewModel.JwtToken = token;
 
             return Ok(userViewModel);
-        }
-
-        [Authorize(Roles = "premium")]
-        [HttpGet("value")]
-        public ActionResult<string> Get()
-        {
-            return Ok("value");
         }
     }
 }

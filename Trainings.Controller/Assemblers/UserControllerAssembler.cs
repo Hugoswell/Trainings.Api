@@ -6,7 +6,7 @@ namespace Trainings.Controller.Assembler
 {
     internal static class UserControllerAssembler
     {
-        internal static UserModel ToUserManagerModel(string firstName, string lastName, string email, string password)
+        internal static UserModel ToUserModel(string firstName, string lastName, string email, string password)
         {
             return new UserModel
             {
@@ -27,7 +27,6 @@ namespace Trainings.Controller.Assembler
             return new UserViewModel
             {
                 Id = userManagerModel.Id,
-                RoleId = userManagerModel.RoleId,
                 Email = userManagerModel.Email
             };
         }

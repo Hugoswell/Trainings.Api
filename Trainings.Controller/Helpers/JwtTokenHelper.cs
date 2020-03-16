@@ -19,7 +19,7 @@ namespace Trainings.Controller.Helpers
             _configuration = configuration;
         }
 
-        public string GenerateJwtToken()
+        public string GenerateJwtToken(string role, int expiresMinutes)
         {
             //security key
             string secretKey = _configuration[AppSettings.SecretKey];
@@ -32,18 +32,18 @@ namespace Trainings.Controller.Helpers
             //add claims
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Role, "premium")
+                new Claim(ClaimTypes.Role, role)
             };
 
             //create token
             var token = new JwtSecurityToken
                 (
                     issuer: "Trainings",
-                    audience: "freeAccounts",
-                    expires: DateTime.Now.AddHours(1),
+                    audience: role + "Audience",
+                    expires: DateTime.Now.AddMinutes(expiresMinutes),
                     signingCredentials: signingCredentials,
                     claims: claims
-                );
+                ); ;
 
             //return token
             return new JwtSecurityTokenHandler().WriteToken(token);
