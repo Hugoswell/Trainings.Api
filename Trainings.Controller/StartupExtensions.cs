@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Trainings.Business;
-using Trainings.Business.Interface;
-using Trainings.Controller.Constants;
-using Trainings.Controller.Helpers;
-using Trainings.Controller.Interfaces;
-using Trainings.Data.Context;
-using Trainings.Repository;
-using Trainings.Repository.Interfaces;
-
-namespace Trainings.Controller
+﻿namespace Trainings.Controller
 {
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.IdentityModel.Tokens;
+    using System.Text;
+    using Trainings.Business;
+    using Trainings.Business.Interface;
+    using Trainings.Controller.Constants;
+    using Trainings.Controller.Helpers;
+    using Trainings.Controller.Interfaces;
+    using Trainings.Data.Context;
+    using Trainings.Repository;
+    using Trainings.Repository.Interfaces;
+
     internal static class StartupExtensions
     {
         internal static IServiceCollection AddContext(this IServiceCollection services, string connectionString)
