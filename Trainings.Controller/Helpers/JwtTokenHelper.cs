@@ -1,15 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Trainings.Controller.Constants;
-using Trainings.Controller.Interfaces;
-
-namespace Trainings.Controller.Helpers
+﻿namespace Trainings.Controller.Helpers
 {
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.IdentityModel.Tokens;
+    using System;
+    using System.Collections.Generic;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Security.Claims;
+    using System.Text;
+    using Trainings.Controller.Constants;
+    using Trainings.Controller.Interfaces;
+
     public class JwtTokenHelper : IJwtTokenHelper
     {
         private readonly IConfiguration _configuration;
