@@ -35,18 +35,20 @@
                 new Claim(ClaimTypes.Role, role)
             };
 
-            //create token
-            var token = new JwtSecurityToken
-            (
-                issuer: "Trainings",
-                audience: "Audience",
-                expires: DateTime.Now.AddMinutes(expiresMinutes),
-                signingCredentials: signingCredentials,
-                claims: claims
-            );
+            //create token description
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Role, role)
+                }),
+                Expires = DateTime.UtcNow.AddMinutes(expiresMinutes),
+                SigningCredentials = signingCredentials                
+            };
 
-            //return token
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);            
+            return tokenHandler.WriteToken(token);
         }
     }
 }

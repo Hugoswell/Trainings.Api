@@ -52,14 +52,12 @@
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         //What to validate
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
+                        ValidateIssuer = false,      //Mandatory
+                        ValidateAudience = false,    //Mandatory
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
                         
-                        //Data to validate
-                        ValidIssuer = "Trainings",
-                        ValidAudience = "Audience",
+                        //Data to validate                        
                         IssuerSigningKey = symmetricSecurityKey,
                         //Lifetime validator
                     };
