@@ -29,12 +29,6 @@
             //credentials
             SigningCredentials signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
-            //add claims
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Role, role)
-            };
-
             //create token description
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -47,7 +41,9 @@
             };
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);            
+            //create token
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+            //return token
             return tokenHandler.WriteToken(token);
         }
     }
