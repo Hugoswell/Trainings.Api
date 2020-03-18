@@ -10,6 +10,8 @@
 
         internal const string BadRequestOneParameterIncorrect = "At least one of the parameters is incorrect";
 
+        internal const string EmailOrPasswordEmpty = "The email or the password is empty";
+
         internal const string BadRequestEmailAlreadyUsed = "This email is already used";
     }
 }

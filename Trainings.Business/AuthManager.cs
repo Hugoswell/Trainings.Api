@@ -6,7 +6,7 @@
     using Trainings.Model.Models;
     using Trainings.Repository.Interfaces;
 
-    public class AuthManager : IAuthBusiness
+    public class AuthManager : IAuthManager
     {
         #region Constructor & Properties
 

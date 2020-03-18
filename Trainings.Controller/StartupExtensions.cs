@@ -31,7 +31,7 @@
 
         internal static IServiceCollection InjectManagers(this IServiceCollection services)
         {
-            services.AddScoped<IAuthBusiness, AuthManager>();
+            services.AddScoped<IAuthManager, AuthManager>();
             return services;
         }
 

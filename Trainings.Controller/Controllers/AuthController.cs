@@ -18,10 +18,10 @@
 
         #region Constructor & Properties
 
-        private readonly IAuthBusiness _authBusiness;
+        private readonly IAuthManager _authBusiness;
         private readonly IJwtTokenHelper _jwtTokenHelper;
 
-        public AuthController(IAuthBusiness authBusiness, IJwtTokenHelper jwtTokenHelper)
+        public AuthController(IAuthManager authBusiness, IJwtTokenHelper jwtTokenHelper)
         {
             _authBusiness = authBusiness;
             _jwtTokenHelper = jwtTokenHelper;
@@ -39,8 +39,8 @@
                 return BadRequest(new { message = AuthSettings.BadRequestOneParameterIncorrect });
             }
             
-            UserModel userManagerModel = _authBusiness.SignUp(UserControllerAssembler.ToUserModel(firstName, lastName, email, password));
-            UserViewModel userViewModel = userManagerModel.ToUserViewModel();
+            UserModel userModel = _authBusiness.SignUp(UserControllerAssembler.ToUserModel(firstName, lastName, email, password));
+            UserViewModel userViewModel = userModel.ToUserViewModel();
 
             if (userViewModel.IsNull())
             {
@@ -60,11 +60,11 @@
             IEnumerable<string> parameters = new List<string> { email, password };
             if (parameters.HasAtLeastOneNullOrWhitespace())
             {
-                return BadRequest(new { message = AuthSettings.BadRequestOneParameterIncorrect });
+                return BadRequest(new { message = AuthSettings.EmailOrPasswordEmpty });
             }
 
-            UserModel userManagerModel = _authBusiness.SignUp(UserControllerAssembler.ToUserModel(firstName, lastName, email, password));
-            UserViewModel userViewModel = userManagerModel.ToUserViewModel();
+            UserModel userModel = _authBusiness.SignUp(UserControllerAssembler.ToUserModel(firstName, lastName, email, password));
+            UserViewModel userViewModel = userModel.ToUserViewModel();
 
             if (userViewModel.IsNull())
             {
