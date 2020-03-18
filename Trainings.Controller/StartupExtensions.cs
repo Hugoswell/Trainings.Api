@@ -52,16 +52,13 @@
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        //What to validate
+                        //Data to validate
                         ValidateIssuer = false,      //Mandatory
                         ValidateAudience = false,    //Mandatory
                         ValidateIssuerSigningKey = true,
-                        ValidateLifetime = true,
-                        ClockSkew = TimeSpan.Zero,
-
-                        //Data to validate
                         IssuerSigningKey = symmetricSecurityKey,
-                        //Lifetime validator
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero,                        
                     };
                 });
 
