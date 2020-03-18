@@ -46,7 +46,7 @@
             {
                 return BadRequest(new { message = AuthSettings.BadRequestEmailAlreadyUsed });
             }
-
+            
             string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 1);
             userViewModel.JwtToken = token;
 

@@ -26,7 +26,7 @@
             SymmetricSecurityKey symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 
             //credentials
-            SigningCredentials signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+            SigningCredentials signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
 
             //create token description
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
@@ -36,7 +36,7 @@
                     new Claim(ClaimTypes.Role, role)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(expiresMinutes),
-                SigningCredentials = signingCredentials                
+                SigningCredentials = signingCredentials
             };
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
