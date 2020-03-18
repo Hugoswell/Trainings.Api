@@ -1,12 +1,12 @@
-﻿using Trainings.Common.Helpers;
-using Trainings.Controller.ViewModels;
-using Trainings.Model.Models;
-
-namespace Trainings.Controller.Assembler
+﻿namespace Trainings.Controller.Assembler
 {
+    using Trainings.Common.Helpers;
+    using Trainings.Controller.ViewModels;
+    using Trainings.Model.Models;
+
     internal static class UserControllerAssembler
     {
-        internal static UserModel ToUserModel(string firstName, string lastName, string email, string password)
+        internal static UserModel BuildUserModel(string email, string password, string firstName = null, string lastName = null)
         {
             return new UserModel
             {
@@ -17,17 +17,17 @@ namespace Trainings.Controller.Assembler
             };
         }
 
-        internal static UserViewModel ToUserViewModel(this UserModel userManagerModel)
+        internal static UserViewModel ToUserViewModel(this UserModel userModel)
         {
-            if (userManagerModel.IsNull())
+            if (userModel.IsNull())
             {
                 return null;
             }
 
             return new UserViewModel
             {
-                Id = userManagerModel.Id,
-                Email = userManagerModel.Email
+                Id = userModel.Id,
+                Email = userModel.Email
             };
         }
     }

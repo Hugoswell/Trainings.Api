@@ -17,19 +17,22 @@
             _authRepository = authRepository ?? throw new ArgumentNullException(nameof(authRepository));
         }
 
-        #endregion
+        #endregion        
 
-        #region SignUp
-
-        public UserModel SignUp(UserModel userManagerModel)
+        public UserModel SignUp(UserModel userModel)
         {
-            userManagerModel.Password = Hasher.HashPassword(userManagerModel.Password, Hasher.CreateSalt());
-            userManagerModel.RoleId = 0;
-            userManagerModel.RoleName = "free";
-            UserModel userManagerModelResult = _authRepository.SignUp(userManagerModel);
+            userModel.Password = Hasher.HashPassword(userModel.Password, Hasher.CreateSalt());
+            userModel.RoleId = 0;
+            userModel.RoleName = "free";
+            UserModel userManagerModelResult = _authRepository.SignUp(userModel);
             return userManagerModelResult;
         }
 
-        #endregion
+        public UserModel SignIn(UserModel userModel)
+        {
+            userModel.Password = Hasher.HashPassword(userModel.Password, Hasher.CreateSalt());
+            UserModel userModelResult = _authRepository.SignIn(userModel);
+            return userModelResult;
+        }
     }
 }
