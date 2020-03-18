@@ -57,7 +57,7 @@
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
                         
-                        //Data to validate                        
+                        //Data to validate
                         IssuerSigningKey = symmetricSecurityKey,
                         //Lifetime validator
                     };
