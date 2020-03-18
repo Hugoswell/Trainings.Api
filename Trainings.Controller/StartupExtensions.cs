@@ -5,6 +5,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
+    using System;
     using System.Text;
     using Trainings.Business;
     using Trainings.Business.Interface;
@@ -56,7 +57,8 @@
                         ValidateAudience = false,    //Mandatory
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
-                        
+                        ClockSkew = TimeSpan.Zero,
+
                         //Data to validate
                         IssuerSigningKey = symmetricSecurityKey,
                         //Lifetime validator

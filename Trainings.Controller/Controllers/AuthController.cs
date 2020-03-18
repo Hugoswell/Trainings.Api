@@ -47,7 +47,7 @@
                 return BadRequest(new { message = AuthSettings.BadRequestEmailAlreadyUsed });
             }
             
-            string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 1);
+            string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 60);
             userViewModel.JwtToken = token;
 
             return Ok(userViewModel);
@@ -71,7 +71,7 @@
                 return BadRequest(new { message = AuthSettings.EmailOrPasswordIncorrect });
             }
 
-            string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 1);
+            string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 60);
             userViewModel.JwtToken = token;
 
             return Ok(userViewModel);
