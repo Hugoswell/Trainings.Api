@@ -34,7 +34,7 @@
         public IActionResult SignUp(string firstName, string lastName, string email, string password)
         {
             IEnumerable<string> parameters = new List<string> { firstName, lastName, email, password };
-            if (!parameters.NoneStringIsNullOrWhitespace())
+            if (parameters.HasAtLeastOneNullOrWhitespace())
             {
                 return BadRequest(new { message = AuthSettings.BadRequestOneParameterIncorrect });
             }
@@ -47,6 +47,30 @@
                 return BadRequest(new { message = AuthSettings.BadRequestEmailAlreadyUsed });
             }
             
+            string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 1);
+            userViewModel.JwtToken = token;
+
+            return Ok(userViewModel);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("signin")]
+        public IActionResult SignIn(string email, string password)
+        {
+            IEnumerable<string> parameters = new List<string> { email, password };
+            if (parameters.HasAtLeastOneNullOrWhitespace())
+            {
+                return BadRequest(new { message = AuthSettings.BadRequestOneParameterIncorrect });
+            }
+
+            UserModel userManagerModel = _authBusiness.SignUp(UserControllerAssembler.ToUserModel(firstName, lastName, email, password));
+            UserViewModel userViewModel = userManagerModel.ToUserViewModel();
+
+            if (userViewModel.IsNull())
+            {
+                return BadRequest(new { message = AuthSettings.BadRequestEmailAlreadyUsed });
+            }
+
             string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 1);
             userViewModel.JwtToken = token;
 

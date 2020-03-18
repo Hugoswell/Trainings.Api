@@ -11,27 +11,27 @@ namespace Trainings.Controller.Tests.Tests
         public void NoneStringIsNullOrWhitespace01()
         {
             IEnumerable<string> stringsToValidate = null;
-            bool? result = CommonHelpers.NoneStringIsNullOrWhitespace(stringsToValidate);
-            Assert.False(result);
+            bool? result = CommonHelpers.HasAtLeastOneNullOrWhitespace(stringsToValidate);
+            Assert.True(result);
         }
 
         [Fact(DisplayName = "NoneStringIsNullOrWhitespace_EmptyList_ShouldReturnTrue")]
         public void NoneStringIsNullOrWhitespace02()
         {
             IEnumerable<string> stringsToValidate = new List<string>();
-            bool? result = CommonHelpers.NoneStringIsNullOrWhitespace(stringsToValidate);
-            Assert.True(result);
+            bool? result = CommonHelpers.HasAtLeastOneNullOrWhitespace(stringsToValidate);
+            Assert.False(result);
         }
 
         [Theory(DisplayName = "NoneStringIsNullOrWhitespace_FilledList_ShouldReturnValue")]
-        [InlineData("first", "second", "third", true)]
-        [InlineData("", "second", "third", false)]
-        [InlineData("first", "  ", "third", false)]
-        [InlineData("first", null, "third", false)]
+        [InlineData("first", "second", "third", false)]
+        [InlineData("", "second", "third", true)]
+        [InlineData("first", "  ", "third", true)]
+        [InlineData("first", null, "third", true)]
         public void NoneStringIsNullOrWhitespace03(string first, string second, string third, bool expectedResult)
         {
             IEnumerable<string> stringsToValidate = CommonHelpersHelpers.BuildThreeElementsStringList(first, second, third);
-            bool? actualResult = CommonHelpers.NoneStringIsNullOrWhitespace(stringsToValidate);
+            bool? actualResult = CommonHelpers.HasAtLeastOneNullOrWhitespace(stringsToValidate);
             Assert.Equal(expectedResult, actualResult);
         }
     }

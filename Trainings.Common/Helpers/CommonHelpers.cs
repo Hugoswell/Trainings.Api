@@ -33,18 +33,18 @@
 
         #region NoneStringIsNullOrWhitespace
        
-        public static bool NoneStringIsNullOrWhitespace(this IEnumerable<string> stringsToValidate)
+        public static bool HasAtLeastOneNullOrWhitespace(this IEnumerable<string> stringsToValidate)
         {
             if (stringsToValidate.IsNull())
             {
-                return false;
+                return true;
             }
 
-            bool result = true;
+            bool result = false;
             foreach (string stringToValidate in stringsToValidate)
             {
                 if (stringToValidate.IsNullOrWhiteSpace()) 
-                    return false;
+                    return true;
             }
             return result;
         }
