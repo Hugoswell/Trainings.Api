@@ -9,7 +9,7 @@
 
         public BaseRepository(TrainingsEntities trainingsEntities)
         {
-            _trainingsEntities = trainingsEntities ?? throw new ArgumentNullException(nameof(trainingsEntities));
+            _trainingsEntities = trainingsEntities;
         }
     }
 }

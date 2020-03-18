@@ -27,7 +27,8 @@
             return new UserViewModel
             {
                 Id = userModel.Id,
-                Email = userModel.Email
+                Email = userModel.Email,
+                JwtToken = userModel.JwtToken
             };
         }
     }

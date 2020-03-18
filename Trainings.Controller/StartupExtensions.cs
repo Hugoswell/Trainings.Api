@@ -8,10 +8,10 @@
     using System;
     using System.Text;
     using Trainings.Business;
+    using Trainings.Business.Helpers;
     using Trainings.Business.Interface;
-    using Trainings.Controller.Constants;
-    using Trainings.Controller.Helpers;
-    using Trainings.Controller.Interfaces;
+    using Trainings.Business.Interfaces;
+    using Trainings.Common.Constants;
     using Trainings.Data.Context;
     using Trainings.Repository;
     using Trainings.Repository.Interfaces;

@@ -1,13 +1,7 @@
 ﻿namespace Trainings.Controller.Constants
 {
-    public class AuthSettings
+    public class AuthConstants
     {
-        internal const string FreeRole = "free";
-
-        internal const string PremiumRole = "premium";
-
-        internal const string AdminRole = "admin";
-
         internal const string OneParameterIncorrect = "At least one of the parameters is incorrect";
 
         internal const string EmailOrPasswordEmpty = "The email or the password is empty";

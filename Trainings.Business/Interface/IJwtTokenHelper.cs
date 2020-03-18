@@ -1,4 +1,4 @@
-﻿namespace Trainings.Controller.Interfaces
+﻿namespace Trainings.Business.Interfaces
 {
     public interface IJwtTokenHelper
     {

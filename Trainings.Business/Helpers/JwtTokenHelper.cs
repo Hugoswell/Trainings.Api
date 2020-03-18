@@ -1,4 +1,4 @@
-﻿namespace Trainings.Controller.Helpers
+﻿namespace Trainings.Business.Helpers
 {
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
@@ -6,8 +6,8 @@
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;
-    using Trainings.Controller.Constants;
-    using Trainings.Controller.Interfaces;
+    using Trainings.Business.Interfaces;
+    using Trainings.Common.Constants;
 
     public class JwtTokenHelper : IJwtTokenHelper
     {

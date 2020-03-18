@@ -1,6 +1,7 @@
 ﻿namespace Trainings.Repository
 {
     using System;
+    using System.Linq;
     using Trainings.Data.Context;
     using Trainings.Data.Tables;
     using Trainings.Model.Models;
@@ -31,18 +32,12 @@
 
         public UserModel SignIn(UserModel userModel)
         {
-            try
-            {
-                User user = userModel.ToUser();
-                _trainingsEntities.User.Add(user);
-                _trainingsEntities.SaveChanges();
-                userModel.Id = user.Id;
-                return userModel;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            User userResult = _trainingsEntities.User
+                .Where(user => user.Email.Equals(userModel.Email)
+                    && user.Password.Equals(userModel.Password))
+                .FirstOrDefault();
+
+            return userResult.ToUserModel();
         }
     }
 }

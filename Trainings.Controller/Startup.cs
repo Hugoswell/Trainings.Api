@@ -5,7 +5,7 @@ namespace Trainings.Controller
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Trainings.Controller.Constants;
+    using Trainings.Common.Constants;
 
     public class Startup
     {        

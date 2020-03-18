@@ -7,7 +7,6 @@
     using Trainings.Common.Helpers;
     using Trainings.Controller.Assembler;
     using Trainings.Controller.Constants;
-    using Trainings.Controller.Interfaces;
     using Trainings.Controller.ViewModels;
     using Trainings.Model.Models;
 
@@ -18,13 +17,11 @@
 
         #region Constructor & Properties
 
-        private readonly IAuthManager _authManager;
-        private readonly IJwtTokenHelper _jwtTokenHelper;
+        private readonly IAuthManager _authManager;        
 
-        public AuthController(IAuthManager authBusiness, IJwtTokenHelper jwtTokenHelper)
+        public AuthController(IAuthManager authBusiness)
         {
             _authManager = authBusiness;
-            _jwtTokenHelper = jwtTokenHelper;
         }
 
         #endregion
@@ -36,7 +33,7 @@
             IEnumerable<string> parameters = new List<string> { firstName, lastName, email, password };
             if (parameters.HasAtLeastOneNullOrWhitespace())
             {
-                return BadRequest(new { message = AuthSettings.OneParameterIncorrect });
+                return BadRequest(new { message = AuthConstants.OneParameterIncorrect });
             }
             
             UserModel userModel = _authManager.SignUp(UserControllerAssembler.BuildUserModel(email, password, firstName, lastName));
@@ -44,11 +41,8 @@
 
             if (userViewModel.IsNull())
             {
-                return BadRequest(new { message = AuthSettings.BadRequestEmailAlreadyUsed });
+                return BadRequest(new { message = AuthConstants.BadRequestEmailAlreadyUsed });
             }
-            
-            string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 60);
-            userViewModel.JwtToken = token;
 
             return Ok(userViewModel);
         }
@@ -60,7 +54,7 @@
             IEnumerable<string> parameters = new List<string> { email, password };
             if (parameters.HasAtLeastOneNullOrWhitespace())
             {
-                return BadRequest(new { message = AuthSettings.EmailOrPasswordEmpty });
+                return BadRequest(new { message = AuthConstants.EmailOrPasswordEmpty });
             }
 
             UserModel userModel = _authManager.SignIn(UserControllerAssembler.BuildUserModel(email, password));
@@ -68,17 +62,14 @@
 
             if (userViewModel.IsNull())
             {
-                return BadRequest(new { message = AuthSettings.EmailOrPasswordIncorrect });
+                return BadRequest(new { message = AuthConstants.EmailOrPasswordIncorrect });
             }
-
-            string token = _jwtTokenHelper.GenerateJwtToken(AuthSettings.FreeRole, 60);
-            userViewModel.JwtToken = token;
 
             return Ok(userViewModel);
         }
 
         [HttpGet("test")]
-        [Authorize]
+        [Authorize(Roles = "freee")]
         public IActionResult Get()
         {
             return Ok("test");
