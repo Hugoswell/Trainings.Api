@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\Model\Trainings.Model.csproj" />
     <ProjectReference Include="..\Trainings.Common\Trainings.Common.csproj" />
     <ProjectReference Include="..\Trainings.Model\Trainings.Data.csproj" />
   </ItemGroup>
