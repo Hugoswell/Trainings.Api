@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
-    using Trainings.Business.Interface;
+    using Trainings.Business.Interfaces;
     using Trainings.Common.Helpers;
     using Trainings.Controller.Assembler;
     using Trainings.Controller.Constants;

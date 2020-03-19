@@ -1,7 +1,7 @@
-﻿using Trainings.Model.Models;
-
-namespace Trainings.Business.Interface
+﻿namespace Trainings.Business.Interfaces
 {
+    using Trainings.Model.Models;
+
     public interface IAuthManager
     {
         public UserModel SignUp(UserModel userManagerModel);

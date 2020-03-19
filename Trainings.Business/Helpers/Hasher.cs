@@ -1,34 +1,31 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System;
-using System.Security.Cryptography;
-using System.Text;
-
-namespace Trainings.Business.Helper
+﻿namespace Trainings.Business.Helper
 {
-    internal static class Hasher
+	using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+	using Microsoft.Extensions.Configuration;
+	using System;
+	using System.Text;
+    using Trainings.Business.Interfaces;
+    using Trainings.Common.Constants;
+
+    public class Hasher : IHasher
     {
-		public static string HashPassword(string value, string salt)
+		private readonly IConfiguration _configuration;
+
+		public Hasher(IConfiguration configuration)
 		{
+			_configuration = configuration;
+		}
+
+		public string HashPassword(string value)
+		{
+			string salt = _configuration[AppSettings.Salt];
 			var valueBytes = KeyDerivation.Pbkdf2(
 								password: value,
 								salt: Encoding.UTF8.GetBytes(salt),
-								prf: KeyDerivationPrf.HMACSHA512,
+								prf: KeyDerivationPrf.HMACSHA256,
 								iterationCount: 10000,
 								numBytesRequested: 256 / 8);
 			return Convert.ToBase64String(valueBytes);
-		}
-
-		public static bool ValidateHash(string value, string salt, string hash)
-			=> HashPassword(value, salt) == hash;
-
-		public static string CreateSalt()
-		{
-			byte[] randomBytes = new byte[128 / 8];
-			using (var generator = RandomNumberGenerator.Create())
-			{
-				generator.GetBytes(randomBytes);
-				return Convert.ToBase64String(randomBytes);
-			}
 		}
 	}
 }

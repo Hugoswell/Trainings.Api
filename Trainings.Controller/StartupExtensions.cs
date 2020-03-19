@@ -8,8 +8,8 @@
     using System;
     using System.Text;
     using Trainings.Business;
+    using Trainings.Business.Helper;
     using Trainings.Business.Helpers;
-    using Trainings.Business.Interface;
     using Trainings.Business.Interfaces;
     using Trainings.Common.Constants;
     using Trainings.Data.Context;
@@ -33,6 +33,7 @@
         internal static IServiceCollection InjectManagers(this IServiceCollection services)
         {
             services.AddScoped<IAuthManager, AuthManager>();
+            services.AddScoped<IHasher, Hasher>();
             return services;
         }
 

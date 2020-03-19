@@ -2,7 +2,6 @@
 {
     using Trainings.Business.Constants;
     using Trainings.Business.Helper;
-    using Trainings.Business.Interface;
     using Trainings.Business.Interfaces;
     using Trainings.Common.Helpers;
     using Trainings.Model.Models;
@@ -14,18 +13,23 @@
 
         private readonly IAuthRepository _authRepository;
         private readonly IJwtTokenHelper _jwtTokenHelper;
+        private readonly IHasher _hasher;
 
-        public AuthManager(IAuthRepository authRepository, IJwtTokenHelper jwtTokenHelper)
+        public AuthManager(
+            IAuthRepository authRepository,
+            IJwtTokenHelper jwtTokenHelper,
+            IHasher hasher)
         {
             _authRepository = authRepository;
             _jwtTokenHelper = jwtTokenHelper;
+            _hasher = hasher;
         }
 
         #endregion        
 
         public UserModel SignUp(UserModel userModel)
         {
-            userModel.Password = Hasher.HashPassword(userModel.Password, Hasher.CreateSalt());
+            userModel.Password = _hasher.HashPassword(userModel.Password);
             userModel.RoleId = 0;
             userModel.RoleName = AuthConstants.FreeRole;
             
@@ -44,8 +48,8 @@
 
         public UserModel SignIn(UserModel userModel)
         {
-            userModel.Password = Hasher.HashPassword(userModel.Password, Hasher.CreateSalt());
-            
+            userModel.Password = _hasher.HashPassword(userModel.Password);
+
             UserModel userModelResult = _authRepository.SignIn(userModel);
             
             if (!userModelResult.IsNull())
