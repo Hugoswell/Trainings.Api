@@ -69,7 +69,7 @@
         }
 
         [HttpGet("test")]
-        [Authorize(Roles = "freee")]
+        [Authorize(Roles = "free")]
         public IActionResult Get()
         {
             return Ok("test");
