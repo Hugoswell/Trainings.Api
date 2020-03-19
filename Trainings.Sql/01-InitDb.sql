@@ -1,10 +1,13 @@
+USE [Trainings]
+GO
+
 CREATE TABLE [User] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [RoleId] tinyint NOT NULL,
   [FirstName] varchar(40) NOT NULL,
   [LastName] varchar(40) NOT NULL,
-  [Email] varchar(100) NOT NULL,
-  [Password] varchar(100) NOT NULL,
+  [Email] varchar(100) UNIQUE NOT NULL,
+  [HashedPassword] varchar(100) NOT NULL,
   [RoleName] varchar(30) NOT NULL
 )
 GO
@@ -46,7 +49,7 @@ GO
 
 CREATE TABLE [Lov] (
   [Id] smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  [IdLovType] smallint NOT NULL,
+  [LovTypeId] smallint NOT NULL,
   [LovTypeName] varchar(30) NOT NULL,
   [Name] varchar(40) NOT NULL,
   [Description] varchar(500)

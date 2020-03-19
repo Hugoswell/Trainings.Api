@@ -19,12 +19,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Controller.Tests"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{55AED14F-2F90-4FCC-AEEB-0769CFDAF349}"
 	ProjectSection(SolutionItems) = preProject
-		Trainings.Sql\01-Init-DB.sql = Trainings.Sql\01-Init-DB.sql
+		Trainings.Sql\01-InitDb.sql = Trainings.Sql\01-InitDb.sql
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Common", "Trainings.Common\Trainings.Common.csproj", "{33EAE4BA-F126-4886-AEC0-903D8C3DECA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{F047BFA8-B82E-4040-A600-6B1B98B6E797}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{F047BFA8-B82E-4040-A600-6B1B98B6E797}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
