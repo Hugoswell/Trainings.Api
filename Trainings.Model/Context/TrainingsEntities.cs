@@ -35,13 +35,13 @@ namespace Trainings.Data.Context
                     .WithMany(p => p.Exercice)
                     .HasForeignKey(d => d.ExerciceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Exercice__Exerci__49C3F6B7");
+                    .HasConstraintName("FK__Exercice__Exerci__4AB81AF0");
 
                 entity.HasOne(d => d.Training)
                     .WithMany(p => p.Exercice)
                     .HasForeignKey(d => d.TrainingId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Exercice__Traini__4AB81AF0");
+                    .HasConstraintName("FK__Exercice__Traini__4BAC3F29");
             });
 
             modelBuilder.Entity<Log>(entity =>
@@ -55,9 +55,6 @@ namespace Trainings.Data.Context
 
             modelBuilder.Entity<Lov>(entity =>
             {
-                entity.HasIndex(e => e.LovTypeId)
-                    .HasName("Lov_LovTypeId_Non_Cluster_Index");
-
                 entity.Property(e => e.Description).IsUnicode(false);
 
                 entity.Property(e => e.LovTypeName).IsUnicode(false);
@@ -73,7 +70,7 @@ namespace Trainings.Data.Context
                     .WithMany(p => p.PersonalInformation)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonalI__UserI__44FF419A");
+                    .HasConstraintName("FK__PersonalI__UserI__45F365D3");
             });
 
             modelBuilder.Entity<Training>(entity =>
@@ -82,7 +79,7 @@ namespace Trainings.Data.Context
                     .WithMany(p => p.Training)
                     .HasForeignKey(d => d.UserPreferenceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Training__UserPr__48CFD27E");
+                    .HasConstraintName("FK__Training__UserPr__49C3F6B7");
             });
 
             modelBuilder.Entity<TrainingFrequency>(entity =>
@@ -91,22 +88,22 @@ namespace Trainings.Data.Context
                     .WithMany(p => p.TrainingFrequency)
                     .HasForeignKey(d => d.UserPreferenceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__TrainingF__UserP__46E78A0C");
+                    .HasConstraintName("FK__TrainingF__UserP__47DBAE45");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("User_Email_Non_Cluster_Index")
+                    .HasName("UQ__User__A9D1053481F3493C")
                     .IsUnique();
 
                 entity.Property(e => e.Email).IsUnicode(false);
 
                 entity.Property(e => e.FirstName).IsUnicode(false);
 
-                entity.Property(e => e.LastName).IsUnicode(false);
+                entity.Property(e => e.HashedPassword).IsUnicode(false);
 
-                entity.Property(e => e.Password).IsUnicode(false);
+                entity.Property(e => e.LastName).IsUnicode(false);
 
                 entity.Property(e => e.RoleName).IsUnicode(false);
             });
@@ -117,13 +114,13 @@ namespace Trainings.Data.Context
                     .WithMany(p => p.UserPreference)
                     .HasForeignKey(d => d.TrainingTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPrefe__Train__47DBAE45");
+                    .HasConstraintName("FK__UserPrefe__Train__48CFD27E");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserPreference)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPrefe__UserI__45F365D3");
+                    .HasConstraintName("FK__UserPrefe__UserI__46E78A0C");
             });
 
             OnModelCreatingPartial(modelBuilder);

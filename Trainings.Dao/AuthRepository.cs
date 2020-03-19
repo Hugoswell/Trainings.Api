@@ -34,7 +34,7 @@
         {
             User userResult = _trainingsEntities.User
                 .Where(user => user.Email.Equals(userModel.Email)
-                    && user.Password.Equals(userModel.Password))
+                    && user.HashedPassword.Equals(userModel.Password))
                 .FirstOrDefault();
 
             return userResult.ToUserModel();

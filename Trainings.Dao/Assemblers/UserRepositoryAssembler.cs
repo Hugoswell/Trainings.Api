@@ -13,7 +13,7 @@ namespace Trainings.Repository.Assemblers
                 FirstName = userModel.FirstName,
                 LastName = userModel.LastName,
                 Email = userModel.Email,
-                Password = userModel.Password,
+                HashedPassword = userModel.Password,
                 RoleId = userModel.RoleId,
                 RoleName = userModel.RoleName
             };

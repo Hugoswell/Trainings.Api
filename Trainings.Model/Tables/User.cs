@@ -27,7 +27,7 @@ namespace Trainings.Data.Tables
         public string Email { get; set; }
         [Required]
         [StringLength(100)]
-        public string Password { get; set; }
+        public string HashedPassword { get; set; }
         [Required]
         [StringLength(30)]
         public string RoleName { get; set; }
