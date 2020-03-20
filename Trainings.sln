@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Controller", "Tra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Business", "Trainings.Business\Trainings.Business.csproj", "{EADEBD4E-0E5F-4E95-867D-4A6C85357BF2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Repository", "Trainings.Dao\Trainings.Repository.csproj", "{34504A89-C412-4307-8D97-6656AFDE5684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Repository", "Trainings.Repository\Trainings.Repository.csproj", "{34504A89-C412-4307-8D97-6656AFDE5684}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Data", "Trainings.Model\Trainings.Data.csproj", "{C266A5C6-3F26-42FD-BFA3-A4775CF09026}"
 EndProject
