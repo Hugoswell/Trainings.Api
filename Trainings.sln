@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{55AED14F-2F9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Common", "Trainings.Common\Trainings.Common.csproj", "{33EAE4BA-F126-4886-AEC0-903D8C3DECA4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Model", "Model\Trainings.Model.csproj", "{F047BFA8-B82E-4040-A600-6B1B98B6E797}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Model", "Trainings.Model\Trainings.Model.csproj", "{F047BFA8-B82E-4040-A600-6B1B98B6E797}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
