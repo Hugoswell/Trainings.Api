@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import NavLink from "./NavLink";
+import HeaderContext from "../HeaderContext";
 
 function NavbarRight() {
-  return <NavLink to="/login" content="Me connecter" />;
+  const { NavbarRightContent, NavbarRightLink } = useContext(HeaderContext);
+  return <NavLink to={NavbarRightLink} content={NavbarRightContent} />;
 }
 
 export default NavbarRight;
