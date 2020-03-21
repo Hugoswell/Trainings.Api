@@ -30,7 +30,7 @@ namespace Trainings.Controller.Tests.Tests
         [InlineData("first", null, "third", true)]
         public void NoneStringIsNullOrWhitespace03(string first, string second, string third, bool expectedResult)
         {
-            IEnumerable<string> stringsToValidate = CommonHelpersHelpers.BuildThreeElementsStringList(first, second, third);
+            IEnumerable<string> stringsToValidate = HelpersTestsHelper.BuildThreeElementsStringList(first, second, third);
             bool? actualResult = CommonHelpers.HasAtLeastOneNullOrWhitespace(stringsToValidate);
             Assert.Equal(expectedResult, actualResult);
         }

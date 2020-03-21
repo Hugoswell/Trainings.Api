@@ -4,7 +4,7 @@
 
     public interface IAuthRepository
     {
-        public UserModel SignUp(UserModel user);
+        public UserModel SignUp(UserModel userModel);
 
         public UserModel SignIn(UserModel userModel);
     }

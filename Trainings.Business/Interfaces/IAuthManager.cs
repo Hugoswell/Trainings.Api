@@ -4,7 +4,7 @@
 
     public interface IAuthManager
     {
-        public UserModel SignUp(UserModel userManagerModel);
+        public UserModel SignUp(UserModel userModel);
 
         public UserModel SignIn(UserModel userModel);
     }

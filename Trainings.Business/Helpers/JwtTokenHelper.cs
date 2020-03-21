@@ -31,7 +31,8 @@
             //create token description
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]
+                Subject = new ClaimsIdentity(
+                new Claim[]
                 {
                     new Claim(ClaimTypes.Role, role)
                 }),

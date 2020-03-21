@@ -1,8 +1,7 @@
 ﻿namespace Trainings.Business
 {
-    using Trainings.Business.Constants;
-    using Trainings.Business.Helper;
     using Trainings.Business.Interfaces;
+    using Trainings.Common.Constants;
     using Trainings.Common.Helpers;
     using Trainings.Model.Models;
     using Trainings.Repository.Interfaces;

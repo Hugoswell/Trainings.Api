@@ -10,7 +10,9 @@
     using Trainings.Controller.ViewModels;
     using Trainings.Model.Models;
 
+    
     [ApiController]
+    [AllowAnonymous]
     [Route("[controller]")]
     public class AuthController : ControllerBase
     {
@@ -19,21 +21,20 @@
 
         private readonly IAuthManager _authManager;        
 
-        public AuthController(IAuthManager authBusiness)
+        public AuthController(IAuthManager authManager)
         {
-            _authManager = authBusiness;
+            _authManager = authManager;
         }
 
         #endregion
-
-        [AllowAnonymous]
-        [HttpPost("signup")]
+        
+        [HttpPost("SignUp")]
         public IActionResult SignUp(string firstName, string lastName, string email, string password)
         {
             IEnumerable<string> parameters = new List<string> { firstName, lastName, email, password };
             if (parameters.HasAtLeastOneNullOrWhitespace())
             {
-                return BadRequest(new { message = AuthConstants.OneParameterIncorrect });
+                return BadRequest(new { message = ErrorsConstants.OneParameterIncorrect });
             }
             
             UserModel userModel = _authManager.SignUp(UserControllerAssembler.BuildUserModel(email, password, firstName, lastName));
@@ -41,20 +42,19 @@
 
             if (userViewModel.IsNull())
             {
-                return BadRequest(new { message = AuthConstants.BadRequestEmailAlreadyUsed });
+                return BadRequest(new { message = ErrorsConstants.EmailAlreadyUsed });
             }
 
             return Ok(userViewModel);
         }
 
-        [AllowAnonymous]
-        [HttpPost("signin")]
+        [HttpPost("SignIn")]
         public IActionResult SignIn(string email, string password)
         {
             IEnumerable<string> parameters = new List<string> { email, password };
             if (parameters.HasAtLeastOneNullOrWhitespace())
             {
-                return BadRequest(new { message = AuthConstants.EmailOrPasswordEmpty });
+                return BadRequest(new { message = ErrorsConstants.EmailOrPasswordEmpty });
             }
 
             UserModel userModel = _authManager.SignIn(UserControllerAssembler.BuildUserModel(email, password));
@@ -62,17 +62,10 @@
 
             if (userViewModel.IsNull())
             {
-                return BadRequest(new { message = AuthConstants.EmailOrPasswordIncorrect });
+                return BadRequest(new { message = ErrorsConstants.EmailOrPasswordIncorrect });
             }
 
             return Ok(userViewModel);
-        }
-
-        [HttpGet("test")]
-        [Authorize(Roles = "free")]
-        public IActionResult Get()
-        {
-            return Ok("test");
         }
     }
 }

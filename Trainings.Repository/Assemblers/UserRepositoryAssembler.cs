@@ -1,9 +1,9 @@
-﻿using Trainings.Common.Helpers;
-using Trainings.Data.Tables;
-using Trainings.Model.Models;
-
-namespace Trainings.Repository.Assemblers
+﻿namespace Trainings.Repository.Assemblers
 {
+    using Trainings.Common.Helpers;
+    using Trainings.Data.Tables;
+    using Trainings.Model.Models;
+
     internal static class UserRepositoryAssembler
     {
         internal static User ToUser(this UserModel userModel)

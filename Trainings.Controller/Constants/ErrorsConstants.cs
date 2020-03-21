@@ -1,6 +1,6 @@
 ﻿namespace Trainings.Controller.Constants
 {
-    public class AuthConstants
+    public class ErrorsConstants
     {
         internal const string OneParameterIncorrect = "At least one of the parameters is incorrect";
 
@@ -8,6 +8,6 @@
 
         internal const string EmailOrPasswordIncorrect = "The email or the password is incorrect";
 
-        internal const string BadRequestEmailAlreadyUsed = "This email is already used";
+        internal const string EmailAlreadyUsed = "This email is already used";
     }
 }

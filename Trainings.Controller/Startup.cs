@@ -23,7 +23,7 @@ namespace Trainings.Controller
 
             services.AddContext(_configuration[AppSettings.TrainingsDatabase]);
             
-            services.InjectControllers();
+            services.InjectHelpers();
             services.InjectManagers();
             services.InjectRepositories();
 

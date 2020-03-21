@@ -1,6 +1,5 @@
 ﻿namespace Trainings.Repository
 {
-    using System;
     using Trainings.Data.Context;
 
     public class BaseRepository

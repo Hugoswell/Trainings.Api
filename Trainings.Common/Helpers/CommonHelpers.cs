@@ -40,13 +40,12 @@
                 return true;
             }
 
-            bool result = false;
             foreach (string stringToValidate in stringsToValidate)
             {
                 if (stringToValidate.IsNullOrWhiteSpace()) 
                     return true;
             }
-            return result;
+            return false;
         }
 
         #endregion

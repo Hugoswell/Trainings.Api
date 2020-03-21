@@ -24,16 +24,16 @@
             return services;
         }
 
-        internal static IServiceCollection InjectControllers(this IServiceCollection services)
+        internal static IServiceCollection InjectHelpers(this IServiceCollection services)
         {
             services.AddScoped<IJwtTokenHelper, JwtTokenHelper>();
+            services.AddScoped<IHasher, Hasher>();
             return services;
         }
 
         internal static IServiceCollection InjectManagers(this IServiceCollection services)
-        {
+        {            
             services.AddScoped<IAuthManager, AuthManager>();
-            services.AddScoped<IHasher, Hasher>();
             return services;
         }
 
