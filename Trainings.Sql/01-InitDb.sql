@@ -1,3 +1,6 @@
+USE [Trainings]
+GO
+
 CREATE TABLE [User] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [RoleId] tinyint NOT NULL,
