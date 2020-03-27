@@ -1,6 +1,3 @@
-USE [Trainings]
-GO
-
 CREATE TABLE [User] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [RoleId] tinyint NOT NULL,
@@ -49,10 +46,13 @@ GO
 
 CREATE TABLE [Lov] (
   [Id] smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  [LovTypeId] smallint NOT NULL,
-  [LovTypeName] varchar(30) NOT NULL,
   [Name] varchar(40) NOT NULL,
-  [Description] varchar(500)
+  [LovCategory] varchar(35) NOT NULL
+)
+GO
+
+CREATE TABLE [LovCategory] (
+  [Code] varchar(35) PRIMARY KEY NOT NULL
 )
 GO
 
@@ -77,12 +77,25 @@ GO
 CREATE TABLE [Exercice] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [TrainingId] int NOT NULL,
+  [TrainingTypeId] smallint NOT NULL,
   [ExerciceId] smallint NOT NULL,
   [NbOfSets] tinyint,
   [NbOfRepetitions] tinyint,
   [Duration] float,
   [RestDuration] float NOT NULL,
-  [MuscleGroup] varchar(30) NOT NULL
+  [IsBodyWeight] bit NOT NULL
+)
+GO
+
+CREATE TABLE [ExerciceMuscleGroup] (
+  [ExerciceId] int NOT NULL IDENTITY(1, 1),
+  [MuscleGroup] varchar(35) NOT NULL,
+  PRIMARY KEY ([ExerciceId], [MuscleGroup])
+)
+GO
+
+CREATE TABLE [MuscleGroup] (
+  [Code] varchar(35) PRIMARY KEY NOT NULL
 )
 GO
 
@@ -104,5 +117,18 @@ GO
 ALTER TABLE [Exercice] ADD FOREIGN KEY ([ExerciceId]) REFERENCES [Lov] ([Id])
 GO
 
+ALTER TABLE [Lov] ADD FOREIGN KEY ([LovCategory]) REFERENCES [LovCategory] ([Code])
+GO
+
 ALTER TABLE [Exercice] ADD FOREIGN KEY ([TrainingId]) REFERENCES [Training] ([Id])
 GO
+
+ALTER TABLE [ExerciceMuscleGroup] ADD FOREIGN KEY ([ExerciceId]) REFERENCES [Exercice] ([Id])
+GO
+
+ALTER TABLE [ExerciceMuscleGroup] ADD FOREIGN KEY ([MuscleGroup]) REFERENCES [MuscleGroup] ([Code])
+GO
+
+ALTER TABLE [Exercice] ADD FOREIGN KEY ([TrainingTypeId]) REFERENCES [Lov] ([Id])
+GO
+
