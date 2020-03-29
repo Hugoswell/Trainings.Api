@@ -6,7 +6,8 @@ import BackgroundImageAndFormContext from "../Common/BackgroundImageAndForm/Back
 function RegisterContainer() {
   const contextValue = {
     headline: "Des entrainements adaptés à votre demande et besoin.",
-    imageName: "musculation-HF"
+    imageName: "musculation-HF",
+    form: "register"
   };
 
   return (

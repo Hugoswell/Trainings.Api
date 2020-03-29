@@ -6,7 +6,8 @@ function LoginContainer() {
   const contextValue = {
     headline:
       "Il faut toujours viser la lune, car même en cas d'échec, on atterrit dans les étoiles.",
-    imageName: "cardio-HF"
+    imageName: "cardio-HF",
+    form: "login"
   };
 
   return (

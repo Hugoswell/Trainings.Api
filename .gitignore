@@ -40,6 +40,9 @@ TestResult.xml
 [Rr]eleasePS/
 dlldata.c
 
+#Mac files
+*.DS_Store
+
 # DNX
 project.lock.json
 project.fragment.lock.json
