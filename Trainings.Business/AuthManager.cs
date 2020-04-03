@@ -29,8 +29,7 @@
         public UserModel SignUp(UserModel userModel)
         {
             userModel.Password = _hasher.HashPassword(userModel.Password);
-            userModel.RoleId = 0;
-            userModel.RoleName = AuthConstants.FreeRole;
+            userModel.RoleCode = AuthConstants.FreeRole;
             
             UserModel userModelResult = _authRepository.SignUp(userModel);
             
@@ -53,7 +52,7 @@
             
             if (!userModelResult.IsNull())
             {
-                userModelResult.JwtToken = _jwtTokenHelper.GenerateJwtToken(userModelResult.RoleName, 60);
+                userModelResult.JwtToken = _jwtTokenHelper.GenerateJwtToken(userModelResult.RoleCode, 60);
                 return userModelResult;
             }
             else

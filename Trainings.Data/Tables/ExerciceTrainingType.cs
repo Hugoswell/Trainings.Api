@@ -5,19 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Trainings.Data.Tables
 {
-    public partial class ExerciceMuscleGroup
+    public partial class ExerciceTrainingType
     {
         [Key]
         public short ExerciceId { get; set; }
         [Key]
         [StringLength(40)]
-        public string MuscleGroupCode { get; set; }
+        public string TrainingTypeCode { get; set; }
 
         [ForeignKey(nameof(ExerciceId))]
-        [InverseProperty("ExerciceMuscleGroup")]
+        [InverseProperty("ExerciceTrainingType")]
         public virtual Exercice Exercice { get; set; }
-        [ForeignKey(nameof(MuscleGroupCode))]
-        [InverseProperty(nameof(MuscleGroup.ExerciceMuscleGroup))]
-        public virtual MuscleGroup MuscleGroupCodeNavigation { get; set; }
+        [ForeignKey(nameof(TrainingTypeCode))]
+        [InverseProperty(nameof(TrainingType.ExerciceTrainingType))]
+        public virtual TrainingType TrainingTypeCodeNavigation { get; set; }
     }
 }
