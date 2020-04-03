@@ -5,18 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Trainings.Data.Tables
 {
-    public partial class MuscleGroup
+    public partial class TrainingDuration
     {
-        public MuscleGroup()
+        public TrainingDuration()
         {
-            ExerciceMuscleGroup = new HashSet<ExerciceMuscleGroup>();
+            UserPreferences = new HashSet<UserPreferences>();
         }
 
         [Key]
         [StringLength(40)]
         public string Code { get; set; }
 
-        [InverseProperty("MuscleGroupCodeNavigation")]
-        public virtual ICollection<ExerciceMuscleGroup> ExerciceMuscleGroup { get; set; }
+        [InverseProperty("TrainingDurationCodeNavigation")]
+        public virtual ICollection<UserPreferences> UserPreferences { get; set; }
     }
 }

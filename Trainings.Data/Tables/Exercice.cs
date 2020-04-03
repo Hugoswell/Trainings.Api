@@ -9,30 +9,33 @@ namespace Trainings.Data.Tables
     {
         public Exercice()
         {
+            ExerciceGoal = new HashSet<ExerciceGoal>();
             ExerciceMuscleGroup = new HashSet<ExerciceMuscleGroup>();
+            ExerciceTraining = new HashSet<ExerciceTraining>();
+            ExerciceTrainingType = new HashSet<ExerciceTrainingType>();
         }
 
         [Key]
-        public int Id { get; set; }
-        public int TrainingId { get; set; }
-        public short TrainingTypeId { get; set; }
-        public short ExerciceId { get; set; }
-        public byte? NbOfSets { get; set; }
-        public byte? NbOfRepetitions { get; set; }
-        public double? Duration { get; set; }
-        public double RestDuration { get; set; }
-        public bool IsBodyWeight { get; set; }
+        public short Id { get; set; }
+        [Required]
+        [StringLength(80)]
+        public string Name { get; set; }
+        [StringLength(600)]
+        public string Description { get; set; }
+        [Required]
+        [StringLength(40)]
+        public string EquipmentCode { get; set; }
 
-        [ForeignKey(nameof(ExerciceId))]
-        [InverseProperty(nameof(Lov.ExerciceExerciceNavigation))]
-        public virtual Lov ExerciceNavigation { get; set; }
-        [ForeignKey(nameof(TrainingId))]
+        [ForeignKey(nameof(EquipmentCode))]
+        [InverseProperty(nameof(Equipment.Exercice))]
+        public virtual Equipment EquipmentCodeNavigation { get; set; }
         [InverseProperty("Exercice")]
-        public virtual Training Training { get; set; }
-        [ForeignKey(nameof(TrainingTypeId))]
-        [InverseProperty(nameof(Lov.ExerciceTrainingType))]
-        public virtual Lov TrainingType { get; set; }
+        public virtual ICollection<ExerciceGoal> ExerciceGoal { get; set; }
         [InverseProperty("Exercice")]
         public virtual ICollection<ExerciceMuscleGroup> ExerciceMuscleGroup { get; set; }
+        [InverseProperty("Exercice")]
+        public virtual ICollection<ExerciceTraining> ExerciceTraining { get; set; }
+        [InverseProperty("Exercice")]
+        public virtual ICollection<ExerciceTrainingType> ExerciceTrainingType { get; set; }
     }
 }

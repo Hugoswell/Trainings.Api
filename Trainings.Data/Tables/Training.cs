@@ -9,21 +9,29 @@ namespace Trainings.Data.Tables
     {
         public Training()
         {
-            Exercice = new HashSet<Exercice>();
+            ExerciceTraining = new HashSet<ExerciceTraining>();
         }
 
         [Key]
         public int Id { get; set; }
-        public int UserPreferenceId { get; set; }
+        public int UserPreferencesId { get; set; }
+        [Required]
+        [StringLength(40)]
+        public string TrainingTypeCode { get; set; }
+        public byte Duration { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime CreationDate { get; set; }
-        public byte NbOfExercice { get; set; }
-        public byte Duration { get; set; }
+        [Required]
+        [StringLength(35)]
+        public string CreatedBy { get; set; }
 
-        [ForeignKey(nameof(UserPreferenceId))]
+        [ForeignKey(nameof(TrainingTypeCode))]
+        [InverseProperty(nameof(TrainingType.Training))]
+        public virtual TrainingType TrainingTypeCodeNavigation { get; set; }
+        [ForeignKey(nameof(UserPreferencesId))]
         [InverseProperty("Training")]
-        public virtual UserPreference UserPreference { get; set; }
+        public virtual UserPreferences UserPreferences { get; set; }
         [InverseProperty("Training")]
-        public virtual ICollection<Exercice> Exercice { get; set; }
+        public virtual ICollection<ExerciceTraining> ExerciceTraining { get; set; }
     }
 }

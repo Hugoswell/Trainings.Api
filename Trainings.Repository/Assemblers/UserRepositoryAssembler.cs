@@ -14,8 +14,7 @@
                 LastName = userModel.LastName,
                 Email = userModel.Email,
                 HashedPassword = userModel.Password,
-                RoleId = userModel.RoleId,
-                RoleName = userModel.RoleName
+                RoleCode = userModel.RoleCode
             };
         }
 
@@ -30,7 +29,7 @@
             {
                 Id = user.Id,
                 Email = user.Email,
-                RoleName = user.RoleName
+                RoleCode = user.RoleCode
             };
         }
     }

@@ -9,13 +9,16 @@ namespace Trainings.Data.Tables
     {
         public User()
         {
-            PersonalInformation = new HashSet<PersonalInformation>();
-            UserPreference = new HashSet<UserPreference>();
+            UserPhysicalInformation = new HashSet<UserPhysicalInformation>();
+            UserPreferences = new HashSet<UserPreferences>();
+            UserTrainingFrequency = new HashSet<UserTrainingFrequency>();
         }
 
         [Key]
         public int Id { get; set; }
-        public byte RoleId { get; set; }
+        [Required]
+        [StringLength(30)]
+        public string RoleCode { get; set; }
         [Required]
         [StringLength(40)]
         public string FirstName { get; set; }
@@ -28,13 +31,17 @@ namespace Trainings.Data.Tables
         [Required]
         [StringLength(100)]
         public string HashedPassword { get; set; }
-        [Required]
-        [StringLength(30)]
-        public string RoleName { get; set; }
+        public bool HasFillInformation { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime CreationDate { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? FillInformationDate { get; set; }
 
         [InverseProperty("User")]
-        public virtual ICollection<PersonalInformation> PersonalInformation { get; set; }
+        public virtual ICollection<UserPhysicalInformation> UserPhysicalInformation { get; set; }
         [InverseProperty("User")]
-        public virtual ICollection<UserPreference> UserPreference { get; set; }
+        public virtual ICollection<UserPreferences> UserPreferences { get; set; }
+        [InverseProperty("User")]
+        public virtual ICollection<UserTrainingFrequency> UserTrainingFrequency { get; set; }
     }
 }
