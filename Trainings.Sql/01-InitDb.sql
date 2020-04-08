@@ -1,3 +1,6 @@
+USE[Trainings]
+GO
+
 CREATE TABLE [User] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [RoleCode] varchar(30) NOT NULL,
@@ -14,10 +17,10 @@ GO
 CREATE TABLE [UserPreferences] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [UserId] int NOT NULL,
-  [GoalCode] varchar(40) NOT NULL,
-  [TrainingTypeCode] varchar(40) NOT NULL,
-  [TrainingDurationCode] varchar(40) NOT NULL,
-  [EquipmentCode] varchar(40) NOT NULL
+  [GoalId] tinyint NOT NULL,
+  [TrainingTypeId] tinyint NOT NULL,
+  [TrainingDurationId] tinyint NOT NULL,
+  [EquipmentId] tinyint NOT NULL
 )
 GO
 
@@ -50,7 +53,7 @@ GO
 CREATE TABLE [Training] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [UserPreferencesId] int NOT NULL,
-  [TrainingTypeCode] varchar(40) NOT NULL,
+  [TrainingTypeId] tinyint NOT NULL,
   [Duration] tinyint NOT NULL,
   [CreationDate] datetime NOT NULL,
   [CreatedBy] varchar(35) NOT NULL
@@ -58,7 +61,8 @@ CREATE TABLE [Training] (
 GO
 
 CREATE TABLE [TrainingDuration] (
-  [Code] varchar(40) PRIMARY KEY NOT NULL
+  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Name] varchar(40) NOT NULL
 )
 GO
 
@@ -77,48 +81,52 @@ CREATE TABLE [Exercice] (
   [Id] smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [Name] varchar(80) NOT NULL,
   [Description] varchar(600),
-  [EquipmentCode] varchar(40) NOT NULL
+  [EquipmentId] tinyint NOT NULL
 )
 GO
 
 CREATE TABLE [ExerciceTrainingType] (
   [ExerciceId] smallint NOT NULL,
-  [TrainingTypeCode] varchar(40) NOT NULL,
-  PRIMARY KEY ([ExerciceId], [TrainingTypeCode])
+  [TrainingTypeId] tinyint NOT NULL,
+  PRIMARY KEY ([ExerciceId], [TrainingTypeId])
 )
 GO
 
 CREATE TABLE [TrainingType] (
-  [Code] varchar(40) PRIMARY KEY NOT NULL
+  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Name] varchar(40) NOT NULL
 )
 GO
 
 CREATE TABLE [ExerciceGoal] (
   [ExerciceId] smallint NOT NULL,
-  [GoalCode] varchar(40) NOT NULL,
-  PRIMARY KEY ([ExerciceId], [GoalCode])
+  [GoalId] tinyint NOT NULL,
+  PRIMARY KEY ([ExerciceId], [GoalId])
 )
 GO
 
 CREATE TABLE [Goal] (
-  [Code] varchar(40) PRIMARY KEY NOT NULL
+  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Name] varchar(40) NOT NULL
 )
 GO
 
 CREATE TABLE [ExerciceMuscleGroup] (
   [ExerciceId] smallint NOT NULL,
-  [MuscleGroupCode] varchar(40) NOT NULL,
-  PRIMARY KEY ([ExerciceId], [MuscleGroupCode])
+  [MuscleGroupId] tinyint NOT NULL,
+  PRIMARY KEY ([ExerciceId], [MuscleGroupId])
 )
 GO
 
 CREATE TABLE [MuscleGroup] (
-  [Code] varchar(40) PRIMARY KEY NOT NULL
+  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Name] varchar(40) NOT NULL
 )
 GO
 
 CREATE TABLE [Equipment] (
-  [Code] varchar(40) PRIMARY KEY NOT NULL
+  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Name] varchar(40) NOT NULL
 )
 GO
 
@@ -131,22 +139,22 @@ GO
 ALTER TABLE [UserTrainingFrequency] ADD FOREIGN KEY ([UserId]) REFERENCES [User] ([Id])
 GO
 
-ALTER TABLE [UserPreferences] ADD FOREIGN KEY ([GoalCode]) REFERENCES [Goal] ([Code])
+ALTER TABLE [UserPreferences] ADD FOREIGN KEY ([GoalId]) REFERENCES [Goal] ([Id])
 GO
 
-ALTER TABLE [UserPreferences] ADD FOREIGN KEY ([TrainingTypeCode]) REFERENCES [TrainingType] ([Code])
+ALTER TABLE [UserPreferences] ADD FOREIGN KEY ([TrainingTypeId]) REFERENCES [TrainingType] ([Id])
 GO
 
-ALTER TABLE [UserPreferences] ADD FOREIGN KEY ([TrainingDurationCode]) REFERENCES [TrainingDuration] ([Code])
+ALTER TABLE [UserPreferences] ADD FOREIGN KEY ([TrainingDurationId]) REFERENCES [TrainingDuration] ([Id])
 GO
 
-ALTER TABLE [UserPreferences] ADD FOREIGN KEY ([EquipmentCode]) REFERENCES [Equipment] ([Code])
+ALTER TABLE [UserPreferences] ADD FOREIGN KEY ([EquipmentId]) REFERENCES [Equipment] ([Id])
 GO
 
 ALTER TABLE [Training] ADD FOREIGN KEY ([UserPreferencesId]) REFERENCES [UserPreferences] ([Id])
 GO
 
-ALTER TABLE [Training] ADD FOREIGN KEY ([TrainingTypeCode]) REFERENCES [TrainingType] ([Code])
+ALTER TABLE [Training] ADD FOREIGN KEY ([TrainingTypeId]) REFERENCES [TrainingType] ([Id])
 GO
 
 ALTER TABLE [ExerciceTraining] ADD FOREIGN KEY ([ExerciceId]) REFERENCES [Exercice] ([Id])
@@ -155,24 +163,24 @@ GO
 ALTER TABLE [ExerciceTraining] ADD FOREIGN KEY ([TrainingId]) REFERENCES [Training] ([Id])
 GO
 
-ALTER TABLE [Exercice] ADD FOREIGN KEY ([EquipmentCode]) REFERENCES [Equipment] ([Code])
+ALTER TABLE [Exercice] ADD FOREIGN KEY ([EquipmentId]) REFERENCES [Equipment] ([Id])
 GO
 
 ALTER TABLE [ExerciceTrainingType] ADD FOREIGN KEY ([ExerciceId]) REFERENCES [Exercice] ([Id])
 GO
 
-ALTER TABLE [ExerciceTrainingType] ADD FOREIGN KEY ([TrainingTypeCode]) REFERENCES [TrainingType] ([Code])
+ALTER TABLE [ExerciceTrainingType] ADD FOREIGN KEY ([TrainingTypeId]) REFERENCES [TrainingType] ([Id])
 GO
 
 ALTER TABLE [ExerciceGoal] ADD FOREIGN KEY ([ExerciceId]) REFERENCES [Exercice] ([Id])
 GO
 
-ALTER TABLE [ExerciceGoal] ADD FOREIGN KEY ([GoalCode]) REFERENCES [Goal] ([Code])
+ALTER TABLE [ExerciceGoal] ADD FOREIGN KEY ([GoalId]) REFERENCES [Goal] ([Id])
 GO
 
 ALTER TABLE [ExerciceMuscleGroup] ADD FOREIGN KEY ([ExerciceId]) REFERENCES [Exercice] ([Id])
 GO
 
-ALTER TABLE [ExerciceMuscleGroup] ADD FOREIGN KEY ([MuscleGroupCode]) REFERENCES [MuscleGroup] ([Code])
+ALTER TABLE [ExerciceMuscleGroup] ADD FOREIGN KEY ([MuscleGroupId]) REFERENCES [MuscleGroup] ([Id])
 GO
 
