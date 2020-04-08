@@ -10,14 +10,13 @@ namespace Trainings.Data.Tables
         [Key]
         public short ExerciceId { get; set; }
         [Key]
-        [StringLength(40)]
-        public string TrainingTypeCode { get; set; }
+        public byte TrainingTypeId { get; set; }
 
         [ForeignKey(nameof(ExerciceId))]
         [InverseProperty("ExerciceTrainingType")]
         public virtual Exercice Exercice { get; set; }
-        [ForeignKey(nameof(TrainingTypeCode))]
-        [InverseProperty(nameof(TrainingType.ExerciceTrainingType))]
-        public virtual TrainingType TrainingTypeCodeNavigation { get; set; }
+        [ForeignKey(nameof(TrainingTypeId))]
+        [InverseProperty("ExerciceTrainingType")]
+        public virtual TrainingType TrainingType { get; set; }
     }
 }

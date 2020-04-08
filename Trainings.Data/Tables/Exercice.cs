@@ -22,13 +22,11 @@ namespace Trainings.Data.Tables
         public string Name { get; set; }
         [StringLength(600)]
         public string Description { get; set; }
-        [Required]
-        [StringLength(40)]
-        public string EquipmentCode { get; set; }
+        public byte EquipmentId { get; set; }
 
-        [ForeignKey(nameof(EquipmentCode))]
-        [InverseProperty(nameof(Equipment.Exercice))]
-        public virtual Equipment EquipmentCodeNavigation { get; set; }
+        [ForeignKey(nameof(EquipmentId))]
+        [InverseProperty("Exercice")]
+        public virtual Equipment Equipment { get; set; }
         [InverseProperty("Exercice")]
         public virtual ICollection<ExerciceGoal> ExerciceGoal { get; set; }
         [InverseProperty("Exercice")]

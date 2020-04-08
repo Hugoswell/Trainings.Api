@@ -15,31 +15,23 @@ namespace Trainings.Data.Tables
         [Key]
         public int Id { get; set; }
         public int UserId { get; set; }
-        [Required]
-        [StringLength(40)]
-        public string GoalCode { get; set; }
-        [Required]
-        [StringLength(40)]
-        public string TrainingTypeCode { get; set; }
-        [Required]
-        [StringLength(40)]
-        public string TrainingDurationCode { get; set; }
-        [Required]
-        [StringLength(40)]
-        public string EquipmentCode { get; set; }
+        public byte GoalId { get; set; }
+        public byte TrainingTypeId { get; set; }
+        public byte TrainingDurationId { get; set; }
+        public byte EquipmentId { get; set; }
 
-        [ForeignKey(nameof(EquipmentCode))]
-        [InverseProperty(nameof(Equipment.UserPreferences))]
-        public virtual Equipment EquipmentCodeNavigation { get; set; }
-        [ForeignKey(nameof(GoalCode))]
-        [InverseProperty(nameof(Goal.UserPreferences))]
-        public virtual Goal GoalCodeNavigation { get; set; }
-        [ForeignKey(nameof(TrainingDurationCode))]
-        [InverseProperty(nameof(TrainingDuration.UserPreferences))]
-        public virtual TrainingDuration TrainingDurationCodeNavigation { get; set; }
-        [ForeignKey(nameof(TrainingTypeCode))]
-        [InverseProperty(nameof(TrainingType.UserPreferences))]
-        public virtual TrainingType TrainingTypeCodeNavigation { get; set; }
+        [ForeignKey(nameof(EquipmentId))]
+        [InverseProperty("UserPreferences")]
+        public virtual Equipment Equipment { get; set; }
+        [ForeignKey(nameof(GoalId))]
+        [InverseProperty("UserPreferences")]
+        public virtual Goal Goal { get; set; }
+        [ForeignKey(nameof(TrainingDurationId))]
+        [InverseProperty("UserPreferences")]
+        public virtual TrainingDuration TrainingDuration { get; set; }
+        [ForeignKey(nameof(TrainingTypeId))]
+        [InverseProperty("UserPreferences")]
+        public virtual TrainingType TrainingType { get; set; }
         [ForeignKey(nameof(UserId))]
         [InverseProperty("UserPreferences")]
         public virtual User User { get; set; }
