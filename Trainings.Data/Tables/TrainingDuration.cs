@@ -13,10 +13,12 @@ namespace Trainings.Data.Tables
         }
 
         [Key]
+        public byte Id { get; set; }
+        [Required]
         [StringLength(40)]
-        public string Code { get; set; }
+        public string Name { get; set; }
 
-        [InverseProperty("TrainingDurationCodeNavigation")]
+        [InverseProperty("TrainingDuration")]
         public virtual ICollection<UserPreferences> UserPreferences { get; set; }
     }
 }

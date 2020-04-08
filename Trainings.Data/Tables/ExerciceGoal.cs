@@ -10,14 +10,13 @@ namespace Trainings.Data.Tables
         [Key]
         public short ExerciceId { get; set; }
         [Key]
-        [StringLength(40)]
-        public string GoalCode { get; set; }
+        public byte GoalId { get; set; }
 
         [ForeignKey(nameof(ExerciceId))]
         [InverseProperty("ExerciceGoal")]
         public virtual Exercice Exercice { get; set; }
-        [ForeignKey(nameof(GoalCode))]
-        [InverseProperty(nameof(Goal.ExerciceGoal))]
-        public virtual Goal GoalCodeNavigation { get; set; }
+        [ForeignKey(nameof(GoalId))]
+        [InverseProperty("ExerciceGoal")]
+        public virtual Goal Goal { get; set; }
     }
 }

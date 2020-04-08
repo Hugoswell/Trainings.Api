@@ -14,12 +14,14 @@ namespace Trainings.Data.Tables
         }
 
         [Key]
+        public byte Id { get; set; }
+        [Required]
         [StringLength(40)]
-        public string Code { get; set; }
+        public string Name { get; set; }
 
-        [InverseProperty("EquipmentCodeNavigation")]
+        [InverseProperty("Equipment")]
         public virtual ICollection<Exercice> Exercice { get; set; }
-        [InverseProperty("EquipmentCodeNavigation")]
+        [InverseProperty("Equipment")]
         public virtual ICollection<UserPreferences> UserPreferences { get; set; }
     }
 }

@@ -15,14 +15,16 @@ namespace Trainings.Data.Tables
         }
 
         [Key]
+        public byte Id { get; set; }
+        [Required]
         [StringLength(40)]
-        public string Code { get; set; }
+        public string Name { get; set; }
 
-        [InverseProperty("TrainingTypeCodeNavigation")]
+        [InverseProperty("TrainingType")]
         public virtual ICollection<ExerciceTrainingType> ExerciceTrainingType { get; set; }
-        [InverseProperty("TrainingTypeCodeNavigation")]
+        [InverseProperty("TrainingType")]
         public virtual ICollection<Training> Training { get; set; }
-        [InverseProperty("TrainingTypeCodeNavigation")]
+        [InverseProperty("TrainingType")]
         public virtual ICollection<UserPreferences> UserPreferences { get; set; }
     }
 }

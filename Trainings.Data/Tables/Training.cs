@@ -15,9 +15,7 @@ namespace Trainings.Data.Tables
         [Key]
         public int Id { get; set; }
         public int UserPreferencesId { get; set; }
-        [Required]
-        [StringLength(40)]
-        public string TrainingTypeCode { get; set; }
+        public byte TrainingTypeId { get; set; }
         public byte Duration { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime CreationDate { get; set; }
@@ -25,9 +23,9 @@ namespace Trainings.Data.Tables
         [StringLength(35)]
         public string CreatedBy { get; set; }
 
-        [ForeignKey(nameof(TrainingTypeCode))]
-        [InverseProperty(nameof(TrainingType.Training))]
-        public virtual TrainingType TrainingTypeCodeNavigation { get; set; }
+        [ForeignKey(nameof(TrainingTypeId))]
+        [InverseProperty("Training")]
+        public virtual TrainingType TrainingType { get; set; }
         [ForeignKey(nameof(UserPreferencesId))]
         [InverseProperty("Training")]
         public virtual UserPreferences UserPreferences { get; set; }
