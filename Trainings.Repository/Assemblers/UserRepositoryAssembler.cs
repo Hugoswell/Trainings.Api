@@ -1,5 +1,6 @@
 ﻿namespace Trainings.Repository.Assemblers
 {
+    using System;
     using Trainings.Common.Helpers;
     using Trainings.Data.Tables;
     using Trainings.Model.Models;
@@ -14,7 +15,10 @@
                 LastName = userModel.LastName,
                 Email = userModel.Email,
                 HashedPassword = userModel.Password,
-                RoleCode = userModel.RoleCode
+                RoleCode = userModel.RoleCode,
+                HasFillInformation = false,
+                CreationDate = DateTime.UtcNow,
+                FillInformationDate = null
             };
         }
 

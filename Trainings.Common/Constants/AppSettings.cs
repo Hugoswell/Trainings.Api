@@ -2,10 +2,10 @@
 {
     public class AppSettings
     {
-        public const string TrainingsDatabase = "ConnectionStrings:TrainingsDatabase";
+        public const string TrainingsDatabase = "ConnectionStrings.TrainingsDatabase";
 
-        public const string SecretKey = "Secrets:SecretKey";
+        public const string SecretKey = "Secrets.SecretKey";
 
-        public const string Salt = "Secrets:Salt";
+        public const string Salt = "Secrets.Salt";
     }
 }

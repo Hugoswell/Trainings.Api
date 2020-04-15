@@ -10,7 +10,7 @@
     using Trainings.Controller.ViewModels;
     using Trainings.Model.Models;
 
-    
+
     [ApiController]
     [AllowAnonymous]
     [Route("[controller]")]
@@ -19,7 +19,7 @@
 
         #region Constructor & Properties
 
-        private readonly IAuthManager _authManager;        
+        private readonly IAuthManager _authManager;
 
         public AuthController(IAuthManager authManager)
         {
@@ -27,7 +27,7 @@
         }
 
         #endregion
-        
+
         [HttpPost("SignUp")]
         public IActionResult SignUp(string firstName, string lastName, string email, string password)
         {
@@ -36,7 +36,7 @@
             {
                 return BadRequest(new { message = ErrorsConstants.OneParameterIncorrect });
             }
-            
+
             UserModel userModel = _authManager.SignUp(UserControllerAssembler.BuildUserModel(email, password, firstName, lastName));
             UserViewModel userViewModel = userModel.ToUserViewModel();
 
@@ -66,6 +66,12 @@
             }
 
             return Ok(userViewModel);
+        }
+
+        [HttpGet("test")]
+        public string TestGet()
+        {
+            return ("Testing Get endpoint");
         }
     }
 }

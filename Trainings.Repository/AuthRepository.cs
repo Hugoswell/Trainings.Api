@@ -24,7 +24,7 @@
                 userModel.Id = user.Id;
                 return userModel;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return null;
             }            
