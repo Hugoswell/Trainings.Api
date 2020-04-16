@@ -16,9 +16,9 @@
                 Email = userModel.Email,
                 HashedPassword = userModel.Password,
                 RoleCode = userModel.RoleCode,
-                HasFillInformation = false,
-                CreationDate = DateTime.UtcNow,
-                FillInformationDate = null
+                HasFillInformation = userModel.HasFillInformation,
+                FillInformationDate = userModel.FillInformationDate,
+                CreationDate = DateTime.UtcNow
             };
         }
 

@@ -30,18 +30,21 @@
         {
             userModel.Password = _hasher.HashPassword(userModel.Password);
             userModel.RoleCode = AuthConstants.FreeRole;
-            
+            userModel.HasFillInformation = false;
+            userModel.FillInformationDate = null;
+
             UserModel userModelResult = _authRepository.SignUp(userModel);
             
             if (!userModelResult.IsNull())
             {
                 userModelResult.JwtToken = _jwtTokenHelper.GenerateJwtToken(AuthConstants.FreeRole, 60);
+
                 return userModelResult;
             }
             else
             {
                 return null;
-            }            
+            }
         }
 
         public UserModel SignIn(UserModel userModel)
