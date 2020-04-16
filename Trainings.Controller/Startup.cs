@@ -21,7 +21,8 @@ namespace Trainings.Controller
         {
             services.AddAuthentication(_configuration);
 
-            services.AddContext(_configuration[AppSettings.TrainingsDatabase]);
+            string connectionString = _configuration.GetConnectionString(AppSettings.TrainingsDatabase);
+            services.AddContext(connectionString);
             
             services.InjectHelpers();
             services.InjectManagers();

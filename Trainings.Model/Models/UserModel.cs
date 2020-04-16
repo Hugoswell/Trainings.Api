@@ -1,4 +1,6 @@
-﻿namespace Trainings.Model.Models
+﻿using System;
+
+namespace Trainings.Model.Models
 {
     public class UserModel
     {
@@ -11,6 +13,10 @@
         public string Email { get; set; }
         
         public string Password { get; set; }
+
+        public bool HasFillInformation { get; set; }
+
+        public DateTime? FillInformationDate { get; set; }
 
         public string RoleCode { get; set; }
 

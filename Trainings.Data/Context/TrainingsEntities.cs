@@ -31,7 +31,7 @@ namespace Trainings.Data.Context
         public virtual DbSet<UserPhysicalInformation> UserPhysicalInformation { get; set; }
         public virtual DbSet<UserPreferences> UserPreferences { get; set; }
         public virtual DbSet<UserTrainingFrequency> UserTrainingFrequency { get; set; }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Equipment>(entity =>
