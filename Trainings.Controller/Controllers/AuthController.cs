@@ -67,11 +67,5 @@
 
             return Ok(userViewModel);
         }
-
-        [HttpGet("test")]
-        public string TestGet()
-        {
-            return("Testing Get endpoint");
-        }
     }
 }
