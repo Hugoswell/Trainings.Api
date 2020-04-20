@@ -29,15 +29,24 @@
         #endregion
 
         [HttpPost("SignUp")]
-        public IActionResult SignUp(string firstName, string lastName, string email, string password)
+        public IActionResult SignUp(SignUpViewModel signUpViewModel)
         {
-            IEnumerable<string> parameters = new List<string> { firstName, lastName, email, password };
+            IEnumerable<string> parameters = new List<string> 
+            { 
+                signUpViewModel.FirstName,
+                signUpViewModel.LastName,
+                signUpViewModel.Email,
+                signUpViewModel.Password 
+            };
             if (parameters.HasAtLeastOneNullOrWhitespace())
             {
                 return BadRequest(new { message = ErrorsConstants.OneParameterIncorrect });
             }
 
-            UserModel userModel = _authManager.SignUp(UserControllerAssembler.BuildUserModel(email, password, firstName, lastName));
+            UserModel userModel = _authManager.SignUp(UserControllerAssembler.BuildUserModel(
+                signUpViewModel.Email, signUpViewModel.Password,
+                signUpViewModel.FirstName, signUpViewModel.LastName));
+
             UserViewModel userViewModel = userModel.ToUserViewModel();
 
             if (userViewModel.IsNull())
