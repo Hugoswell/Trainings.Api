@@ -2,7 +2,7 @@
 
 namespace Trainings.Model.Models
 {
-    public class UserModel
+    public class SignUpModel
     {
         public int Id { get; set; }
         

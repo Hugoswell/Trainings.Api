@@ -43,38 +43,37 @@
                 return BadRequest(new { message = ErrorsConstants.OneParameterIncorrect });
             }
 
-            UserModel userModel = _authManager.SignUp(UserControllerAssembler.BuildUserModel(
-                signUpViewModel.Email, signUpViewModel.Password,
-                signUpViewModel.FirstName, signUpViewModel.LastName));
+            SignUpModel signUpModel = signUpViewModel.ToSignUpModel();
+            TokenModel tokenModel = _authManager.SignUp(signUpModel);
+            TokenViewModel tokenViewModel = tokenModel.ToTokenViewModel();
 
-            UserViewModel userViewModel = userModel.ToUserViewModel();
-
-            if (userViewModel.IsNull())
+            if (tokenViewModel.IsNull())
             {
                 return BadRequest(new { message = ErrorsConstants.EmailAlreadyUsed });
             }
 
-            return Ok(userViewModel);
+            return Ok(tokenViewModel);
         }
 
         [HttpPost("SignIn")]
-        public IActionResult SignIn(string email, string password)
+        public IActionResult SignIn(SignInViewModel signInViewModel)
         {
-            IEnumerable<string> parameters = new List<string> { email, password };
+            IEnumerable<string> parameters = new List<string> { signInViewModel.Email, signInViewModel.Password };
             if (parameters.HasAtLeastOneNullOrWhitespace())
             {
                 return BadRequest(new { message = ErrorsConstants.EmailOrPasswordEmpty });
             }
 
-            UserModel userModel = _authManager.SignIn(UserControllerAssembler.BuildUserModel(email, password));
-            UserViewModel userViewModel = userModel.ToUserViewModel();
+            SignInModel signInModel = signInViewModel.ToSignInModel();
+            TokenModel tokenModel = _authManager.SignIn(signInModel);
+            TokenViewModel tokenViewModel = tokenModel.ToTokenViewModel();
 
-            if (userViewModel.IsNull())
+            if (tokenViewModel.IsNull())
             {
                 return BadRequest(new { message = ErrorsConstants.EmailOrPasswordIncorrect });
             }
 
-            return Ok(userViewModel);
+            return Ok(tokenViewModel);
         }
     }
 }

@@ -7,7 +7,7 @@
 
     internal static class UserRepositoryAssembler
     {
-        internal static User ToUser(this UserModel userModel)
+        internal static User ToUser(this SignUpModel userModel)
         {
             return new User
             {
@@ -22,14 +22,14 @@
             };
         }
 
-        internal static UserModel ToUserModel(this User user)
+        internal static SignUpModel ToUserModel(this User user)
         {
             if (user.IsNull())
             {
                 return null;
             }
 
-            return new UserModel
+            return new SignUpModel
             {
                 Id = user.Id,
                 Email = user.Email,

@@ -14,7 +14,7 @@
         {
         }
 
-        public UserModel SignUp(UserModel userModel)
+        public SignUpModel SignUp(SignUpModel userModel)
         {
             try
             {
@@ -30,7 +30,7 @@
             }            
         }
 
-        public UserModel SignIn(UserModel userModel)
+        public SignUpModel SignIn(SignUpModel userModel)
         {
             User userResult = _trainingsEntities.User
                 .Where(user => user.Email.Equals(userModel.Email)

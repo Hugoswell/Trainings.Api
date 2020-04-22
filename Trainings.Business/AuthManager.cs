@@ -26,14 +26,14 @@
 
         #endregion        
 
-        public UserModel SignUp(UserModel userModel)
+        public SignUpModel SignUp(SignUpModel userModel)
         {
             userModel.Password = _hasher.HashPassword(userModel.Password);
             userModel.RoleCode = AuthConstants.FreeRole;
             userModel.HasFillInformation = false;
             userModel.FillInformationDate = null;
 
-            UserModel userModelResult = _authRepository.SignUp(userModel);
+            SignUpModel userModelResult = _authRepository.SignUp(userModel);
             
             if (!userModelResult.IsNull())
             {
@@ -47,11 +47,11 @@
             }
         }
 
-        public UserModel SignIn(UserModel userModel)
+        public SignUpModel SignIn(SignUpModel userModel)
         {
             userModel.Password = _hasher.HashPassword(userModel.Password);
 
-            UserModel userModelResult = _authRepository.SignIn(userModel);
+            SignUpModel userModelResult = _authRepository.SignIn(userModel);
             
             if (!userModelResult.IsNull())
             {

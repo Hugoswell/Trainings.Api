@@ -1,6 +1,6 @@
 ﻿namespace Trainings.Controller.ViewModels
 {
-    public class UserViewModel
+    public class TokenViewModel
     {
         public int Id { get; set; }
 
