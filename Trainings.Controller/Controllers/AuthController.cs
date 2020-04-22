@@ -52,7 +52,7 @@
                 return BadRequest(new { message = ErrorsConstants.EmailAlreadyUsed });
             }
 
-            return Ok(tokenViewModel);
+            return Ok(tokenViewModel.JwtToken);
         }
 
         [HttpPost("SignIn")]

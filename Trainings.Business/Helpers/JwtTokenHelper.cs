@@ -18,7 +18,7 @@
             _configuration = configuration;
         }
 
-        public string GenerateJwtToken(string role, int expiresMinutes)
+        public string GenerateJwtToken(string userId, string userRole, string userFirstName, int expiresMinutes)
         {
             //security key
             string secretKey = _configuration[AppSettings.SecretKey];
@@ -34,7 +34,9 @@
                 Subject = new ClaimsIdentity(
                 new Claim[]
                 {
-                    new Claim(ClaimTypes.Role, role)
+                    new Claim(ClaimTypes.NameIdentifier, userId),
+                    new Claim(ClaimTypes.Name, userFirstName),
+                    new Claim(ClaimTypes.Role, userRole)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(expiresMinutes),
                 SigningCredentials = signingCredentials

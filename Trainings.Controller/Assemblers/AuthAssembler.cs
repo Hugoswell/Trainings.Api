@@ -35,8 +35,6 @@
 
             return new TokenViewModel
             {
-                Id = tokenModel.Id,
-                Email = tokenModel.Email,
                 JwtToken = tokenModel.JwtToken
             };
         }
