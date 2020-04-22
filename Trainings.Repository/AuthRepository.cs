@@ -14,30 +14,29 @@
         {
         }
 
-        public UserModel SignUp(UserModel userModel)
+        public TokenModel SignUp(SignUpModel signUpModel)
         {
             try
             {
-                User user = userModel.ToUser();
+                User user = signUpModel.ToUser();
                 _trainingsEntities.User.Add(user);
                 _trainingsEntities.SaveChanges();
-                userModel.Id = user.Id;
-                return userModel;
+                return user.ToTokenModel();
             }
             catch (Exception)
             {
                 return null;
-            }            
+            }
         }
 
-        public UserModel SignIn(UserModel userModel)
+        public TokenModel SignIn(SignInModel signInModel)
         {
-            User userResult = _trainingsEntities.User
-                .Where(user => user.Email.Equals(userModel.Email)
-                    && user.HashedPassword.Equals(userModel.Password))
+            User user = _trainingsEntities.User
+                .Where(user => user.Email.Equals(signInModel.Email)
+                    && user.HashedPassword.Equals(signInModel.Password))
                 .FirstOrDefault();
 
-            return userResult.ToUserModel();
+            return user.ToTokenModel();
         }
     }
 }

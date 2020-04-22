@@ -59,7 +59,7 @@
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = symmetricSecurityKey,
                         ValidateLifetime = true,
-                        ClockSkew = TimeSpan.Zero,                        
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
 

@@ -26,20 +26,19 @@
 
         #endregion        
 
-        public UserModel SignUp(UserModel userModel)
+        public TokenModel SignUp(SignUpModel signUpModel)
         {
-            userModel.Password = _hasher.HashPassword(userModel.Password);
-            userModel.RoleCode = AuthConstants.FreeRole;
-            userModel.HasFillInformation = false;
-            userModel.FillInformationDate = null;
+            signUpModel.Password = _hasher.HashPassword(signUpModel.Password);
+            signUpModel.RoleCode = AuthConstants.FreeRole;
+            signUpModel.HasFillInformation = false;
+            signUpModel.FillInformationDate = null;
 
-            UserModel userModelResult = _authRepository.SignUp(userModel);
+            TokenModel tokenModel = _authRepository.SignUp(signUpModel);
             
-            if (!userModelResult.IsNull())
+            if (!tokenModel.IsNull())
             {
-                userModelResult.JwtToken = _jwtTokenHelper.GenerateJwtToken(AuthConstants.FreeRole, 60);
-
-                return userModelResult;
+                tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(tokenModel.Id.ToString(), AuthConstants.FreeRole, tokenModel.FirstName, 60);
+                return tokenModel;
             }
             else
             {
@@ -47,16 +46,16 @@
             }
         }
 
-        public UserModel SignIn(UserModel userModel)
+        public TokenModel SignIn(SignInModel signInModel)
         {
-            userModel.Password = _hasher.HashPassword(userModel.Password);
+            signInModel.Password = _hasher.HashPassword(signInModel.Password);
 
-            UserModel userModelResult = _authRepository.SignIn(userModel);
+            TokenModel tokenModel = _authRepository.SignIn(signInModel);
             
-            if (!userModelResult.IsNull())
+            if (!tokenModel.IsNull())
             {
-                userModelResult.JwtToken = _jwtTokenHelper.GenerateJwtToken(userModelResult.RoleCode, 60);
-                return userModelResult;
+                tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(tokenModel.Id.ToString(), tokenModel.RoleCode, tokenModel.FirstName, 60);
+                return tokenModel;
             }
             else
             {

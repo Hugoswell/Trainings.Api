@@ -2,7 +2,7 @@
 
 namespace Trainings.Model.Models
 {
-    public class UserModel
+    public class SignUpModel
     {
         public int Id { get; set; }
         
@@ -19,7 +19,5 @@ namespace Trainings.Model.Models
         public DateTime? FillInformationDate { get; set; }
 
         public string RoleCode { get; set; }
-
-        public string JwtToken { get; set; }
     }
 }
