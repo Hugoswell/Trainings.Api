@@ -55,7 +55,7 @@
             return Ok(tokenViewModel.JwtToken);
         }
 
-        [HttpGet("SignIn")]
+        [HttpPost("SignIn")]
         public IActionResult SignIn(SignInViewModel signInViewModel)
         {
             IEnumerable<string> parameters = new List<string> { signInViewModel.Email, signInViewModel.Password };
