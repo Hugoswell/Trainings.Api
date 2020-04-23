@@ -55,7 +55,7 @@
             return Ok(tokenViewModel.JwtToken);
         }
 
-        [HttpPost("SignIn")]
+        [HttpGet("SignIn")]
         public IActionResult SignIn(SignInViewModel signInViewModel)
         {
             IEnumerable<string> parameters = new List<string> { signInViewModel.Email, signInViewModel.Password };
@@ -73,7 +73,7 @@
                 return BadRequest(new { message = ErrorsConstants.EmailOrPasswordIncorrect });
             }
 
-            return Ok(tokenViewModel);
+            return Ok(tokenViewModel.JwtToken);
         }
     }
 }
