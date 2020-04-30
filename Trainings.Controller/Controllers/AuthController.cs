@@ -75,11 +75,5 @@
 
             return Ok(tokenViewModel.JwtToken);
         }
-
-        [HttpGet("test")]
-        public string Test()
-        {
-            return "CI CD work";
-        }
     }
 }
