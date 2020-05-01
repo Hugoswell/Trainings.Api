@@ -17,15 +17,6 @@
             };
         }
 
-        internal static SignInModel ToSignInModel(this SignInViewModel signInViewModel)
-        {
-            return new SignInModel
-            {
-                Email = signInViewModel.Email,
-                Password = signInViewModel.Password
-            };
-        }
-
         internal static TokenViewModel ToTokenViewModel(this TokenModel tokenModel)
         {
             if (tokenModel.IsNull())

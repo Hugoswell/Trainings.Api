@@ -16,7 +16,7 @@
                 Email = signUpModel.Email,
                 HashedPassword = signUpModel.Password,
                 RoleCode = signUpModel.RoleCode,
-                HasFillInformation = signUpModel.HasFillInformation,
+                HasFilledInformation = signUpModel.HasFilledInformation,
                 FillInformationDate = signUpModel.FillInformationDate,
                 CreationDate = DateTime.UtcNow
             };
@@ -33,7 +33,8 @@
             {
                 Id = user.Id,
                 FirstName = user.FirstName,
-                RoleCode = user.RoleCode
+                RoleCode = user.RoleCode,
+                HasFilledInformation = user.HasFilledInformation
             };
         }
     }

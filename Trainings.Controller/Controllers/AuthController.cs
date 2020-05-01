@@ -3,6 +3,8 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Claims;
     using Trainings.Business.Interfaces;
     using Trainings.Common.Helpers;
     using Trainings.Controller.Assembler;
@@ -12,7 +14,6 @@
 
 
     [ApiController]
-    [AllowAnonymous]
     [Route("[controller]")]
     public class AuthController : ControllerBase
     {
@@ -28,6 +29,7 @@
 
         #endregion
 
+        [AllowAnonymous]
         [HttpPost("SignUp")]
         public IActionResult SignUp(SignUpViewModel signUpViewModel)
         {
@@ -55,16 +57,17 @@
             return Ok(tokenViewModel.JwtToken);
         }
 
-        [HttpPost("SignIn")]
-        public IActionResult SignIn(SignInViewModel signInViewModel)
+        [AllowAnonymous]
+        [HttpGet("SignIn")]
+        public IActionResult SignIn(string Email, string Password)
         {
-            IEnumerable<string> parameters = new List<string> { signInViewModel.Email, signInViewModel.Password };
+            IEnumerable<string> parameters = new List<string> { Email, Password };
             if (parameters.HasAtLeastOneNullOrWhitespace())
             {
                 return BadRequest(new { message = ErrorsConstants.EmailOrPasswordEmpty });
             }
 
-            SignInModel signInModel = signInViewModel.ToSignInModel();
+            SignInModel signInModel = new SignInModel { Email = Email, Password = Password };
             TokenModel tokenModel = _authManager.SignIn(signInModel);
             TokenViewModel tokenViewModel = tokenModel.ToTokenViewModel();
 
@@ -74,6 +77,21 @@
             }
 
             return Ok(tokenViewModel.JwtToken);
+        }
+
+        [Authorize]
+        [HttpGet("Me")]
+        public IList<string> Me()
+        {
+            ClaimsIdentity identity = HttpContext.User.Identity as ClaimsIdentity;
+            IList<Claim> claims = identity.Claims.ToList();
+            IList<string> values = new List<string>();
+            for (int i = 0; i < claims.Count; i++)
+            {
+                string value = claims[i].Value;
+                values.Add(value);
+            }
+            return values;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Trainings.Model.Models
         
         public string Password { get; set; }
 
-        public bool HasFillInformation { get; set; }
+        public bool HasFilledInformation { get; set; }
 
         public DateTime? FillInformationDate { get; set; }
 

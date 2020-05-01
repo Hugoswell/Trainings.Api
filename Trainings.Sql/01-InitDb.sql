@@ -8,7 +8,7 @@ CREATE TABLE [User] (
   [LastName] varchar(40) NOT NULL,
   [Email] varchar(100) UNIQUE NOT NULL,
   [HashedPassword] varchar(100) NOT NULL,
-  [HasFillInformation] bit NOT NULL,
+  [HasFilledInformation] bit NOT NULL,
   [CreationDate] datetime NOT NULL,
   [FillInformationDate] datetime
 )

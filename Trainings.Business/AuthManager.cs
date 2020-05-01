@@ -30,14 +30,15 @@
         {
             signUpModel.Password = _hasher.HashPassword(signUpModel.Password);
             signUpModel.RoleCode = AuthConstants.FreeRole;
-            signUpModel.HasFillInformation = false;
+            signUpModel.HasFilledInformation = false;
             signUpModel.FillInformationDate = null;
 
             TokenModel tokenModel = _authRepository.SignUp(signUpModel);
             
             if (!tokenModel.IsNull())
             {
-                tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(tokenModel.Id.ToString(), AuthConstants.FreeRole, tokenModel.FirstName, 60);
+                tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(
+                    tokenModel.Id.ToString(), AuthConstants.FreeRole, tokenModel.FirstName, false, 60);
                 return tokenModel;
             }
             else
@@ -54,7 +55,8 @@
             
             if (!tokenModel.IsNull())
             {
-                tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(tokenModel.Id.ToString(), tokenModel.RoleCode, tokenModel.FirstName, 60);
+                tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(
+                    tokenModel.Id.ToString(), tokenModel.RoleCode, tokenModel.FirstName, tokenModel.HasFilledInformation, 60);
                 return tokenModel;
             }
             else
