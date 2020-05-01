@@ -18,7 +18,7 @@
             _configuration = configuration;
         }
 
-        public string GenerateJwtToken(string userId, string userRole, string userFirstName, int expiresMinutes)
+        public string GenerateJwtToken(string userId, string userRole, string userFirstName, bool hasFilledInformation, int expiresMinutes)
         {
             //security key
             string secretKey = _configuration[AppSettings.SecretKey];
@@ -31,13 +31,16 @@
             //create token description
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(
-                new Claim[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, userId),
-                    new Claim(ClaimTypes.Name, userFirstName),
-                    new Claim(ClaimTypes.Role, userRole)
-                }),
+                Subject = new ClaimsIdentity
+                (
+                    new Claim[]
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, userId),
+                        new Claim(ClaimTypes.Name, userFirstName),
+                        new Claim(ClaimTypes.Role, userRole),
+                        new Claim(ClaimTypes.DateOfBirth, hasFilledInformation.ToString())
+                    }
+                ),
                 Expires = DateTime.UtcNow.AddMinutes(expiresMinutes),
                 SigningCredentials = signingCredentials
             };

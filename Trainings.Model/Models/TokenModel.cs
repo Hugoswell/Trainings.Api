@@ -9,5 +9,7 @@
         public string RoleCode { get; set; }
 
         public string JwtToken { get; set; }
+
+        public bool HasFilledInformation { get; set; }
     }
 }
