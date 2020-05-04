@@ -8,7 +8,7 @@ CREATE TABLE [User] (
   [LastName] varchar(40) NOT NULL,
   [Email] varchar(100) UNIQUE NOT NULL,
   [HashedPassword] varchar(100) NOT NULL,
-  [HasFilledInformation] bit NOT NULL,
+  [HasFillInformation] bit NOT NULL,
   [CreationDate] datetime NOT NULL,
   [FillInformationDate] datetime
 )
@@ -27,13 +27,25 @@ GO
 CREATE TABLE [UserPhysicalInformation] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [UserId] int NOT NULL,
-  [Level] smallint NOT NULL,
+  [Level] tinyint NOT NULL,
   [Height] float(24) NOT NULL,
   [Weight] float(24) NOT NULL,
   [Age] tinyint NOT NULL,
-  [Sex] bit NOT NULL,
+  [Sex] tinyint NOT NULL,
   [BodyFatRate] float(24),
   [Bmi] float(24) NOT NULL
+)
+GO
+
+CREATE TABLE [UserLevel] (
+  [Id] tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Name] varchar(40) NOT NULL
+)
+GO
+
+CREATE TABLE [UserSex] (
+  [Id] tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  [Name] varchar(40) NOT NULL
 )
 GO
 
@@ -151,6 +163,12 @@ GO
 ALTER TABLE [UserPreferences] ADD FOREIGN KEY ([EquipmentId]) REFERENCES [Equipment] ([Id])
 GO
 
+ALTER TABLE [UserPhysicalInformation] ADD FOREIGN KEY ([Level]) REFERENCES [UserLevel] ([Id])
+GO
+
+ALTER TABLE [UserPhysicalInformation] ADD FOREIGN KEY ([Sex]) REFERENCES [UserSex] ([Id])
+GO
+
 ALTER TABLE [Training] ADD FOREIGN KEY ([UserPreferencesId]) REFERENCES [UserPreferences] ([Id])
 GO
 
@@ -183,4 +201,3 @@ GO
 
 ALTER TABLE [ExerciceMuscleGroup] ADD FOREIGN KEY ([MuscleGroupId]) REFERENCES [MuscleGroup] ([Id])
 GO
-
