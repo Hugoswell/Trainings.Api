@@ -38,7 +38,7 @@
             if (!tokenModel.IsNull())
             {
                 tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(
-                    tokenModel.Id.ToString(), AuthConstants.FreeRole, tokenModel.FirstName, false, 60);
+                    tokenModel.Id.ToString(), AuthConstants.FreeRole, tokenModel.FirstName, false, 1400);
                 return tokenModel;
             }
             else
