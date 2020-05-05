@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using Trainings.Data.Tables;
 
 namespace Trainings.Data.Context
@@ -34,15 +32,6 @@ namespace Trainings.Data.Context
         public virtual DbSet<UserSex> UserSex { get; set; }
         public virtual DbSet<UserTrainingFrequency> UserTrainingFrequency { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=Trainings;Trusted_Connection=True;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Equipment>(entity =>
@@ -66,7 +55,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceGoal>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.GoalId })
-                    .HasName("PK__Exercice__D56F617D16C2E9AE");
+                    .HasName("PK__Exercice__D56F617D3516BDAD");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceGoal)
@@ -84,7 +73,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceMuscleGroup>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.MuscleGroupId })
-                    .HasName("PK__Exercice__AD5C3006671251E8");
+                    .HasName("PK__Exercice__AD5C3006BAB4C6C8");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceMuscleGroup)
@@ -125,7 +114,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceTrainingType>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.TrainingTypeId })
-                    .HasName("PK__Exercice__47FAB17ED7EA7213");
+                    .HasName("PK__Exercice__47FAB17EAD7E2CA0");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceTrainingType)
@@ -186,7 +175,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__User__A9D105348D510089")
+                    .HasName("UQ__User__A9D1053464FAA3DB")
                     .IsUnique();
 
                 entity.Property(e => e.Email).IsUnicode(false);
