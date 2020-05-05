@@ -31,7 +31,7 @@ namespace Trainings.Data.Tables
         [Required]
         [StringLength(100)]
         public string HashedPassword { get; set; }
-        public bool HasFilledInformation { get; set; }
+        public bool HasFillInformation { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime CreationDate { get; set; }
         [Column(TypeName = "datetime")]
