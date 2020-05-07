@@ -30,7 +30,7 @@
         #endregion
 
         [AllowAnonymous]
-        [HttpPost("SignUp")]
+        [HttpPost("signup")]
         public IActionResult SignUp(SignUpViewModel signUpViewModel)
         {
             IEnumerable<string> parameters = new List<string> 
@@ -58,7 +58,7 @@
         }
 
         [AllowAnonymous]
-        [HttpGet("SignIn")]
+        [HttpGet("signin")]
         public IActionResult SignIn(string Email, string Password)
         {
             IEnumerable<string> parameters = new List<string> { Email, Password };
@@ -80,7 +80,7 @@
         }
 
         [Authorize]
-        [HttpGet("Me")]
+        [HttpGet("me")]
         public IList<string> Me()
         {
             ClaimsIdentity identity = HttpContext.User.Identity as ClaimsIdentity;
