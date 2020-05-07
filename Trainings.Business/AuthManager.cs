@@ -56,7 +56,7 @@
             if (!tokenModel.IsNull())
             {
                 tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(
-                    tokenModel.Id.ToString(), tokenModel.RoleCode, tokenModel.FirstName, tokenModel.HasFilledInformation, 60);
+                    tokenModel.Id.ToString(), tokenModel.RoleCode, tokenModel.FirstName, tokenModel.HasFilledInformation, 1400);
                 return tokenModel;
             }
             else
