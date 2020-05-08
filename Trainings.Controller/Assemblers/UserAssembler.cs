@@ -1,7 +1,6 @@
 ﻿namespace Trainings.Controller.Assemblers
 {
     using System;
-    using System.Globalization;
     using Trainings.Controller.ViewModels;
     using Trainings.Model.Models;
 
@@ -21,7 +20,7 @@
                 TrainingDurationId = (byte)int.Parse(userViewModel.TrainingDurationId),
                 TrainingTypeId = (byte)int.Parse(userViewModel.TrainingTypeId),
                 UserId = int.Parse(userId),
-                Weight = float.Parse(userViewModel.Weight, CultureInfo.InvariantCulture.NumberFormat)
+                Weight = float.Parse(userViewModel.Weight)
             };
         }
 

@@ -7,9 +7,9 @@
     using Trainings.Repository.Assemblers;
     using Trainings.Repository.Interfaces;
 
-    public class UserRepository : BaseRepository, IUserInfoRepository
+    public class UserInfoRepository : BaseRepository, IUserInfoRepository
     {
-        public UserRepository(TrainingsEntities trainingsEntities) : base(trainingsEntities)
+        public UserInfoRepository(TrainingsEntities trainingsEntities) : base(trainingsEntities)
         {
         }
 
