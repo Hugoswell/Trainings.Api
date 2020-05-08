@@ -38,6 +38,7 @@
             try
             {
                 User user = _trainingsEntities.User.Find(userInfoModel.UserId);
+                user.HasFilledInformation = true;
                 user.FillInformationDate = DateTime.Now;
 
                 UserPreferences userPreferences = userInfoModel.ToUserPreferences();
