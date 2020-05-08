@@ -9,5 +9,7 @@
         internal const string EmailOrPasswordIncorrect = "The email or the password is incorrect";
 
         internal const string EmailAlreadyUsed = "This email is already used";
+
+        internal const string InsertingError = "Error during the insertion in database";
     }
 }

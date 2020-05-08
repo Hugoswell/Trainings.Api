@@ -18,7 +18,7 @@ namespace Trainings.Data.Tables
         [StringLength(40)]
         public string Name { get; set; }
 
-        [InverseProperty("SexNavigation")]
+        [InverseProperty("Sex")]
         public virtual ICollection<UserPhysicalInformation> UserPhysicalInformation { get; set; }
     }
 }

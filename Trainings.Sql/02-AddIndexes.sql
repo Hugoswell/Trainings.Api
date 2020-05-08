@@ -11,6 +11,8 @@ CREATE INDEX FK__Training__TrainingTypeId ON dbo.Training (TrainingTypeId);
 
 -- UserPhysicalInformation
 CREATE INDEX FK__UserPhysicalInformation__UserId ON dbo.UserPhysicalInformation (UserId);
+CREATE INDEX FK__UserPhysicalInformation__LevelId ON dbo.UserPhysicalInformation (LevelId);
+CREATE INDEX FK__UserPhysicalInformation__SexId ON dbo.UserPhysicalInformation (SexId);
 
 -- UserPreferences
 CREATE INDEX FK__UserPreferences__UserId ON dbo.UserPreferences (UserId);

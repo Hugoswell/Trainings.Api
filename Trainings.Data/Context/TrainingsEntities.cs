@@ -55,7 +55,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceGoal>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.GoalId })
-                    .HasName("PK__Exercice__D56F617D3516BDAD");
+                    .HasName("PK__Exercice__D56F617DA413EA70");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceGoal)
@@ -73,7 +73,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceMuscleGroup>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.MuscleGroupId })
-                    .HasName("PK__Exercice__AD5C3006BAB4C6C8");
+                    .HasName("PK__Exercice__AD5C300645F760CC");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceMuscleGroup)
@@ -114,7 +114,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceTrainingType>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.TrainingTypeId })
-                    .HasName("PK__Exercice__47FAB17EAD7E2CA0");
+                    .HasName("PK__Exercice__47FAB17E277CAC5C");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceTrainingType)
@@ -175,7 +175,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__User__A9D1053464FAA3DB")
+                    .HasName("UQ__User__A9D10534C965FD73")
                     .IsUnique();
 
                 entity.Property(e => e.Email).IsUnicode(false);
@@ -198,20 +198,26 @@ namespace Trainings.Data.Context
 
             modelBuilder.Entity<UserPhysicalInformation>(entity =>
             {
+                entity.HasIndex(e => e.LevelId)
+                    .HasName("FK__UserPhysicalInformation__LevelId");
+
+                entity.HasIndex(e => e.SexId)
+                    .HasName("FK__UserPhysicalInformation__SexId");
+
                 entity.HasIndex(e => e.UserId)
                     .HasName("FK__UserPhysicalInformation__UserId");
 
-                entity.HasOne(d => d.LevelNavigation)
+                entity.HasOne(d => d.Level)
                     .WithMany(p => p.UserPhysicalInformation)
-                    .HasForeignKey(d => d.Level)
+                    .HasForeignKey(d => d.LevelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__UserPhysi__Level__5DCAEF64");
 
-                entity.HasOne(d => d.SexNavigation)
+                entity.HasOne(d => d.Sex)
                     .WithMany(p => p.UserPhysicalInformation)
-                    .HasForeignKey(d => d.Sex)
+                    .HasForeignKey(d => d.SexId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPhysica__Sex__5EBF139D");
+                    .HasConstraintName("FK__UserPhysi__SexId__5EBF139D");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserPhysicalInformation)
