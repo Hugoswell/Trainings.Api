@@ -34,12 +34,14 @@
         internal static IServiceCollection InjectManagers(this IServiceCollection services)
         {            
             services.AddScoped<IAuthManager, AuthManager>();
+            services.AddScoped<IUserInfoManager, UserManager>();
             return services;
         }
 
         internal static IServiceCollection InjectRepositories(this IServiceCollection services)
         {
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IUserInfoRepository, UserRepository>();
             return services;
         }
 
