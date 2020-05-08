@@ -17,13 +17,20 @@
 
         public UserInfoModel Get(int userId)
         {
-            User user = _trainingsEntities.User
-                .Where(user => user.Id.Equals(userId))
-                .Include(user => user.UserPreferences)
-                .Include(user => user.UserPhysicalInformation)
-                .First();
-            UserInfoModel userInfoModel = user.ToUserInfoModel();
-            return userInfoModel;
+            try
+            {
+                User user = _trainingsEntities.User
+                    .Where(user => user.Id.Equals(userId))
+                    .Include(user => user.UserPreferences)
+                    .Include(user => user.UserPhysicalInformation)
+                    .First();
+                return user.ToUserInfoModel();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
 
         public int? Create(UserInfoModel userInfoModel)

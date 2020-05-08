@@ -35,12 +35,12 @@
             int userId = int.Parse(GetUserId());
             UserInfoModel userInfoModel = _userInfoManager.Get(userId);
 
-            if (!userInfoModel.IsNull())
+            if (userInfoModel.IsNull())
             {
                 return BadRequest(new { message = ErrorsConstants.RetrievingError });
             }
 
-            return Ok(userInfoModel);
+            return Ok(userInfoModel.ToUserInfoViewModel());
         }
 
         [Authorize]

@@ -24,6 +24,22 @@
             };
         }
 
+        internal static UserInfoViewModel ToUserInfoViewModel(this UserInfoModel userInfoModel)
+        {
+            return new UserInfoViewModel
+            {
+                Age = userInfoModel.Age.ToString(),
+                EquipmentId = userInfoModel.EquipmentId.ToString(),
+                GoalId = userInfoModel.GoalId.ToString(),
+                Height = userInfoModel.Height.ToString().Replace(".", ","),
+                LevelId = userInfoModel.LevelId.ToString(),
+                SexId = userInfoModel.SexId.ToString(),
+                TrainingDurationId = userInfoModel.TrainingDurationId.ToString(),
+                TrainingTypeId = userInfoModel.TrainingTypeId.ToString(),
+                Weight = userInfoModel.Weight.ToString()
+            };
+        }
+
         #region Private
 
         private static float ComputeBMI(string weight, string height)

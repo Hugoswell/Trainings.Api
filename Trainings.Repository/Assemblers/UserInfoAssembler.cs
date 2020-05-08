@@ -8,9 +8,22 @@
     {
         internal static UserInfoModel ToUserInfoModel(this User user)
         {
+
+            UserPhysicalInformation userPhyscalInformation = user.UserPhysicalInformation.First();
+            UserPreferences userPreferences = user.UserPreferences.First();
+
             return new UserInfoModel
-            {
-                Age = user.UserPhysicalInformation.First().Age,
+            {                
+                Age = userPhyscalInformation.Age,
+                EquipmentId = userPreferences.EquipmentId,
+                GoalId = userPreferences.GoalId,
+                Height = userPhyscalInformation.Height,
+                LevelId = userPhyscalInformation.LevelId,
+                SexId = userPhyscalInformation.SexId,
+                TrainingDurationId = userPreferences.TrainingDurationId,
+                TrainingTypeId = userPreferences.TrainingTypeId,
+                UserId = userPreferences.UserId,
+                Weight = userPhyscalInformation.Weight
             };
         }
 
