@@ -202,3 +202,4 @@ GO
 ALTER TABLE [ExerciceMuscleGroup] ADD FOREIGN KEY ([MuscleGroupId]) REFERENCES [MuscleGroup] ([Id])
 GO
 
+

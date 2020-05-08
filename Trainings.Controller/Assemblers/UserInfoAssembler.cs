@@ -4,7 +4,7 @@
     using Trainings.Controller.ViewModels;
     using Trainings.Model.Models;
 
-    internal static class UserAssembler
+    internal static class UserInfoAssembler
     {
         internal static UserInfoModel ToUserModel(this UserInfoViewModel userViewModel, string userId)
         {
@@ -21,6 +21,22 @@
                 TrainingTypeId = (byte)int.Parse(userViewModel.TrainingTypeId),
                 UserId = int.Parse(userId),
                 Weight = float.Parse(userViewModel.Weight)
+            };
+        }
+
+        internal static UserInfoViewModel ToUserInfoViewModel(this UserInfoModel userInfoModel)
+        {
+            return new UserInfoViewModel
+            {
+                Age = userInfoModel.Age.ToString(),
+                EquipmentId = userInfoModel.EquipmentId.ToString(),
+                GoalId = userInfoModel.GoalId.ToString(),
+                Height = userInfoModel.Height.ToString().Replace(".", ","),
+                LevelId = userInfoModel.LevelId.ToString(),
+                SexId = userInfoModel.SexId.ToString(),
+                TrainingDurationId = userInfoModel.TrainingDurationId.ToString(),
+                TrainingTypeId = userInfoModel.TrainingTypeId.ToString(),
+                Weight = userInfoModel.Weight.ToString()
             };
         }
 

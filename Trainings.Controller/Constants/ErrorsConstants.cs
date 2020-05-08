@@ -11,5 +11,7 @@
         internal const string EmailAlreadyUsed = "This email is already used";
 
         internal const string InsertingError = "Error during the insertion in database";
+
+        internal const string RetrievingError = "Error retrieving information in database";
     }
 }

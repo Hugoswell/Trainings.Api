@@ -17,6 +17,11 @@
 
         #endregion
 
+        public UserInfoModel Get(int userId)
+        {
+            return _userInfoRepository.Get(userId);
+        }
+
         public int? Create(UserInfoModel userInfoModel)
         {
             return _userInfoRepository.Create(userInfoModel);
