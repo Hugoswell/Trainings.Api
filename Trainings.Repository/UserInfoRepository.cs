@@ -1,6 +1,8 @@
 ﻿namespace Trainings.Repository
 {
+    using Microsoft.EntityFrameworkCore;
     using System;
+    using System.Linq;
     using Trainings.Data.Context;
     using Trainings.Data.Tables;
     using Trainings.Model.Models;
@@ -11,6 +13,17 @@
     {
         public UserInfoRepository(TrainingsEntities trainingsEntities) : base(trainingsEntities)
         {
+        }
+
+        public UserInfoModel Get(int userId)
+        {
+            User user = _trainingsEntities.User
+                .Where(user => user.Id.Equals(userId))
+                .Include(user => user.UserPreferences)
+                .Include(user => user.UserPhysicalInformation)
+                .First();
+            UserInfoModel userInfoModel = user.ToUserInfoModel();
+            return userInfoModel;
         }
 
         public int? Create(UserInfoModel userInfoModel)

@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Security.Claims;
     using Trainings.Business.Interfaces;
+    using Trainings.Common.Helpers;
     using Trainings.Controller.Assemblers;
     using Trainings.Controller.Constants;
     using Trainings.Controller.ViewModels;
@@ -26,6 +27,21 @@
         }
 
         #endregion
+
+        [Authorize]
+        [HttpGet("get")]
+        public IActionResult Get()
+        {
+            int userId = int.Parse(GetUserId());
+            UserInfoModel userInfoModel = _userInfoManager.Get(userId);
+
+            if (!userInfoModel.IsNull())
+            {
+                return BadRequest(new { message = ErrorsConstants.RetrievingError });
+            }
+
+            return Ok(userInfoModel);
+        }
 
         [Authorize]
         [HttpPost("create")]

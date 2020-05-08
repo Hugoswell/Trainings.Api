@@ -4,7 +4,7 @@
     using Trainings.Controller.ViewModels;
     using Trainings.Model.Models;
 
-    internal static class UserAssembler
+    internal static class UserInfoAssembler
     {
         internal static UserInfoModel ToUserModel(this UserInfoViewModel userViewModel, string userId)
         {

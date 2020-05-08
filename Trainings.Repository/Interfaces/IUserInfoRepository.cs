@@ -4,6 +4,8 @@ namespace Trainings.Repository.Interfaces
 {
     public interface IUserInfoRepository
     {
+        UserInfoModel Get(int userId);
+
         int? Create(UserInfoModel userModel);
     }
 }
