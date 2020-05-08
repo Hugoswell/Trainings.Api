@@ -38,7 +38,7 @@
             if (!tokenModel.IsNull())
             {
                 tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(
-                    tokenModel.Id.ToString(), AuthConstants.FreeRole, tokenModel.FirstName, false, 1400);
+                    tokenModel.Id.ToString(), AuthConstants.FreeRole, tokenModel.FirstName, false, 1450);
                 return tokenModel;
             }
             else
@@ -56,7 +56,7 @@
             if (!tokenModel.IsNull())
             {
                 tokenModel.JwtToken = _jwtTokenHelper.GenerateJwtToken(
-                    tokenModel.Id.ToString(), tokenModel.RoleCode, tokenModel.FirstName, tokenModel.HasFilledInformation, 1400);
+                    tokenModel.Id.ToString(), tokenModel.RoleCode, tokenModel.FirstName, tokenModel.HasFilledInformation, 1450);
                 return tokenModel;
             }
             else
