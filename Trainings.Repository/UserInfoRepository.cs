@@ -17,6 +17,9 @@
         {
             try
             {
+                User user = _trainingsEntities.User.Find(userInfoModel.UserId);
+                user.FillInformationDate = DateTime.Now;
+
                 UserPreferences userPreferences = userInfoModel.ToUserPreferences();
                 UserPhysicalInformation userPhysicalInformation = userInfoModel.ToUserPhysicalInformation();
 
@@ -30,6 +33,28 @@
             {
                 return null;
             }            
+        }
+
+        public int? update(UserInfoModel userInfoModel)
+        {
+            try
+            {
+                User user = _trainingsEntities.User.Find(userInfoModel.UserId);
+                user.FillInformationDate = DateTime.Now;
+
+                UserPreferences userPreferences = userInfoModel.ToUserPreferences();
+                UserPhysicalInformation userPhysicalInformation = userInfoModel.ToUserPhysicalInformation();
+
+                _trainingsEntities.UserPreferences.Add(userPreferences);
+                _trainingsEntities.UserPhysicalInformation.Add(userPhysicalInformation);
+                _trainingsEntities.SaveChanges();
+
+                return userInfoModel.UserId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

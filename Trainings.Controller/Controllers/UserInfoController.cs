@@ -14,13 +14,13 @@
     [ApiController]
     [Authorize]
     [Route("[controller]")]
-    public class UserController : ControllerBase
+    public class UserInfoController : ControllerBase
     {
         #region Constructor & Properties
 
         private readonly IUserInfoManager _userInfoManager;
 
-        public UserController(IUserInfoManager userInfoManager)
+        public UserInfoController(IUserInfoManager userInfoManager)
         {
             _userInfoManager = userInfoManager;
         }
