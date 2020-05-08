@@ -4,13 +4,13 @@
     using Trainings.Model.Models;
     using Trainings.Repository.Interfaces;
 
-    public class UserManager : IUserInfoManager
+    public class UserInfoManager : IUserInfoManager
     {
         #region Properties & Constructor
 
         private readonly IUserInfoRepository _userInfoRepository;
 
-        public UserManager(IUserInfoRepository userInfoRepository)
+        public UserInfoManager(IUserInfoRepository userInfoRepository)
         {
             _userInfoRepository = userInfoRepository;
         }
