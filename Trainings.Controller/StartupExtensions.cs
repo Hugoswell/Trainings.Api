@@ -35,6 +35,7 @@
         {            
             services.AddScoped<IAuthManager, AuthManager>();
             services.AddScoped<IUserInfoManager, UserInfoManager>();
+            services.AddScoped<IUserManager, UserManager>();
             return services;
         }
 
@@ -42,6 +43,7 @@
         {
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
 
