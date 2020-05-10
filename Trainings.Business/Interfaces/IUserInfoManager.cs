@@ -7,5 +7,7 @@ namespace Trainings.Business.Interfaces
         UserInfoModel Get(int userId);
 
         int? Create(UserInfoModel usermodel);
+
+        int? Update(UserInfoModel userInfoModel);
     }
 }

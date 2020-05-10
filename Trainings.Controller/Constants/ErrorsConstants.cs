@@ -13,5 +13,7 @@
         internal const string InsertingError = "Error during the insertion in database";
 
         internal const string RetrievingError = "Error retrieving information in database";
+
+        internal const string UpdatingError = "Error updating information in database";
     }
 }

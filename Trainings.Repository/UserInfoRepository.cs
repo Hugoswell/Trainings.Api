@@ -53,21 +53,24 @@
             catch (Exception)
             {
                 return null;
-            }            
+            }
         }
 
-        public int? update(UserInfoModel userInfoModel)
+        public int? Update(UserInfoModel userInfoModel)
         {
             try
             {
-                User user = _trainingsEntities.User.Find(userInfoModel.UserId);
-                user.FillInformationDate = DateTime.Now;
+                UserPreferences userPreferences = _trainingsEntities.UserPreferences
+                    .Where(up => up.UserId.Equals(userInfoModel.UserId)).First();
 
-                UserPreferences userPreferences = userInfoModel.ToUserPreferences();
-                UserPhysicalInformation userPhysicalInformation = userInfoModel.ToUserPhysicalInformation();
+                UserPhysicalInformation userPhysicalInformation = _trainingsEntities.UserPhysicalInformation
+                    .Where(upi => upi.UserId.Equals(userInfoModel.UserId)).First();
 
-                _trainingsEntities.UserPreferences.Add(userPreferences);
-                _trainingsEntities.UserPhysicalInformation.Add(userPhysicalInformation);
+                userPreferences.UpdateUserPreferences(userInfoModel);
+                userPhysicalInformation.UpdateUserPhysicalInformation(userInfoModel);
+
+                _trainingsEntities.UserPreferences.Update(userPreferences);                
+                _trainingsEntities.UserPhysicalInformation.Update(userPhysicalInformation);
                 _trainingsEntities.SaveChanges();
 
                 return userInfoModel.UserId;
