@@ -20,10 +20,14 @@
         #region Constructor & Properties
 
         private readonly IUserInfoManager _userInfoManager;
+        private readonly IUserManager _userManager;
 
-        public UserInfoController(IUserInfoManager userInfoManager)
+        public UserInfoController(
+            IUserInfoManager userInfoManager,
+            IUserManager userManager)
         {
             _userInfoManager = userInfoManager;
+            _userManager = userManager;
         }
 
         #endregion
@@ -33,6 +37,26 @@
         public IActionResult Get()
         {
             int userId = int.Parse(GetUserId());
+            bool? hasFilledInfo = _userManager.GetHasFilledInfo(userId);
+
+            if (!hasFilledInfo.Value)
+            {
+                return Ok(
+                    new UserInfoViewModel
+                    {
+                        Age = "",
+                        EquipmentId = "",
+                        GoalId = "",
+                        Height = "",
+                        LevelId = "",
+                        SexId = "",
+                        TrainingDurationId = "",
+                        TrainingTypeId = "",
+                        Weight = ""
+                    }
+                );
+            }
+
             UserInfoModel userInfoModel = _userInfoManager.Get(userId);
 
             if (userInfoModel.IsNull())
