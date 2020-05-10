@@ -62,7 +62,15 @@
         [HttpPut("update")]
         public IActionResult Update(UserInfoViewModel userInfoViewModel)
         {
-            return Ok(userInfoViewModel);
+            UserInfoModel userInfoModel = userInfoViewModel.ToUserModel(GetUserId());
+            int? userId = _userInfoManager.Update(userInfoModel);
+
+            if (!userId.HasValue)
+            {
+                return BadRequest(new { message = ErrorsConstants.UpdatingError });
+            }
+
+            return Ok(userId);
         }
 
         #region Private

@@ -26,5 +26,10 @@
         {
             return _userInfoRepository.Create(userInfoModel);
         }
+
+        public int? Update(UserInfoModel userInfoModel)
+        {
+            return _userInfoRepository.Update(userInfoModel);
+        }
     }
 }

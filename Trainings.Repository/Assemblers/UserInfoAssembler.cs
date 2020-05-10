@@ -52,5 +52,23 @@
                 UserId = userInfoModel.UserId
             };
         }
+
+        internal static void UpdateUserPreferences(this UserPreferences userPreferences, UserInfoModel userInfoModel)
+        {            
+            userPreferences.EquipmentId = userInfoModel.EquipmentId;
+            userPreferences.GoalId = userInfoModel.GoalId;
+            userPreferences.TrainingDurationId = userInfoModel.TrainingDurationId;
+            userPreferences.TrainingTypeId = userInfoModel.TrainingTypeId;
+        }
+
+        internal static void UpdateUserPhysicalInformation(this UserPhysicalInformation userPhysicalInformation, UserInfoModel userInfoModel)
+        {
+            userPhysicalInformation.Age = userInfoModel.Age;
+            userPhysicalInformation.Bmi = userInfoModel.Bmi;
+            userPhysicalInformation.Height = userInfoModel.Height;
+            userPhysicalInformation.LevelId = userInfoModel.LevelId;
+            userPhysicalInformation.SexId = userInfoModel.SexId;
+            userPhysicalInformation.Weight = userInfoModel.Weight;
+        }
     }
 }
