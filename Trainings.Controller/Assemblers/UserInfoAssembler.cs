@@ -31,7 +31,7 @@
                 Age = userInfoModel.Age.ToString(),
                 EquipmentId = userInfoModel.EquipmentId.ToString(),
                 GoalId = userInfoModel.GoalId.ToString(),
-                Height = userInfoModel.Height.ToString().Replace(".", ","),
+                Height = userInfoModel.Height.ToString(),
                 LevelId = userInfoModel.LevelId.ToString(),
                 SexId = userInfoModel.SexId.ToString(),
                 TrainingDurationId = userInfoModel.TrainingDurationId.ToString(),
@@ -45,8 +45,8 @@
         private static float ComputeBMI(string weight, string height)
         {
             double weightD = Convert.ToDouble(weight);
-            double heightD = Convert.ToDouble(height);
-            return (float)(weightD / Math.Pow(heightD, 2));
+            double heightD = int.Parse(height);
+            return (float)(weightD / Math.Pow(heightD, 2)) * 10000;
         }       
 
         #endregion
