@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{55AED14F-2F9
 		Trainings.Sql\01-InitDb.sql = Trainings.Sql\01-InitDb.sql
 		Trainings.Sql\02-AddIndexes.sql = Trainings.Sql\02-AddIndexes.sql
 		Trainings.Sql\03-InsertData.sql = Trainings.Sql\03-InsertData.sql
+		Trainings.Sql\04-ExerciceLibrary.sql = Trainings.Sql\04-ExerciceLibrary.sql
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainings.Common", "Trainings.Common\Trainings.Common.csproj", "{33EAE4BA-F126-4886-AEC0-903D8C3DECA4}"

@@ -24,6 +24,15 @@ INSERT INTO dbo.Equipment VALUES (1, 'BodyWeight')
 INSERT INTO dbo.Equipment VALUES (2, 'Gym')
 INSERT INTO dbo.Equipment VALUES (3, 'HomeMaterial')
 
+-- MuscleGroup
+INSERT INTO dbo.MuscleGroup VALUES (1, 'Legs')
+INSERT INTO dbo.MuscleGroup VALUES (2, 'Arms')
+INSERT INTO dbo.MuscleGroup VALUES (3, 'Shoulders')
+INSERT INTO dbo.MuscleGroup VALUES (4, 'Pectoral')
+INSERT INTO dbo.MuscleGroup VALUES (5, 'Back')
+INSERT INTO dbo.MuscleGroup VALUES (6, 'Abs')
+INSERT INTO dbo.MuscleGroup VALUES (7, 'Glutes')
+
 -- UserLevel
 SET IDENTITY_INSERT Trainings.dbo.UserLevel ON
 INSERT INTO dbo.UserLevel (Id, [Name]) VALUES (1, 'Beginner')
@@ -36,3 +45,4 @@ SET IDENTITY_INSERT Trainings.dbo.UserSex ON
 INSERT INTO dbo.UserSex (Id, [Name]) VALUES (1, 'Man')
 INSERT INTO dbo.UserSex (Id, [Name]) VALUES (2, 'Woman')
 SET IDENTITY_INSERT Trainings.dbo.UserSex OFF
+

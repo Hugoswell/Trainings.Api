@@ -92,8 +92,14 @@ GO
 CREATE TABLE [Exercice] (
   [Id] smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [Name] varchar(80) NOT NULL,
-  [Description] varchar(600),
-  [EquipmentId] tinyint NOT NULL
+  [Description] varchar(600)
+)
+GO
+
+CREATE TABLE [ExerciceEquipment] (
+  [ExerciceId] smallint NOT NULL,
+  [EquipmentId] tinyint NOT NULL,
+  PRIMARY KEY ([ExerciceId], [EquipmentId])
 )
 GO
 
@@ -181,9 +187,6 @@ GO
 ALTER TABLE [ExerciceTraining] ADD FOREIGN KEY ([TrainingId]) REFERENCES [Training] ([Id])
 GO
 
-ALTER TABLE [Exercice] ADD FOREIGN KEY ([EquipmentId]) REFERENCES [Equipment] ([Id])
-GO
-
 ALTER TABLE [ExerciceTrainingType] ADD FOREIGN KEY ([ExerciceId]) REFERENCES [Exercice] ([Id])
 GO
 
@@ -202,4 +205,9 @@ GO
 ALTER TABLE [ExerciceMuscleGroup] ADD FOREIGN KEY ([MuscleGroupId]) REFERENCES [MuscleGroup] ([Id])
 GO
 
+ALTER TABLE [ExerciceEquipment] ADD FOREIGN KEY ([ExerciceId]) REFERENCES [Exercice] ([Id])
+GO
+
+ALTER TABLE [ExerciceEquipment] ADD FOREIGN KEY ([EquipmentId]) REFERENCES [Equipment] ([Id])
+GO
 
