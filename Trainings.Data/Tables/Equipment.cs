@@ -9,7 +9,7 @@ namespace Trainings.Data.Tables
     {
         public Equipment()
         {
-            Exercice = new HashSet<Exercice>();
+            ExerciceEquipment = new HashSet<ExerciceEquipment>();
             UserPreferences = new HashSet<UserPreferences>();
         }
 
@@ -20,7 +20,7 @@ namespace Trainings.Data.Tables
         public string Name { get; set; }
 
         [InverseProperty("Equipment")]
-        public virtual ICollection<Exercice> Exercice { get; set; }
+        public virtual ICollection<ExerciceEquipment> ExerciceEquipment { get; set; }
         [InverseProperty("Equipment")]
         public virtual ICollection<UserPreferences> UserPreferences { get; set; }
     }

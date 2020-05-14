@@ -36,6 +36,7 @@
             services.AddScoped<IAuthManager, AuthManager>();
             services.AddScoped<IUserInfoManager, UserInfoManager>();
             services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<ITrainingManager, TrainingManager>();
             return services;
         }
 
@@ -44,6 +45,9 @@
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IExerciceRepository, ExerciceRepository>();
+            services.AddScoped<ITrainingRepository, TrainingRepository>();
+            services.AddScoped<IUserPreferencesRepository, UserPreferencesRepository>();
             return services;
         }
 

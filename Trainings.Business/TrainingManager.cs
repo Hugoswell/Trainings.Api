@@ -15,5 +15,11 @@
         }
 
         #endregion
+
+        //Plusieurs etapes :
+
+        //Exercice GetFilteredExercicesId()
+        //UserPreferences Get()
+        //Training Create()
     }
 }
