@@ -16,6 +16,11 @@
 
         #endregion
 
+        //public int? Create()
+        //{
+            
+        //}
+
         //Plusieurs etapes :
 
         //Exercice GetFilteredExercicesId()

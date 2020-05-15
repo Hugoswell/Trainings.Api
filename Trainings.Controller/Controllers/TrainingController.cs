@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Security.Claims;
     using Trainings.Business.Interfaces;
-    using Trainings.Repository.Interfaces;
 
     [Route("[controller]")]
     [ApiController]
@@ -28,7 +27,7 @@
         [HttpPost("create")]
         public IActionResult Create()
         {
-            int userId = int.Parse(GetUserId());
+            int? userId = int.Parse(GetUserId());
             return Ok();
         }
 
