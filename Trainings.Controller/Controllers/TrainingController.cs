@@ -27,7 +27,8 @@
         [HttpPost("create")]
         public IActionResult Create()
         {
-            int? userId = int.Parse(GetUserId());
+            int userId = int.Parse(GetUserId());
+            int? trainingId = _trainingManager.Create(userId);
             return Ok();
         }
 

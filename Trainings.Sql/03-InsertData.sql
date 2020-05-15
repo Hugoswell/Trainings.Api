@@ -14,10 +14,10 @@ INSERT INTO dbo.TrainingType VALUES (3, 'Crossfit')
 INSERT INTO dbo.TrainingType VALUES (4, 'HIIT')
 
 -- TrainingDuration
-INSERT INTO dbo.TrainingDuration VALUES (1, '15-30')
-INSERT INTO dbo.TrainingDuration VALUES (2, '30-45')
-INSERT INTO dbo.TrainingDuration VALUES (3, '45-1')
-INSERT INTO dbo.TrainingDuration VALUES (4, '1-2')
+INSERT INTO dbo.TrainingDuration VALUES (1, '15-20')
+INSERT INTO dbo.TrainingDuration VALUES (2, '20-30')
+INSERT INTO dbo.TrainingDuration VALUES (3, '30-45')
+INSERT INTO dbo.TrainingDuration VALUES (4, '45-90')
 
 -- Equipment
 INSERT INTO dbo.Equipment VALUES (1, 'BodyWeight')

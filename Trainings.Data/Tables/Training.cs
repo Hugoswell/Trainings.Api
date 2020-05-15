@@ -16,6 +16,7 @@ namespace Trainings.Data.Tables
         public int Id { get; set; }
         public int UserPreferencesId { get; set; }
         public byte TrainingTypeId { get; set; }
+        public byte? NbTimes { get; set; }
         public byte Duration { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime CreationDate { get; set; }

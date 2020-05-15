@@ -2,6 +2,6 @@
 {
     public interface ITrainingManager
     {
-
+        int? Create(int userId);
     }
 }

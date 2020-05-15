@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Trainings.Data.Tables;
 
 namespace Trainings.Data.Context
@@ -50,7 +52,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceEquipment>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.EquipmentId })
-                    .HasName("PK__Exercice__5E8FEAC70E89DBAC");
+                    .HasName("PK__Exercice__5E8FEAC74F026B31");
 
                 entity.HasOne(d => d.Equipment)
                     .WithMany(p => p.ExerciceEquipment)
@@ -68,7 +70,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceGoal>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.GoalId })
-                    .HasName("PK__Exercice__D56F617D40C9EBCE");
+                    .HasName("PK__Exercice__D56F617D48E38F81");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceGoal)
@@ -86,7 +88,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceMuscleGroup>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.MuscleGroupId })
-                    .HasName("PK__Exercice__AD5C30062B81D7AA");
+                    .HasName("PK__Exercice__AD5C30064B13A5F0");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceMuscleGroup)
@@ -127,7 +129,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceTrainingType>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.TrainingTypeId })
-                    .HasName("PK__Exercice__47FAB17E664E6DB7");
+                    .HasName("PK__Exercice__47FAB17E25DDA180");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceTrainingType)
@@ -188,7 +190,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__User__A9D1053405707760")
+                    .HasName("UQ__User__A9D10534F737DFA2")
                     .IsUnique();
 
                 entity.Property(e => e.Email).IsUnicode(false);

@@ -66,6 +66,7 @@ CREATE TABLE [Training] (
   [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [UserPreferencesId] int NOT NULL,
   [TrainingTypeId] tinyint NOT NULL,
+  [NbTimes] tinyint,
   [Duration] tinyint NOT NULL,
   [CreationDate] datetime NOT NULL,
   [CreatedBy] varchar(35) NOT NULL
