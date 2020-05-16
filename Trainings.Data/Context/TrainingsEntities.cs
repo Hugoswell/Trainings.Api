@@ -39,6 +39,8 @@ namespace Trainings.Data.Context
         {
             modelBuilder.Entity<Equipment>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
@@ -52,7 +54,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceEquipment>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.EquipmentId })
-                    .HasName("PK__Exercice__5E8FEAC74F026B31");
+                    .HasName("PK__Exercice__5E8FEAC7A20EEA61");
 
                 entity.HasOne(d => d.Equipment)
                     .WithMany(p => p.ExerciceEquipment)
@@ -70,7 +72,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceGoal>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.GoalId })
-                    .HasName("PK__Exercice__D56F617D48E38F81");
+                    .HasName("PK__Exercice__D56F617D5D9357C5");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceGoal)
@@ -88,7 +90,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceMuscleGroup>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.MuscleGroupId })
-                    .HasName("PK__Exercice__AD5C30064B13A5F0");
+                    .HasName("PK__Exercice__AD5C300638BF1DB2");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceMuscleGroup)
@@ -111,8 +113,6 @@ namespace Trainings.Data.Context
                 entity.HasIndex(e => e.TrainingId)
                     .HasName("FK__ExerciceTraining__TrainingId");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceTraining)
                     .HasForeignKey(d => d.ExerciceId)
@@ -129,7 +129,7 @@ namespace Trainings.Data.Context
             modelBuilder.Entity<ExerciceTrainingType>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.TrainingTypeId })
-                    .HasName("PK__Exercice__47FAB17E25DDA180");
+                    .HasName("PK__Exercice__47FAB17ED5D19AB3");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceTrainingType)
@@ -146,11 +146,15 @@ namespace Trainings.Data.Context
 
             modelBuilder.Entity<Goal>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
             modelBuilder.Entity<MuscleGroup>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
@@ -179,18 +183,22 @@ namespace Trainings.Data.Context
 
             modelBuilder.Entity<TrainingDuration>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
             modelBuilder.Entity<TrainingType>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__User__A9D10534F737DFA2")
+                    .HasName("UQ__User__A9D10534780CB728")
                     .IsUnique();
 
                 entity.Property(e => e.Email).IsUnicode(false);

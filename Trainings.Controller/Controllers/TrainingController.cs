@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Security.Claims;
     using Trainings.Business.Interfaces;
+    using Trainings.Controller.Constants;
 
     [Route("[controller]")]
     [ApiController]
@@ -29,7 +30,13 @@
         {
             int userId = int.Parse(GetUserId());
             int? trainingId = _trainingManager.Create(userId);
-            return Ok();
+
+            if (!trainingId.HasValue)
+            {
+                return BadRequest(new { message = ErrorsConstants.InsertingError });
+            }
+
+            return Ok(trainingId.Value);
         }
 
         #region Private

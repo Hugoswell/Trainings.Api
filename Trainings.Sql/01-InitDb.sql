@@ -74,13 +74,13 @@ CREATE TABLE [Training] (
 GO
 
 CREATE TABLE [TrainingDuration] (
-  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Id] tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [Name] varchar(40) NOT NULL
 )
 GO
 
 CREATE TABLE [ExerciceTraining] (
-  [Id] int PRIMARY KEY NOT NULL,
+  [Id] int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [ExerciceId] smallint NOT NULL,
   [TrainingId] int NOT NULL,
   [NbSets] tinyint,
@@ -112,7 +112,7 @@ CREATE TABLE [ExerciceTrainingType] (
 GO
 
 CREATE TABLE [TrainingType] (
-  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Id] tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [Name] varchar(40) NOT NULL
 )
 GO
@@ -125,7 +125,7 @@ CREATE TABLE [ExerciceGoal] (
 GO
 
 CREATE TABLE [Goal] (
-  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Id] tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [Name] varchar(40) NOT NULL
 )
 GO
@@ -138,13 +138,13 @@ CREATE TABLE [ExerciceMuscleGroup] (
 GO
 
 CREATE TABLE [MuscleGroup] (
-  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Id] tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [Name] varchar(40) NOT NULL
 )
 GO
 
 CREATE TABLE [Equipment] (
-  [Id] tinyint PRIMARY KEY NOT NULL,
+  [Id] tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   [Name] varchar(40) NOT NULL
 )
 GO
@@ -210,5 +210,8 @@ ALTER TABLE [ExerciceEquipment] ADD FOREIGN KEY ([ExerciceId]) REFERENCES [Exerc
 GO
 
 ALTER TABLE [ExerciceEquipment] ADD FOREIGN KEY ([EquipmentId]) REFERENCES [Equipment] ([Id])
+GO
+
+
 GO
 
