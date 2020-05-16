@@ -1,6 +1,7 @@
 ﻿namespace Trainings.Repository
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Trainings.Data.Context;
     using Trainings.Data.Tables;
@@ -12,6 +13,20 @@
     {
         public TrainingRepository(TrainingsEntities trainingsEntities) : base(trainingsEntities)
         {
+        }
+
+        public IEnumerable<TrainingInfoModel> GetTrainingsInfo(int userId)
+        {
+            try
+            {
+                return _trainingsEntities.Training
+                .Where(t => t.UserPreferences.UserId.Equals(userId))
+                .Select(t => t.ToTrainingInfoModel());
+            }
+            catch (Exception)
+            {
+                return null;
+            }            
         }
 
         public int? Create(TrainingModel trainingModel)

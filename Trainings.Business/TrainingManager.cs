@@ -29,6 +29,11 @@
 
         #endregion
 
+        public IEnumerable<TrainingInfoModel> GetTrainingsInfo(int userId)
+        {
+            return _trainingRepository.GetTrainingsInfo(userId);
+        }
+
         public int? Create(int userId)
         {
             IEnumerable<int> exercicesId = _exerciceRepository.GetFilteredExercicesId(userId);

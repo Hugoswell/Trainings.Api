@@ -6,7 +6,11 @@
     using System.Linq;
     using System.Security.Claims;
     using Trainings.Business.Interfaces;
+    using Trainings.Common.Helpers;
+    using Trainings.Controller.Assemblers;
     using Trainings.Controller.Constants;
+    using Trainings.Controller.ViewModels;
+    using Trainings.Model.Models;
 
     [Route("[controller]")]
     [ApiController]
@@ -23,6 +27,23 @@
         }
 
         #endregion
+
+        [Authorize]
+        [HttpGet("all")]
+        public IActionResult GetTrainingsInfo()
+        {
+            int userId = int.Parse(GetUserId());
+            IEnumerable<TrainingInfoModel> trainingInfoModels = _trainingManager.GetTrainingsInfo(userId);
+
+            if (trainingInfoModels.IsNull())
+            {
+                return BadRequest(new { message = ErrorsConstants.RetrievingError });
+            }
+
+            IEnumerable<TrainingInfoViewModel> trainingInfoViewModels = trainingInfoModels
+                .Select(tim => tim.ToTrainingInfoViewModel());
+            return Ok(trainingInfoViewModels);
+        }
 
         [Authorize]
         [HttpPost("create")]

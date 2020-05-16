@@ -30,5 +30,15 @@
                 EffortDuration = exerciceTrainingModel.EffortDuration,
             };
         }
+
+        internal static TrainingInfoModel ToTrainingInfoModel(this Training training)
+        {
+            return new TrainingInfoModel
+            {
+                CreationDate = training.CreationDate,
+                Duration = training.Duration,
+                TrainingTypeId = training.TrainingTypeId
+            };
+        }
     }
 }
