@@ -1,5 +1,6 @@
 ﻿namespace Trainings.Repository
 {
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -27,6 +28,39 @@
             {
                 return null;
             }            
+        }
+
+        public IEnumerable<TrainingInfoModel> GetThreeLastTrainingsInfo(int userId)
+        {
+            try
+            {
+                return _trainingsEntities.Training
+                .Where(t => t.UserPreferences.UserId.Equals(userId))
+                .OrderByDescending(t => t.CreationDate)
+                .Take(3)
+                .Select(t => t.ToTrainingInfoModel());
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public TrainingModel GetTraining(int userId, int trainingId)
+        {
+            try
+            {
+                return _trainingsEntities.Training
+                .Where(t => t.UserPreferences.UserId.Equals(userId) && t.Id.Equals(trainingId))
+                .Include(t => t.ExerciceTraining)
+                    .ThenInclude(et => et.Exercice)
+                .First()
+                .ToTrainingModel();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public int? Create(TrainingModel trainingModel)

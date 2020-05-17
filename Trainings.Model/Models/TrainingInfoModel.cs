@@ -4,6 +4,8 @@
 
     public class TrainingInfoModel
     {
+        public int Id { get; set; }
+
         public byte TrainingTypeId { get; set; }
 
         public byte Duration { get; set; }

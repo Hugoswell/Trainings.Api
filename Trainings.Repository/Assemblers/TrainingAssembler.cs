@@ -1,5 +1,6 @@
 ﻿namespace Trainings.Repository.Assemblers
 {
+    using System.Collections.Generic;
     using Trainings.Data.Tables;
     using Trainings.Model.Models;
 
@@ -35,10 +36,41 @@
         {
             return new TrainingInfoModel
             {
+                Id = training.Id,
                 CreationDate = training.CreationDate,
                 Duration = training.Duration,
                 TrainingTypeId = training.TrainingTypeId
             };
         }
+
+        internal static TrainingModel ToTrainingModel(this Training training)
+        {
+            return new TrainingModel
+            {
+                CreationDate = training.CreationDate,
+                Duration = training.Duration,
+                TrainingTypeId = training.TrainingTypeId,
+                NbTimes = training.NbTimes,
+                ExerciceTrainingModels = training.ExerciceTraining.ToExerciceTrainingModels()
+            };
+        }
+
+        #region Private
+
+        private static IEnumerable<ExerciceTrainingModel> ToExerciceTrainingModels(
+            this IEnumerable<ExerciceTraining> exerciceTrainings)
+        {
+            List<ExerciceTrainingModel> exerciceTrainingModels = new List<ExerciceTrainingModel>();
+
+            foreach (ExerciceTraining exerciceTraining in exerciceTrainings)
+            {
+                ExerciceTrainingModel exerciceTrainingModel = exerciceTraining.ToExerciceTrainingModel();
+                exerciceTrainingModels.Add(exerciceTrainingModel);
+            }
+
+            return exerciceTrainingModels;
+        }
+
+        #endregion
     }
 }

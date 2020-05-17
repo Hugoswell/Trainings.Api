@@ -27,11 +27,21 @@
             _exerciceRepository = exerciceRepository;
         }
 
-        #endregion
+        #endregion        
 
         public IEnumerable<TrainingInfoModel> GetTrainingsInfo(int userId)
         {
             return _trainingRepository.GetTrainingsInfo(userId);
+        }
+
+        public IEnumerable<TrainingInfoModel> GetThreeLastTrainingsInfo(int userId)
+        {
+            return _trainingRepository.GetThreeLastTrainingsInfo(userId);
+        }
+
+        public TrainingModel GetTraining(int userId, int trainingId)
+        {
+            return _trainingRepository.GetTraining(userId, trainingId);
         }
 
         public int? Create(int userId)

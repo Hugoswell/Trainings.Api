@@ -28,6 +28,8 @@
 
         #endregion
 
+        
+
         [Authorize]
         [HttpGet("all")]
         public IActionResult GetTrainingsInfo()
@@ -43,6 +45,39 @@
             IEnumerable<TrainingInfoViewModel> trainingInfoViewModels = trainingInfoModels
                 .Select(tim => tim.ToTrainingInfoViewModel());
             return Ok(trainingInfoViewModels);
+        }
+
+        [Authorize]
+        [HttpGet("last")]
+        public IActionResult GetThreeLastTrainingsInfo()
+        {
+            int userId = int.Parse(GetUserId());
+            IEnumerable<TrainingInfoModel> trainingInfoModels = _trainingManager.GetThreeLastTrainingsInfo(userId);
+
+            if (trainingInfoModels.IsNull())
+            {
+                return BadRequest(new { message = ErrorsConstants.RetrievingError });
+            }
+
+            IEnumerable<TrainingInfoViewModel> trainingInfoViewModels = trainingInfoModels
+                .Select(tim => tim.ToTrainingInfoViewModel());
+            return Ok(trainingInfoViewModels);
+        }
+
+        [Authorize]
+        [HttpGet("get")]
+        public IActionResult GetTraining(int trainingId)
+        {
+            int userId = int.Parse(GetUserId());
+            TrainingModel trainingModel = _trainingManager.GetTraining(userId, trainingId);
+
+            if (trainingModel.IsNull())
+            {
+                return BadRequest(new { message = ErrorsConstants.RetrievingError });
+            }
+
+            TrainingViewModel trainingViewModel = trainingModel.ToTrainingViewModel();
+            return Ok(trainingViewModel);
         }
 
         [Authorize]

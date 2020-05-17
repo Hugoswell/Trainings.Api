@@ -8,5 +8,9 @@
         int? Create(TrainingModel trainingModel);
 
         IEnumerable<TrainingInfoModel> GetTrainingsInfo(int userId);
+
+        IEnumerable<TrainingInfoModel> GetThreeLastTrainingsInfo(int userId);
+
+        TrainingModel GetTraining(int userId, int trainingId);
     }
 }

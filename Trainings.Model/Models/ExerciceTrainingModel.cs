@@ -4,6 +4,8 @@
     {
         public short ExerciceId { get; set; }
 
+        public string ExerciceName { get; set; }
+
         public byte? NbSets { get; set; }
 
         public byte? NbReps { get; set; }
