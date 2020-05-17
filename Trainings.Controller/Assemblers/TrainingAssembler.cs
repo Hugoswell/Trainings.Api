@@ -14,7 +14,7 @@
                 Id = trainingInfoModel.Id.ToString(),
                 CreationDate = trainingInfoModel.CreationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                 Duration = trainingInfoModel.Duration.ToString(),
-                TrainingTypeId = trainingInfoModel.TrainingTypeId.ToString()
+                TrainingTypeName = trainingInfoModel.TrainingTypeId.ToTrainingTypeName()
             };
         }
 
