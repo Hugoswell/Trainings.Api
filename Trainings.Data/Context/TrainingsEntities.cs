@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Trainings.Data.Tables;
 
 namespace Trainings.Data.Context
@@ -16,6 +18,7 @@ namespace Trainings.Data.Context
 
         public virtual DbSet<Equipment> Equipment { get; set; }
         public virtual DbSet<Exercice> Exercice { get; set; }
+        public virtual DbSet<ExerciceEquipment> ExerciceEquipment { get; set; }
         public virtual DbSet<ExerciceGoal> ExerciceGoal { get; set; }
         public virtual DbSet<ExerciceMuscleGroup> ExerciceMuscleGroup { get; set; }
         public virtual DbSet<ExerciceTraining> ExerciceTraining { get; set; }
@@ -36,6 +39,8 @@ namespace Trainings.Data.Context
         {
             modelBuilder.Entity<Equipment>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
@@ -44,48 +49,60 @@ namespace Trainings.Data.Context
                 entity.Property(e => e.Description).IsUnicode(false);
 
                 entity.Property(e => e.Name).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ExerciceEquipment>(entity =>
+            {
+                entity.HasKey(e => new { e.ExerciceId, e.EquipmentId })
+                    .HasName("PK__Exercice__5E8FEAC7A20EEA61");
 
                 entity.HasOne(d => d.Equipment)
-                    .WithMany(p => p.Exercice)
+                    .WithMany(p => p.ExerciceEquipment)
                     .HasForeignKey(d => d.EquipmentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Exercice__Equipm__6383C8BA");
+                    .HasConstraintName("FK__ExerciceE__Equip__6C190EBB");
+
+                entity.HasOne(d => d.Exercice)
+                    .WithMany(p => p.ExerciceEquipment)
+                    .HasForeignKey(d => d.ExerciceId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ExerciceE__Exerc__6B24EA82");
             });
 
             modelBuilder.Entity<ExerciceGoal>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.GoalId })
-                    .HasName("PK__Exercice__D56F617D86F988EE");
+                    .HasName("PK__Exercice__D56F617D5D9357C5");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceGoal)
                     .HasForeignKey(d => d.ExerciceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ExerciceG__Exerc__66603565");
+                    .HasConstraintName("FK__ExerciceG__Exerc__6754599E");
 
                 entity.HasOne(d => d.Goal)
                     .WithMany(p => p.ExerciceGoal)
                     .HasForeignKey(d => d.GoalId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ExerciceG__GoalI__6754599E");
+                    .HasConstraintName("FK__ExerciceG__GoalI__68487DD7");
             });
 
             modelBuilder.Entity<ExerciceMuscleGroup>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.MuscleGroupId })
-                    .HasName("PK__Exercice__AD5C3006850BEAA9");
+                    .HasName("PK__Exercice__AD5C300638BF1DB2");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceMuscleGroup)
                     .HasForeignKey(d => d.ExerciceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ExerciceM__Exerc__68487DD7");
+                    .HasConstraintName("FK__ExerciceM__Exerc__693CA210");
 
                 entity.HasOne(d => d.MuscleGroup)
                     .WithMany(p => p.ExerciceMuscleGroup)
                     .HasForeignKey(d => d.MuscleGroupId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ExerciceM__Muscl__693CA210");
+                    .HasConstraintName("FK__ExerciceM__Muscl__6A30C649");
             });
 
             modelBuilder.Entity<ExerciceTraining>(entity =>
@@ -96,46 +113,48 @@ namespace Trainings.Data.Context
                 entity.HasIndex(e => e.TrainingId)
                     .HasName("FK__ExerciceTraining__TrainingId");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceTraining)
                     .HasForeignKey(d => d.ExerciceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ExerciceT__Exerc__619B8048");
+                    .HasConstraintName("FK__ExerciceT__Exerc__6383C8BA");
 
                 entity.HasOne(d => d.Training)
                     .WithMany(p => p.ExerciceTraining)
                     .HasForeignKey(d => d.TrainingId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ExerciceT__Train__628FA481");
+                    .HasConstraintName("FK__ExerciceT__Train__6477ECF3");
             });
 
             modelBuilder.Entity<ExerciceTrainingType>(entity =>
             {
                 entity.HasKey(e => new { e.ExerciceId, e.TrainingTypeId })
-                    .HasName("PK__Exercice__47FAB17E03588E6F");
+                    .HasName("PK__Exercice__47FAB17ED5D19AB3");
 
                 entity.HasOne(d => d.Exercice)
                     .WithMany(p => p.ExerciceTrainingType)
                     .HasForeignKey(d => d.ExerciceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ExerciceT__Exerc__6477ECF3");
+                    .HasConstraintName("FK__ExerciceT__Exerc__656C112C");
 
                 entity.HasOne(d => d.TrainingType)
                     .WithMany(p => p.ExerciceTrainingType)
                     .HasForeignKey(d => d.TrainingTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ExerciceT__Train__656C112C");
+                    .HasConstraintName("FK__ExerciceT__Train__66603565");
             });
 
             modelBuilder.Entity<Goal>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
             modelBuilder.Entity<MuscleGroup>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
@@ -153,29 +172,33 @@ namespace Trainings.Data.Context
                     .WithMany(p => p.Training)
                     .HasForeignKey(d => d.TrainingTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Training__Traini__60A75C0F");
+                    .HasConstraintName("FK__Training__Traini__628FA481");
 
                 entity.HasOne(d => d.UserPreferences)
                     .WithMany(p => p.Training)
                     .HasForeignKey(d => d.UserPreferencesId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Training__UserPr__5FB337D6");
+                    .HasConstraintName("FK__Training__UserPr__619B8048");
             });
 
             modelBuilder.Entity<TrainingDuration>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
             modelBuilder.Entity<TrainingType>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__User__A9D10534CA59BF31")
+                    .HasName("UQ__User__A9D10534780CB728")
                     .IsUnique();
 
                 entity.Property(e => e.Email).IsUnicode(false);
@@ -211,19 +234,19 @@ namespace Trainings.Data.Context
                     .WithMany(p => p.UserPhysicalInformation)
                     .HasForeignKey(d => d.LevelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPhysi__Level__5DCAEF64");
+                    .HasConstraintName("FK__UserPhysi__Level__5FB337D6");
 
                 entity.HasOne(d => d.Sex)
                     .WithMany(p => p.UserPhysicalInformation)
                     .HasForeignKey(d => d.SexId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPhysi__SexId__5EBF139D");
+                    .HasConstraintName("FK__UserPhysi__SexId__60A75C0F");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserPhysicalInformation)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPhysi__UserI__571DF1D5");
+                    .HasConstraintName("FK__UserPhysi__UserI__59063A47");
             });
 
             modelBuilder.Entity<UserPreferences>(entity =>
@@ -247,31 +270,31 @@ namespace Trainings.Data.Context
                     .WithMany(p => p.UserPreferences)
                     .HasForeignKey(d => d.EquipmentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPrefe__Equip__5CD6CB2B");
+                    .HasConstraintName("FK__UserPrefe__Equip__5EBF139D");
 
                 entity.HasOne(d => d.Goal)
                     .WithMany(p => p.UserPreferences)
                     .HasForeignKey(d => d.GoalId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPrefe__GoalI__59FA5E80");
+                    .HasConstraintName("FK__UserPrefe__GoalI__5BE2A6F2");
 
                 entity.HasOne(d => d.TrainingDuration)
                     .WithMany(p => p.UserPreferences)
                     .HasForeignKey(d => d.TrainingDurationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPrefe__Train__5BE2A6F2");
+                    .HasConstraintName("FK__UserPrefe__Train__5DCAEF64");
 
                 entity.HasOne(d => d.TrainingType)
                     .WithMany(p => p.UserPreferences)
                     .HasForeignKey(d => d.TrainingTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPrefe__Train__5AEE82B9");
+                    .HasConstraintName("FK__UserPrefe__Train__5CD6CB2B");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserPreferences)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserPrefe__UserI__5812160E");
+                    .HasConstraintName("FK__UserPrefe__UserI__59FA5E80");
             });
 
             modelBuilder.Entity<UserSex>(entity =>
@@ -290,7 +313,7 @@ namespace Trainings.Data.Context
                     .WithMany(p => p.UserTrainingFrequency)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__UserTrain__UserI__59063A47");
+                    .HasConstraintName("FK__UserTrain__UserI__5AEE82B9");
             });
 
             OnModelCreatingPartial(modelBuilder);

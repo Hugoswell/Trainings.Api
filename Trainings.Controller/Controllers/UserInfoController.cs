@@ -99,7 +99,7 @@
 
         #region Private
 
-        public string GetUserId()
+        private string GetUserId()
         {
             ClaimsIdentity identity = HttpContext.User.Identity as ClaimsIdentity;
             IList<Claim> claims = identity.Claims.ToList();
