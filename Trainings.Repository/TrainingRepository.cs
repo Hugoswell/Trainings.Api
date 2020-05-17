@@ -22,6 +22,7 @@
             {
                 return _trainingsEntities.Training
                 .Where(t => t.UserPreferences.UserId.Equals(userId))
+                .OrderByDescending(t => t.CreationDate)
                 .Select(t => t.ToTrainingInfoModel());
             }
             catch (Exception)
