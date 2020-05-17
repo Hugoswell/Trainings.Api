@@ -185,24 +185,14 @@
 
         private double GetTrainingDuration(byte trainingDurationId)
         {
-            double res = 0;
-            switch (trainingDurationId)
+            return trainingDurationId switch
             {
-                case 1:
-                    res = 15;
-                    return res;
-                case 2:
-                    res = 25;
-                    return res;
-                case 3:
-                    res = 40;
-                    return res;
-                case 4:
-                    res = 70;
-                    return res;
-                default:                    
-                    return res;
-            }
+                1 => 15,
+                2 => 25,
+                3 => 40,
+                4 => 70,
+                _ => 0,
+            };
         }
 
         private double RandomizeEffortDuration()
