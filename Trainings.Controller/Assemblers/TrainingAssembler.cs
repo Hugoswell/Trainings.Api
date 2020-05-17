@@ -48,19 +48,14 @@
 
         private static string ToTrainingTypeName(this byte trainingTypeId)
         {
-            switch (trainingTypeId)
+            return trainingTypeId switch
             {
-                case 1:
-                    return "Musculation";
-                case 2:
-                    return "Cardio";
-                case 3:
-                    return "Crossfit";
-                case 4:
-                    return "HIIT";
-                default:
-                    return "";
-            }
+                1 => "Musculation",
+                2 => "Cardio",
+                3 => "Crossfit",
+                4 => "HIIT",
+                _ => "",
+            };
         }
 
         #endregion
