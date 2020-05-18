@@ -20,26 +20,28 @@
 
         internal static TrainingViewModel ToTrainingViewModel(this TrainingModel trainingModel)
         {
+            string trainingTypeName = trainingModel.TrainingTypeId.ToTrainingTypeName();
             return new TrainingViewModel
             {
                 CreationDate = trainingModel.CreationDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                 Duration = trainingModel.Duration.ToString(),
                 NbTimes = trainingModel.NbTimes.ToString(),
-                ExerciceTrainingViewModels = trainingModel.ExerciceTrainingModels.ToExerciceTrainingViewModels(),
-                TrainingTypeName = trainingModel.TrainingTypeId.ToTrainingTypeName()
+                ExerciceTrainingViewModels = trainingModel.ExerciceTrainingModels.ToExerciceTrainingViewModels(trainingTypeName),
+                TrainingTypeName = trainingTypeName
             };
         }
 
         #region Private
 
         private static IEnumerable<ExerciceTrainingViewModel> ToExerciceTrainingViewModels(
-            this IEnumerable<ExerciceTrainingModel> exerciceTrainingModels)
+            this IEnumerable<ExerciceTrainingModel> exerciceTrainingModels,
+            string trainingTypeName)
         {
             List<ExerciceTrainingViewModel> exerciceTrainingViewModels = new List<ExerciceTrainingViewModel>();
 
             foreach (ExerciceTrainingModel exerciceTrainingModel in exerciceTrainingModels)
             {
-                ExerciceTrainingViewModel exerciceTrainingViewModel = exerciceTrainingModel.ToExerciceTrainingViewModel();
+                ExerciceTrainingViewModel exerciceTrainingViewModel = exerciceTrainingModel.ToExerciceTrainingViewModel(trainingTypeName);
                 exerciceTrainingViewModels.Add(exerciceTrainingViewModel);
             }
 
