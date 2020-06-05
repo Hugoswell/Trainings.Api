@@ -1,5 +1,6 @@
 ## Lien du site : https://www.trainings.agency/
 ## Lien des maquettes : https://xd.adobe.com/view/07d61438-f4ab-42d2-7acc-01f05ae873f3-71e7/
+## Modèle de données : https://dbdiagram.io/d/5e8641874495b02c3b892bc4
 
 ## Quel est le sujet de l'application ?
 
